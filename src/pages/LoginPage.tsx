@@ -1,5 +1,5 @@
 import LoginForm from "../components/LoginForm";
-import bgImage from "../assets/imgs/img_gym_login.png"; // troque pela sua imagem
+import bgImage from "../assets/imgs/img_gym_login.png";
 
 export default function LoginPage() {
     return (
@@ -15,11 +15,11 @@ export default function LoginPage() {
             ></div>
 
             {/* Direita - Formulário */}
-            <div className="col-12 col-md-6 d-flex align-items-center justify-content-center bg-dark">
+            <div className="col-12 col-md-6 d-flex align-items-center justify-content-center background-grey-color">
                 <div className="w-75">
                     <div className="text-center mb-4">
                         <img src="./src/assets/imgs/logo_loginPage.png" alt="Logo" width={80} className="mb-3" />
-                        <h2 className="fw-bold text-white">ACESSE SUA CONTA</h2>
+                        <h2 className="fw-bold fs-1 text-white font-title">ACESSE SUA CONTA</h2>
                     </div>
                     <LoginForm />
                 </div>

@@ -1,3 +1,40 @@
 html, body, #root {
   height: 100%;
 }
+
+:root {
+  --red-color: #EE2B47;
+  --white-color: #FFFFFF;
+  --dark-color: #000000;
+  --grey-color: #2C2C2C;
+  --font-title: 'Montserrat', sans-serif;
+  --font-button:'Roboto', sans-serif;
+  --font-nav: 'Poppins', sans-serif;
+  --font-text: 'Inter', sans-serif;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto_Condensed-Bold.ttf') format('tff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Bold.ttf') format('tff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-ExtraBold.ttf') format('tff');
+  font-style: normal;
+}
+
+.font-title {
+  font-family: var(--font-title);
+}
+
+.background-grey-color {
+  background-color: var(--grey-color);
+}
