@@ -1,0 +1,55 @@
+.form-control:focus,
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* LoginForm.css */
+
+/* Container do floating label */
+.floating-label {
+  position: relative;
+}
+
+/* Input normal */
+.floating-label .form-control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem 0.75rem 0.25rem 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Label flutuante */
+.floating-label label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  color: #aaa;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+/* Quando o input está em foco ou preenchido */
+.floating-label .form-control:focus + label,
+.floating-label .form-control:not(:placeholder-shown) + label {
+  top: 0.2rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #333; /* cor do label flutuante */
+}
+
+/* Outline escuro no foco */
+.floating-label .form-control:focus {
+  outline: none;
+  border-color: #444;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
+}
+
+/* Botão de mostrar senha */
+.toggle-password {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}

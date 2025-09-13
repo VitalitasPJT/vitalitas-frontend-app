@@ -17,6 +17,7 @@ html, body, #root {
   font-family: 'Roboto';
   src: url('./assets/fonts/Roboto_Condensed-Bold.ttf') format('tff');
   font-style: normal;
+  font-weight: bold;
 }
 
 @font-face {
@@ -33,6 +34,10 @@ html, body, #root {
 
 .font-title {
   font-family: var(--font-title);
+}
+
+.font-button {
+  font-family: var(--font-button);
 }
 
 .background-grey-color {
