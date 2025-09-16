@@ -15,20 +15,26 @@ html, body, #root {
 
 @font-face {
   font-family: 'Roboto';
-  src: url('./assets/fonts/Roboto_Condensed-Bold.ttf') format('tff');
+  src: url('./assets/fonts/Roboto_Condensed-Bold.ttf') format('truetype');
   font-style: normal;
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-Bold.ttf') format('tff');
+  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('./assets/fonts/Montserrat-ExtraBold.ttf') format('tff');
+  src: url('./assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url(./assets/fonts/Inter_18pt-Light.ttf) format('truetype');
   font-style: normal;
 }
 
@@ -38,6 +44,10 @@ html, body, #root {
 
 .font-button {
   font-family: var(--font-button);
+}
+
+.font-text {
+  font-family: var(--font-text);
 }
 
 .background-grey-color {
