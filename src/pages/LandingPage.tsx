@@ -6,9 +6,8 @@ export default function LandingPage() {
         <div style={{ backgroundColor: '#000', color: '#fff' }} className="min-vh-100">
             <NavbarLandingPage />
 
-            <div className="container d-flex flex-column align-items-center justify-content-center text-start py-5">
+            <div className="container d-flex flex-column align-items-center justify-content-center text-start">
                 <div className="row">
-
                     <div className="col-md-6 px-5">
                         <h1 className="display-4 font-title mb-5" style={{ fontWeight: "bolder" }}>
                             A EVOLUÇÃO QUE SUA ACADEMIA PRECISA
@@ -35,10 +34,52 @@ export default function LandingPage() {
                     <div className="col-md-6">
                         <img src="./src/assets/imgs/main_img_landingPage.png" className="img-fluid d-none d-md-block" alt="gym_img" style={{ maxHeight: '1000px', width: '100%', objectFit: 'cover' }} />
                     </div>
-
                 </div>
-
             </div>
+
+            {/* Seção com gradiente fora da container */}
+            <section
+                className="text-white py-5"
+                style={{
+                    background: 'linear-gradient(180deg, #000000ff, #2c2c2c)',
+                    width: '100%',
+                }}
+            >
+                <div className="container text-center">
+                    <h2 className="mb-5 display-5 font-title">TUDO EM UM SÓ LUGAR</h2>
+
+                    <div className="row g-5">
+
+                        <div className="col-md-6">
+                            <div className="p-4 bg-dark rounded-4 h-100">
+                                <i className="bi bi-calendar-check-fill text-danger fs-1 mb-3"></i>
+                                <p>Agendar avaliações e treinos com professores.</p>
+                            </div>
+                        </div>
+
+                        <div className="col-md-6">
+                            <div className="p-4 bg-dark rounded-4 h-100">
+                                <i className="bi bi-people-fill text-danger fs-1 mb-3"></i>
+                                <p>Centralizar dados de alunos e professores.</p>
+                            </div>
+                        </div>
+
+                        <div className="col-md-6">
+                            <div className="p-4 bg-dark rounded-4 h-100">
+                                <i className="bi bi-file-earmark-text-fill text-danger fs-1 mb-3"></i>
+                                <p>Consultar mensalidades e contrato.</p>
+                            </div>
+                        </div>
+
+                        <div className="col-md-6">
+                            <div className="p-4 bg-dark rounded-4 h-100">
+                                <i className="bi bi-calendar3 text-danger fs-1 mb-3"></i>
+                                <p>Acompanhar treinos e progresso.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }
