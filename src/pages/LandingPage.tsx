@@ -6,7 +6,7 @@ export default function LandingPage() {
         <div style={{ backgroundColor: '#000', color: '#fff' }} className="min-vh-100">
             <NavbarLandingPage />
 
-            <div className="container d-flex flex-column align-items-center justify-content-center text-start">
+            <div className="container d-flex flex-column align-items-center justify-content-center text-start" style={{paddingTop: '10%'}}>
                 <div className="row">
                     <div className="col-md-6 px-5">
                         <h1 className="display-4 font-title mb-5" style={{ fontWeight: "bolder" }}>
@@ -22,10 +22,10 @@ export default function LandingPage() {
                         </p>
 
                         <div className="d-flex gap-3 font-button flex-wrap justify-content-start">
-                            <Link to="/" className="btn btn-danger btn-lg">
+                            <Link to="/" className="btn_redColor">
                                 SEJA PARCEIRO
                             </Link>
-                            <Link to="/login" className="btn btn-outline-light btn-lg">
+                            <Link to="/login" className="btn_greyColor">
                                 ENTRE AGORA
                             </Link>
                         </div>

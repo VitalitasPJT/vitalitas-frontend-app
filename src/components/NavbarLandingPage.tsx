@@ -4,7 +4,19 @@ import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
     return (
-        <nav style={{ backgroundColor: '#000', color: '#fff', padding: '20px' }} className="navbarLandingPage navbar navbar-expand-lg border-top border-primary px-4 justify-content-between" >
+        <nav
+            style={{
+                backgroundColor: '#000',
+                color: '#fff',
+                padding: '20px',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                zIndex: 1000
+            }}
+            className="navbarLandingPage navbar navbar-expand-lg border-top border-primary px-4 justify-content-between"
+        >
             {/* Esquerda: Logo + Texto */}
             <div className="d-flex align-items-center gap-2">
                 <img
@@ -23,7 +35,6 @@ const Navbar: React.FC = () => {
                 </Link>
             </div>
         </nav>
-
     );
 };
 

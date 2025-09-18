@@ -53,3 +53,37 @@ html, body, #root {
 .background-grey-color {
   background-color: var(--grey-color);
 }
+
+.btn_redColor {
+  background-color: var(--red-color);
+  color: white;
+  font-family: var(--font-button);
+  padding: 1.0rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: large;
+  width: 30%;
+  text-align: center;
+}
+
+.btn_redColor:hover {
+  transform: scale(1.03);
+  background-color: #e6445d;
+}
+
+.btn_greyColor {
+  background-color: var(--grey-color);
+  color: white;
+  font-family: var(--font-button);
+  padding: 1.0rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: large;
+  width: 30%;
+  text-align: center;
+}
+
+.btn_greyColor:hover {
+  transform: scale(1.03);
+  background-color: #3b3b3b;
+}
