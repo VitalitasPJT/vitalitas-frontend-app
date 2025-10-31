@@ -46,6 +46,11 @@ html, body, #root {
   font-family: var(--font-button);
 }
 
+.font-nav {
+  font-family: var(--font-nav);
+  font-size: 1.3rem;
+}
+
 .font-text {
   font-family: var(--font-text);
 }

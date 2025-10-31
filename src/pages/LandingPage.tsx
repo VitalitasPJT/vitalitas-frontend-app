@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
     return (
-        <div style={{ backgroundColor: '#000', color: '#fff' }} className="min-vh-100">
+        <div style={{ backgroundColor: '#bcbabaff', color: '#fff' }} className="min-vh-100">
             <NavbarLandingPage />
 
             <div className="container d-flex flex-column align-items-center justify-content-center text-start" style={{paddingTop: '10%'}}>
