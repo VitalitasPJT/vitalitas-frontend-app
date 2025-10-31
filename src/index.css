@@ -48,7 +48,7 @@ html, body, #root {
 
 .font-nav {
   font-family: var(--font-nav);
-  font-size: 1.3rem;
+  font-size: 14px;
 }
 
 .font-text {
@@ -72,6 +72,23 @@ html, body, #root {
 }
 
 .btn_redColor:hover {
+  transform: scale(1.03);
+  background-color: #e6445d;
+}
+
+.btn_blackColor {
+  background-color: var(--dark-color);
+  color: white;
+  font-family: var(--font-button);
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: large;
+  width: 13%;
+  text-align: center;
+}
+
+.btn_blackColor:hover {
   transform: scale(1.03);
   background-color: #e6445d;
 }
