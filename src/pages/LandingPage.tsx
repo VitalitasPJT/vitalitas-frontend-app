@@ -1,85 +1,93 @@
 import NavbarLandingPage from "../components/NavbarLandingPage";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+{/*import gymMan from "../assets/imgs/main_img_landingPage.png";*/}
 
 export default function LandingPage() {
-    return (
-        <div style={{ backgroundColor: '#bcbabaff', color: '#fff' }} className="min-vh-100">
-            <NavbarLandingPage />
+  return (
+    <div className="bg-white text-dark min-vh-100 overflow-hidden position-relative">
+      <NavbarLandingPage />
 
-            <div className="container d-flex flex-column align-items-center justify-content-center text-start" style={{paddingTop: '10%'}}>
-                <div className="row">
-                    <div className="col-md-6 px-5">
-                        <h1 className="display-4 font-title mb-5" style={{ fontWeight: "bolder" }}>
-                            A EVOLUÇÃO QUE SUA ACADEMIA PRECISA
-                        </h1>
-
-                        <p className="lead font-text mb-4">
-                            O Vitalitas transforma a gestão da sua academia, conectando treinos, matrículas, pagamentos e comunicação em uma experiência única, ágil e descomplicada.
-                        </p>
-
-                        <p className="lead font-text mb-4">
-                            Criado para academias de bairro, nosso sistema permite que você economize tempo, melhore o engajamento e ofereça um serviço de excelência sem complicação.
-                        </p>
-
-                        <div className="d-flex gap-3 font-button flex-wrap justify-content-start">
-                            <Link to="/" className="btn_redColor">
-                                SEJA PARCEIRO
-                            </Link>
-                            <Link to="/login" className="btn_greyColor">
-                                ENTRE AGORA
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="col-md-6">
-                        <img src="./src/assets/imgs/main_img_landingPage.png" className="img-fluid d-none d-md-block" alt="gym_img" style={{ maxHeight: '1000px', width: '100%', objectFit: 'cover' }} />
-                    </div>
-                </div>
-            </div>
-
-            {/* Seção com gradiente fora da container */}
-            <section
-                className="text-white py-5"
-                style={{
-                    background: 'linear-gradient(180deg, #000000ff, #2c2c2c)',
-                    width: '100%',
-                }}
+      {/* Container principal */}
+      <div
+        className="container-fluid position-relative"
+        style={{ paddingTop: "100px" }}
+      >
+        <div className="row">
+          {/* Coluna Esquerda */}
+          <div
+            className="col-md-6 d-flex flex-column align-items-start gap-4"
+            style={{
+              marginLeft: "400px",
+              maxWidth: "650px",
+              position: "relative",
+            }}
+          >
+            <h1
+              className="font-title fw-bolder"
+              style={{
+                fontSize: "4rem",
+                color: 'black',
+                lineHeight: "1.1",
+              }}
             >
-                <div className="container text-center">
-                    <h2 className="mb-5 display-5 font-title">TUDO EM UM SÓ LUGAR</h2>
+              A EVOLUÇÃO QUE <br /> SUA ACADEMIA <br /> PRECISA
+            </h1>
 
-                    <div className="row g-5">
+            <p className="font-text text-secondary lh-base"
+            style={{fontSize:'24px'}}>
+              O Vitalitas transforma a gestão da sua academia, conectando
+              treinos, matrículas, pagamentos e comunicação em uma experiência
+              única, ágil e descomplicada.
+            </p>
 
-                        <div className="col-md-6">
-                            <div className="p-4 bg-dark rounded-4 h-100">
-                                <i className="bi bi-calendar-check-fill text-danger fs-1 mb-3"></i>
-                                <p>Agendar avaliações e treinos com professores.</p>
-                            </div>
-                        </div>
+            <p className="font-text text-secondary lh-base"
+            style={{fontSize:'24px'}}>
+              Torne-se nosso parceiro e se junte às academias que já estão
+              simplificando a gestão com o Vitalitas.
+            </p>
 
-                        <div className="col-md-6">
-                            <div className="p-4 bg-dark rounded-4 h-100">
-                                <i className="bi bi-people-fill text-danger fs-1 mb-3"></i>
-                                <p>Centralizar dados de alunos e professores.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-md-6">
-                            <div className="p-4 bg-dark rounded-4 h-100">
-                                <i className="bi bi-file-earmark-text-fill text-danger fs-1 mb-3"></i>
-                                <p>Consultar mensalidades e contrato.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-md-6">
-                            <div className="p-4 bg-dark rounded-4 h-100">
-                                <i className="bi bi-calendar3 text-danger fs-1 mb-3"></i>
-                                <p>Acompanhar treinos e progresso.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Link
+              to="/cadastro"
+              className="btn_redColor"
+            >
+              JUNTE-SE AGORA
+            </Link>
+          </div>
         </div>
-    );
+
+        {/* Máscara e imagem — fora do fluxo da row */}
+        <div
+          className="position-absolute top-0 end-0 h-100 d-flex align-items-center justify-content-end"
+          style={{ width: "55%", zIndex: 1 }}
+        >
+          {/*
+          <div
+            className="position-absolute top-0 end-0"
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#000",
+              clipPath: "polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              zIndex: 1,
+            }}
+          ></div>
+
+          {/* Imagem do homem com profundidade *
+          <img
+            src={gymMan}
+            alt="Homem musculoso"
+            className="position-relative"
+            style={{
+              zIndex: 2,
+              maxHeight: "450px",
+              objectFit: "contain",
+              transform: "translate(25%, 5%) scale(1.15)",
+              filter: "drop-shadow(-30px 0 40px rgba(0,0,0,0.6))",
+            }}
+          />
+          */}
+        </div>
+      </div>
+    </div>
+  );
 }
