@@ -5,7 +5,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form className="m-2 d-flex flex-column justify-contents-center">
+    <form className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto">
 
       {/* Email */}
       <div className="form-group m-2">
