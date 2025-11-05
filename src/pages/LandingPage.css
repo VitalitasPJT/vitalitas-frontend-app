@@ -1,0 +1,179 @@
+/* === HERO SECTION === */
+.hero-section {
+  padding: 5rem 0rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text {
+  margin-left: 15%;
+  max-width: 600px;
+  z-index: 2;
+  position: relative;
+}
+
+.services-section.container-fluid {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.hero-title {
+  font-size: 4rem;
+  color: black;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.hero-subtext {
+  font-size: 1.3rem;
+  color: #6c757d;
+}
+
+/* Máscara preta no lado direito */
+.mask-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mask-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
+  z-index: 1;
+}
+
+.gym-man {
+  position: relative;
+  z-index: 2;
+  max-height: 500px;
+  object-fit: contain;
+  transform: translateX(-50%) translateY(12%) scale(1.25);
+  filter: drop-shadow(-20px 0 40px rgba(0, 0, 0, 0.7));
+}
+
+/* === SERVIÇOS + DEPOIMENTOS === */
+.shadow-section {
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 80px;
+}
+
+.service-card,
+.testimonial-card {
+  border-radius: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.testimonial-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+/* === RESPONSIVIDADE === */
+
+@media (max-width: 1024px) {
+  /* HERO TEXT */
+  .hero-text-container {
+    margin-left: 150px !important;
+    max-width: 500px !important;
+  }
+
+  .hero-text-container h1 {
+    font-size: 3rem !important;
+  }
+
+  .hero-text-container p {
+    font-size: 1.1rem !important;
+  }
+
+  /* BOTÃO */
+  .join-button {
+    margin-top: 60px !important;
+  }
+
+  /* IMAGEM DO HOMEM */
+  .gym-man-container {
+    width: 35% !important;
+  }
+
+  .gym-man-container img {
+    max-height: 400px !important;
+    transform: translateX(-40%) translateY(5%) scale(1.1) !important;
+  }
+
+  /* MASK PRETO */
+  .black-mask {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 25% 100%) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero-section {
+    padding-top: 120px !important;
+  }
+}
+
+
+@media (max-width: 991px) {
+  .hero-text {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Remove a imagem e a máscara em telas pequenas */
+  .mask-group {
+    display: none !important;
+  }
+
+  .hero-section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .hero-btn {
+    margin-top: 15px;
+  }
+}

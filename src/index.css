@@ -67,7 +67,6 @@ html, body, #root {
   border-radius: 10px;
   text-decoration: none;
   font-size: large;
-  width: 40%;
   text-align: center;
 }
 
@@ -84,7 +83,6 @@ html, body, #root {
   border-radius: 10px;
   text-decoration: none;
   font-size: large;
-  width: 13%;
   text-align: center;
 }
 
@@ -101,11 +99,28 @@ html, body, #root {
   border-radius: 10px;
   text-decoration: none;
   font-size: large;
-  width: 30%;
   text-align: center;
 }
 
 .btn_greyColor:hover {
   transform: scale(1.03);
   background-color: #3b3b3b;
+}
+
+.btn_redColor,
+.btn_blackColor,
+.btn_greyColor {
+  width: auto;
+  max-width: 100%; 
+}
+
+@media (max-width: 768px) {
+  .btn_redColor,
+  .btn_blackColor,
+  .btn_greyColor {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    max-width: 220px;
+  }
 }

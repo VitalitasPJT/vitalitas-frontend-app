@@ -29,20 +29,39 @@ const Navbar: React.FC = () => {
 
                     {/* Itens de Navegação */}
                     <ul className="nav">
-                        <li className="nav-item font-nav"
+                        <li className="nav-item font-nav">
+                            <a
+                                href="#servicos"
+                                className="nav-link text-dark hover-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const servicosSection = document.getElementById("servicos");
+                                    if (servicosSection) {
+                                        servicosSection.scrollIntoView({ behavior: "smooth" });
+                                    }
+                                }}
                             >
-                            <Link to="/servicos" className="nav-link text-dark hover-link">
                                 Serviços
-                            </Link>
+                            </a>
                         </li>
-                        <li className="nav-item font-nav"
+                        <li className="nav-item font-nav">
+                            <a
+                                href="#contato"
+                                className="nav-link text-dark hover-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const servicosSection = document.getElementById("contato");
+                                    if (servicosSection) {
+                                        servicosSection.scrollIntoView({ behavior: "smooth" });
+                                    }
+                                }}
                             >
-                            <Link to="/contato" className="nav-link text-dark hover-link">
                                 Contato
-                            </Link>
+                            </a>
                         </li>
+
                         <li className="nav-item font-nav"
-                            >
+                        >
                             <Link to="/sobre" className="nav-link text-dark hover-link">
                                 Sobre nós
                             </Link>
@@ -54,7 +73,7 @@ const Navbar: React.FC = () => {
                 <div className="col-md-6 d-flex justify-content-end align-items-center gap-4">
                     <div className="d-flex align-items-center gap-2">
                         <i className="bi bi-globe text-dark"></i>
-                        <span className="text-dark font-nav">PT-BR</span> {/* fazer dps essa parte ser clicavel e mudar o idioma?*/ }
+                        <span className="text-dark font-nav">PT-BR</span> {/* fazer dps essa parte ser clicavel e mudar o idioma?*/}
                     </div>
 
                     <Link to="/ajuda" className="text-dark font-nav text-decoration-none hover-link">
@@ -65,8 +84,8 @@ const Navbar: React.FC = () => {
                     </Link>
                     <Link
                         to="/login"
-                        className="btn_blackColor rounded-pill px-4 fw-bold"
-                        style={{ fontSize: '0.9rem'}}
+                        className="btn_blackColor navbar-button rounded-pill px-4 fw-bold fs-6"
+
                     >
                         ACESSAR
                     </Link>
