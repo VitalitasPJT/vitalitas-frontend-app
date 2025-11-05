@@ -7,6 +7,8 @@ import contratoImg from "../assets/imgs/imagem3.png";
 import yuriImg from "../assets/imgs/yuri.png";
 import tutuImg from "../assets/imgs/tutu.png";
 import sandersonImg from "../assets/imgs/sand.png";
+import vitPhoneImg from "../assets/imgs/vitalitasHomemCelular.png";
+
 import "./LandingPage.css";
 
 export default function LandingPage() {
@@ -54,16 +56,16 @@ export default function LandingPage() {
             <h1 className="hero-title">
               A EVOLUÇÃO QUE <br /> SUA ACADEMIA <br /> PRECISA
             </h1>
-            <p className="hero-subtext">
+            <p className="hero-subtext font-text mt-3">
               O Vitalitas transforma a gestão da sua academia, conectando treinos,
               matrículas, pagamentos e comunicação em uma experiência única, ágil e
               descomplicada.
             </p>
-            <p className="hero-subtext">
+            <p className="hero-subtext font-text">
               Torne-se nosso parceiro e se junte às academias que já estão
               simplificando a gestão com o Vitalitas.
             </p>
-            <Link to="/cadastro" className="btn_redColor w-25 mt-4">
+            <Link to="/cadastro" className="btn_redColor w-25 d-flex justify-content-center mt-4">
               JUNTE-SE AGORA
             </Link>
           </div>
@@ -81,7 +83,8 @@ export default function LandingPage() {
         <div className="row text-center mb-5">
           {servicos.map((card, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
-              <div className="card service-card h-100">
+              <div className="card service-card h-100"
+              style={{borderRadius:'16px'}}>
                 <img src={card.img} alt={card.title} className="card-img-top" />
                 <div className="card-body">
                   <h5 className="fw-semibold">{card.title}</h5>
@@ -107,6 +110,45 @@ export default function LandingPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="row align-items-center justify-content-center py-5 tudo-em-um-lugar-block">
+
+          {/* IMAGEM DO LADO ESQUERDO */}
+          <div className="col-lg-5 col-md-6 col-12 text-center mb-4 mb-md-0">
+            <img
+              src={vitPhoneImg}
+              alt="Aplicativo Vitalitas"
+              className="img-fluid phone-promo-img"
+            />
+          </div>
+
+          {/* TEXTO + ITENS */}
+          <div className="col-lg-5 col-md-6 col-12">
+            <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
+
+            <div className="d-flex align-items-center mb-3">
+              <div className="promo-icon">
+                <i className="bi bi-lightning-charge-fill"></i>
+              </div>
+              <p className="mb-0 font-text fs-4 ms-3">Transformação Digital</p>
+            </div>
+
+            <div className="d-flex align-items-center mb-3">
+              <div className="promo-icon">
+                <i className="bi bi-people-fill"></i>
+              </div>
+              <p className="mb-0 font-text fs-4 ms-3">Experiência completa para todos</p>
+            </div>
+
+            <div className="d-flex align-items-center">
+              <div className="promo-icon">
+                <i className="bi bi-globe2"></i>
+              </div>
+              <p className="mb-0 font-text fs-4 ms-3">Tecnologia que impulsiona resultados</p>
+            </div>
+
+          </div>
         </div>
       </section>
     </div>

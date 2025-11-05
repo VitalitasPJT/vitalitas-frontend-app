@@ -27,7 +27,7 @@
 
 .hero-subtext {
   font-size: 1.3rem;
-  color: #6c757d;
+  color: #000000;
 }
 
 /* Máscara preta no lado direito */
@@ -93,6 +93,41 @@
   height: 50px;
   object-fit: cover;
 }
+
+.tudo-em-um-lugar-block {
+  border-top: 1px solid #e7e7e7;
+  margin-top: 60px;
+  padding-top: 60px;
+}
+
+.phone-promo-img {
+  max-width: 450px;
+  filter: drop-shadow(0px 8px 25px rgba(0,0,0,0.25));
+}
+
+/* Bolinhas dos ícones */
+.promo-icon {
+  width: 100px;
+  height: 100px;
+  background-color: var(--red-color); /* vermelho do seu tema */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-icon i {
+  color: #fff;
+  font-size: 2.3rem;
+}
+
+/* RESPONSIVIDADE */
+@media(max-width: 768px){
+  .phone-promo-img {
+    max-width: 260px;
+  }
+}
+
 
 /* === RESPONSIVIDADE === */
 
