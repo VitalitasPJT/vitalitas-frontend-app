@@ -5,7 +5,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form className="d-flex flex-column">
+    <form className="m-2 d-flex flex-column justify-contents-center">
 
       {/* Email */}
       <div className="form-group m-2">
@@ -50,14 +50,14 @@ export default function LoginForm() {
       </div>
 
       {/* Esqueceu a senha */}
-      <div className="form-group d-flex justify-content-end m-2 p-1">
-        <button type="button" className="w-100 btn btn-sm text-end">
+      <div className="d-flex justify-content-end m-2">
+        <button type="button" className="btn btn-sm text-muted">
           Esqueceu a senha?
         </button>
       </div>
 
       {/* Botão Acessar */}
-      <div className="form-check d-flex justify-content-center p-2 font-button">
+      <div className="form-check m-2 p-0 d-flex justify-content-center">
         <button type="submit" className="btn btn-danger m-2 p-2 w-50">
           Login
         </button>
