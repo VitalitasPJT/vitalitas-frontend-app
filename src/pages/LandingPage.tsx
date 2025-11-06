@@ -50,7 +50,7 @@ export default function LandingPage() {
       <NavbarLandingPage />
 
       {/* HERO SECTION */}
-      <section className="hero-section container-fluid position-relative">
+      <section className="hero-section d-flex align-items-center justify-content-between container-fluid position-relative">
         <div className="row">
           <div className="col-lg-6 col-md-8 col-12 hero-text d-flex flex-column">
             <h1 className="hero-title">
@@ -65,7 +65,7 @@ export default function LandingPage() {
               Torne-se nosso parceiro e se junte às academias que já estão
               simplificando a gestão com o Vitalitas.
             </p>
-            <Link to="/cadastro" className="btn_redColor w-25 d-flex justify-content-center mt-4">
+            <Link to="/cadastro" className="btn_redColor join-btn mt-4">
               JUNTE-SE AGORA
             </Link>
           </div>
@@ -84,7 +84,7 @@ export default function LandingPage() {
           {servicos.map((card, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
               <div className="card service-card h-100"
-              style={{borderRadius:'16px'}}>
+                style={{ borderRadius: '16px' }}>
                 <img src={card.img} alt={card.title} className="card-img-top" />
                 <div className="card-body">
                   <h5 className="fw-semibold">{card.title}</h5>

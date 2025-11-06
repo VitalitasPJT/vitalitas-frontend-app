@@ -1,6 +1,8 @@
-/* === HERO SECTION === */
+/* =======================
+   HERO SECTION
+======================= */
 .hero-section {
-  padding: 5rem 0rem;
+  padding: 5rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -12,67 +14,62 @@
   position: relative;
 }
 
-.services-section.container-fluid {
-  padding-left: 40px !important;
-  padding-right: 40px !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
 .hero-title {
   font-size: 4rem;
+  font-weight: 800;
   color: black;
   line-height: 1.1;
-  font-weight: 800;
 }
 
 .hero-subtext {
   font-size: 1.3rem;
-  color: #000000;
+  color: #000;
 }
 
-/* Máscara preta no lado direito */
+/* =======================
+   MÁSCARA + IMAGEM
+======================= */
 .mask-group {
   position: absolute;
   top: 0;
   right: 0;
+  width: 38%;
   height: 100%;
-  width: 35%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
 .mask-overlay {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: #000;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
   z-index: 1;
 }
 
 .gym-man {
   position: relative;
   z-index: 2;
-  max-height: 500px;
+  max-height: 520px;
   object-fit: contain;
-  transform: translateX(-50%) translateY(12%) scale(1.25);
+  transform: translateX(-55%) translateY(-10%) scale(1.25);
   filter: drop-shadow(-20px 0 40px rgba(0, 0, 0, 0.7));
 }
 
-/* === SERVIÇOS + DEPOIMENTOS === */
+/* =======================
+   SEÇÃO SERVIÇOS + DEPOIMENTOS
+======================= */
 .shadow-section {
-  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background: #fff;
   padding: 80px;
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .service-card,
 .testimonial-card {
   border-radius: 16px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
 }
 
 .service-card:hover,
@@ -82,8 +79,7 @@
 }
 
 .service-card img {
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-radius: 16px 16px 0 0;
   height: 200px;
   object-fit: cover;
 }
@@ -105,12 +101,12 @@
   filter: drop-shadow(0px 8px 25px rgba(0,0,0,0.25));
 }
 
-/* Bolinhas dos ícones */
+/* Icon circles */
 .promo-icon {
   width: 100px;
   height: 100px;
-  background-color: var(--red-color); /* vermelho do seu tema */
   border-radius: 50%;
+  background: var(--red-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,59 +117,43 @@
   font-size: 2.3rem;
 }
 
-/* RESPONSIVIDADE */
-@media(max-width: 768px){
-  .phone-promo-img {
-    max-width: 260px;
-  }
+/* Botão hero */
+.join-btn {
+  width: 25%;
 }
 
+/* =======================
+   RESPONSIVIDADE - NOTEBOOK (1024px)
+======================= */
+@media (max-width: 1200px) and (min-width: 900px) {
 
-/* === RESPONSIVIDADE === */
-
-@media (max-width: 1024px) {
-  /* HERO TEXT */
-  .hero-text-container {
-    margin-left: 150px !important;
-    max-width: 500px !important;
+  .hero-text {
+    margin-left: 8%;
+    max-width: 500px;
   }
 
-  .hero-text-container h1 {
-    font-size: 3rem !important;
+  .hero-title {
+    font-size: 3.3rem;
   }
 
-  .hero-text-container p {
-    font-size: 1.1rem !important;
+  .hero-subtext {
+    font-size: 1.15rem;
   }
 
-  /* BOTÃO */
-  .join-button {
-    margin-top: 60px !important;
+  .mask-group {
+    width: 42%;
   }
 
-  /* IMAGEM DO HOMEM */
-  .gym-man-container {
-    width: 35% !important;
+  .gym-man {
+    max-height: 430px;
+    transform: translateX(-40%) translateY(-12%) scale(1.35);
   }
 
-  .gym-man-container img {
-    max-height: 400px !important;
-    transform: translateX(-40%) translateY(5%) scale(1.1) !important;
-  }
-
-  /* MASK PRETO */
-  .black-mask {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 25% 100%) !important;
-  }
 }
 
-@media (max-width: 800px) {
-  .hero-section {
-    padding-top: 120px !important;
-  }
-}
-
-
+/* =======================
+   TABLET
+======================= */
 @media (max-width: 991px) {
   .hero-text {
     margin-left: 0;
@@ -187,10 +167,19 @@
   .hero-subtext {
     font-size: 1.1rem;
   }
+
+  .join-btn {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+  }
 }
 
+/* =======================
+   MOBILE
+======================= */
 @media (max-width: 768px) {
-  /* Remove a imagem e a máscara em telas pequenas */
   .mask-group {
     display: none !important;
   }
@@ -201,14 +190,14 @@
   }
 
   .hero-title {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
   }
 
   .hero-subtext {
     font-size: 1rem;
   }
 
-  .hero-btn {
-    margin-top: 15px;
+  .phone-promo-img {
+    max-width: 260px;
   }
 }
