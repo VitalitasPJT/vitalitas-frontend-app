@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
                         <li className="nav-item">
                             <a
                                 href="#servicos"
-                                className="nav-link text-dark hover-link"
+                                className="nav-link text-dark font-nav hover-link"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     document.getElementById("servicos")?.scrollIntoView({ behavior: "smooth" });
@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
                         <li className="nav-item">
                             <a
                                 href="#contato"
-                                className="nav-link text-dark hover-link"
+                                className="nav-link text-dark font-nav hover-link"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
                         </li>
 
                         <li className="nav-item">
-                            <Link to="/sobre" className="nav-link text-dark hover-link">
+                            <Link to="/sobre" className="nav-link text-dark font-nav hover-link">
                                 Sobre nós
                             </Link>
                         </li>

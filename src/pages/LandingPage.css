@@ -54,7 +54,7 @@
   max-height: 520px;
   object-fit: contain;
   transform: translateX(-55%) translateY(-10%) scale(1.25);
-  filter: drop-shadow(-20px 0 40px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(-10px 0 15px rgba(0, 0, 0, 0.3));
 }
 
 /* =======================
@@ -123,8 +123,22 @@
 }
 
 /* =======================
-   RESPONSIVIDADE - NOTEBOOK (1024px)
+   RESPONSIVIDADE - NOTEBOOK 1440px e (1024px)
 ======================= */
+
+@media (max-width: 1440px) and (min-width: 900px) {
+
+  .mask-group {
+    width: 30%;
+  }
+
+  .gym-man {
+    max-height: 430px;
+    transform: translateX(-40%) translateY(-12%) scale(1.35);
+  }
+
+}
+
 @media (max-width: 1200px) and (min-width: 900px) {
 
   .hero-text {
@@ -174,6 +188,16 @@
     display: block;
     margin-top: 20px;
   }
+
+  .mask-group {
+    width: 32%;
+  }
+
+  .gym-man {
+    max-height: 320px;
+    transform: translateX(-7%) translateY(-12%) scale(1.35);
+  }
+
 }
 
 /* =======================
