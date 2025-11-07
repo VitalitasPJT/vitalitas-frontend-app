@@ -50,7 +50,6 @@ export default function LandingPage() {
       <NavbarLandingPage />
 
       {/* HERO SECTION */}
-      {/*oi */}
       <section className="hero-section d-flex align-items-center justify-content-between container-fluid position-relative">
         <div className="row">
           <div className="col-lg-6 col-md-8 col-12 hero-text d-flex flex-column">
@@ -81,12 +80,12 @@ export default function LandingPage() {
 
       {/* SEÇÃO DE SERVIÇOS + DEPOIMENTOS */}
       <section id="servicos" className="services-section container-fluid shadow-section">
-        <div className="row text-center mb-5">
+        <div className="row text-center my-3">
           {servicos.map((card, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
               <div className="card service-card h-100"
                 style={{ borderRadius: '16px' }}>
-                <img src={card.img} alt={card.title} className="card-img-top" />
+                <img src={card.img} alt={card.title} className="card-img-top img-fluid mb-1"/>
                 <div className="card-body">
                   <h5 className="fw-semibold">{card.title}</h5>
                 </div>
@@ -95,7 +94,7 @@ export default function LandingPage() {
           ))}
         </div>
 
-        <div className="row text-center">
+        <div className="row text-center my-3">
           {depoimentos.map((person, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
               <div className="card testimonial-card h-100 p-4">
@@ -125,31 +124,39 @@ export default function LandingPage() {
           </div>
 
           {/* TEXTO + ITENS */}
-          <div className="col-lg-5 col-md-6 col-12">
-            <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
+        <div className="col-lg-5 col-md-6 col-12">
+          <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
 
-            <div className="d-flex align-items-center mb-3">
-              <div className="promo-icon">
-                <i className="bi bi-lightning-charge-fill"></i>
-              </div>
-              <p className="mb-0 font-text fs-4 ms-3">Transformação Digital</p>
+          <div className="d-flex align-items-center my-2">
+            <div
+              className="d-flex justify-content-center align-items-center rounded-circle bg-danger text-white m-2"
+              style={{ width: '60px', height: '60px', flexShrink: 0 }}
+            >
+              <i className="bi bi-lightning-charge-fill fs-3"></i>
             </div>
-
-            <div className="d-flex align-items-center mb-3">
-              <div className="promo-icon">
-                <i className="bi bi-people-fill"></i>
-              </div>
-              <p className="mb-0 font-text fs-4 ms-3">Experiência completa para todos</p>
-            </div>
-
-            <div className="d-flex align-items-center">
-              <div className="promo-icon">
-                <i className="bi bi-globe2"></i>
-              </div>
-              <p className="mb-0 font-text fs-4 ms-3">Tecnologia que impulsiona resultados</p>
-            </div>
-
+            <p className="mb-0 font-text fs-4 ms-2">Transformação Digital</p>
           </div>
+
+          <div className="d-flex align-items-center my-2">
+            <div
+              className="d-flex justify-content-center align-items-center rounded-circle bg-danger text-white m-2"
+              style={{ width: '60px', height: '60px', flexShrink: 0 }}
+            >
+              <i className="bi bi-people-fill fs-3"></i>
+            </div>
+            <p className="mb-0 font-text fs-4 ms-2">Experiência completa para todos</p>
+          </div>
+
+          <div className="d-flex align-items-center my-2">
+            <div
+              className="d-flex justify-content-center align-items-center rounded-circle bg-danger text-white m-2"
+              style={{ width: '60px', height: '60px', flexShrink: 0 }}
+            >
+              <i className="bi bi-globe2 fs-3"></i>
+            </div>
+            <p className="mb-0 font-text fs-4 ms-2">Tecnologia que impulsiona resultados</p>
+          </div>
+        </div>
         </div>
       </section>
     </div>
