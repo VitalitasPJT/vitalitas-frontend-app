@@ -91,7 +91,6 @@
 }
 
 .tudo-em-um-lugar-block {
-  border-top: 1px solid #e7e7e7;
   margin-top: 60px;
   padding-top: 60px;
 }
@@ -120,6 +119,24 @@
 /* Botão hero */
 .join-btn {
   width: 25%;
+}
+
+.service-img-wrapper {
+  width: 100%;
+  height: 200px; /* pode ajustar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* garante que a imagem não estoure */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* A imagem em si */
+.service-img {
+  max-width: 100%;
+  object-fit: contain; /* garante que NÃO corte */
+  display: block;
 }
 
 /* =======================

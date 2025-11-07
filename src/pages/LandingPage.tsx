@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import NavbarLandingPage from "../components/NavbarLandingPage";
 import gymMan from "../assets/imgs/main_img_landingPage.png";
-import agendarImg from "../assets/imgs/imagem1.png";
-import centralizarImg from "../assets/imgs/imagem2.png";
-import contratoImg from "../assets/imgs/imagem3.png";
+import agendarImg from "../assets/imgs/imagem1.jpg";
+import centralizarImg from "../assets/imgs/professor-e-aluno.jpg";
+import contratoImg from "../assets/imgs/mensalidade.jpg";
 import yuriImg from "../assets/imgs/yuri.png";
 import tutuImg from "../assets/imgs/tutu.png";
 import sandersonImg from "../assets/imgs/sand.png";
@@ -79,13 +79,13 @@ export default function LandingPage() {
       </section>
 
       {/* SEÇÃO DE SERVIÇOS + DEPOIMENTOS */}
-      <section id="servicos" className="services-section container-fluid shadow-section">
-        <div className="row text-center my-3">
+      <section id="servicos" className="services-section container-fluid shadow-section px-5">
+        <div className="row text-center">
           {servicos.map((card, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
-              <div className="card service-card h-100"
-                style={{ borderRadius: '16px' }}>
-                <img src={card.img} alt={card.title} className="card-img-top img-fluid mb-1"/>
+              <div className="card service-card"
+                style={{ borderRadius: '16px'}}>
+                <img src={card.img} alt={card.title} className="card-img-top service-img" />
                 <div className="card-body">
                   <h5 className="fw-semibold">{card.title}</h5>
                 </div>
