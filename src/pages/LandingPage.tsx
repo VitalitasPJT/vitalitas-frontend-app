@@ -50,6 +50,7 @@ export default function LandingPage() {
       <NavbarLandingPage />
 
       {/* HERO SECTION */}
+      {/*oi */}
       <section className="hero-section d-flex align-items-center justify-content-between container-fluid position-relative">
         <div className="row">
           <div className="col-lg-6 col-md-8 col-12 hero-text d-flex flex-column">
