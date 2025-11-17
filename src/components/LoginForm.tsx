@@ -1,11 +1,34 @@
 import { useState } from "react";
 import "./LoginForm.css";
+import { useAuth } from "../contexts/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSubmit(e: any) {
+    e.preventDefault();
+
+    try {
+      await login(email, password);
+      navigate("/aluno");
+    } catch (err) {
+      alert("Email ou senha inválidos");
+    }
+  }
+
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto">
+    <form 
+      className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto"
+      onSubmit={handleSubmit}
+      >
 
       {/* Email */}
       <div className="form-group m-2">
@@ -21,6 +44,8 @@ export default function LoginForm() {
             id="inputEmail"
             aria-describedby="emailHelp"
             placeholder="Digite seu e-mail..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>
@@ -38,6 +63,8 @@ export default function LoginForm() {
             className="form-control border-start-0 border-end-0"
             id="inputSenha"
             placeholder="Digite sua senha..."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type="button"
