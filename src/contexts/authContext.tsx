@@ -1,43 +1,64 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { loginRequest } from "../services/authService";
 
+interface User {
+    Id: number;
+    Nome: string;
+    Email: string;
+    Tipo: "Aluno" | "Administrador" | "Professor";
+}
+
 interface AuthContextType {
-  user: any;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
+    user: User | null;
+    login: (email: string, password: string) => Promise<User>;
+    logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: any) {
-  const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) setUser(JSON.parse(savedUser));
-  }, []);
+    useEffect(() => {
+        try {
+            const savedUser = localStorage.getItem("user");
 
-  async function login(email: string, password: string) {
-    const data = await loginRequest(email, password);
+            if (!savedUser || savedUser === "undefined" || savedUser === "null") {
+                setUser(null);
+                return;
+            }
 
-    setUser(data.user);
-    localStorage.setItem("user", JSON.stringify(data.user));
-  }
+            setUser(JSON.parse(savedUser));
 
-  function logout() {
-    setUser(null);
-    localStorage.removeItem("user");
-  }
+        } catch (err) {
+            console.error("Erro ao carregar user do localStorage:", err);
+            setUser(null);
+        }
+    }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+    async function login(email: string, password: string): Promise<User> {
+        const data = await loginRequest(email, password);
+
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+
+        return data;
+    }
+
+    function logout() {
+        setUser(null);
+        localStorage.removeItem("user");
+    }
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth precisa estar dentro do AuthProvider");
-  return context;
+    const context = useContext(AuthContext);
+    if (!context) throw new Error("useAuth precisa estar dentro do AuthProvider");
+    return context;
 }

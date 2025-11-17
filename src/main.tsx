@@ -2,7 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { HashRouter  } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './contexts/authContext.tsx'
 
 // imports bootstrap para css e js e icons
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,8 +12,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HashRouter >
-      <App />
-    </HashRouter >
+    <BrowserRouter >
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter >
   </StrictMode>,
 )

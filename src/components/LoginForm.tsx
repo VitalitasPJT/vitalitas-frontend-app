@@ -10,25 +10,37 @@ export default function LoginForm() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleSubmit(e: any) {
     e.preventDefault();
 
     try {
-      await login(email, password);
-      navigate("/aluno");
+      const user = await login(email, password);
+
+      const roleRoutes: any = {
+        Aluno: "/vitalitas/aluno",
+        Administrador: "/vitalitas/admin",
+        Professor: "/vitalitas/professor",
+      };
+
+      const route = roleRoutes[user.Tipo] || "/";
+       console.log("Usuário retornado pelo login:", user);
+       console.log(roleRoutes[user.Tipo]);
+       console.log(navigate(route));
+
+      navigate(route);
+
     } catch (err) {
       alert("Email ou senha inválidos");
     }
   }
 
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
-    <form 
+    <form
       className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto"
       onSubmit={handleSubmit}
-      >
+    >
 
       {/* Email */}
       <div className="form-group m-2">

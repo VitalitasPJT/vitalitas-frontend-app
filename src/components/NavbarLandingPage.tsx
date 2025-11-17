@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
                         </Link>
 
                         <Link
-                            to="/login"
+                            to="/vitalitas/user/login"
                             className="btn_blackColor navbar-button rounded-pill px-4 fw-bold fs-6"
                         >
                             ACESSAR

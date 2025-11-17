@@ -8,7 +8,7 @@ export default function AppRoutes() {
         <Routes>
 
             <Route path="/" element={<LandingPage/>}  />
-            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/vitalitas/user/login" element={<LoginPage/>} />
 
             <Route
                 path="/user/aluno"
