@@ -8,6 +8,7 @@ import yuriImg from "../assets/imgs/yuri.png";
 import tutuImg from "../assets/imgs/tutu.png";
 import sandersonImg from "../assets/imgs/sand.png";
 import vitPhoneImg from "../assets/imgs/vitalitasHomemCelular.png";
+import rankingTv from "../assets/imgs/rankingTv.png";
 
 import "./LandingPage.css";
 
@@ -78,7 +79,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* SEÇÃO DE SERVIÇOS + DEPOIMENTOS */}
+      {/* SEÇÃO DE SERVIÇOS */}
       <section id="servicos" className="services-section container-fluid shadow-section">
         <div className="row text-center mb-5">
           {servicos.map((card, i) => (
@@ -94,63 +95,88 @@ export default function LandingPage() {
           ))}
         </div>
 
-        <div className="row text-center">
-          {depoimentos.map((person, i) => (
-            <div key={i} className="col-md-4 col-sm-12 mb-4">
-              <div className="card testimonial-card h-100 p-4">
-                <p className="text-secondary">“{person.text}”</p>
-                <div className="d-flex align-items-center gap-3 mt-3 justify-content-center">
-                  <img
-                    src={person.img}
-                    alt={person.name}
-                    className="rounded-circle"
-                  />
-                  <p className="mb-0 fw-semibold text-dark">{person.name}</p>
+        {/* SEÇÃO DE DEPOIMENTOS */}
+        <section id="depoimentos" className="container-fluid">
+          <div className="row text-center">
+            {depoimentos.map((person, i) => (
+              <div key={i} className="col-md-4 col-sm-12 mb-4">
+                <div className="card testimonial-card h-100 p-4">
+                  <p className="text-secondary">“{person.text}”</p>
+                  <div className="d-flex align-items-center gap-3 mt-3 justify-content-center">
+                    <img src={person.img} alt={person.name} className="rounded-circle" />
+                    <p className="mb-0 fw-semibold text-dark">{person.name}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="row align-items-center justify-content-center py-5 tudo-em-um-lugar-block">
-
-          {/* IMAGEM DO LADO ESQUERDO */}
-          <div className="col-lg-5 col-md-6 col-12 text-center mb-4 mb-md-0">
-            <img
-              src={vitPhoneImg}
-              alt="Aplicativo Vitalitas"
-              className="img-fluid phone-promo-img"
-            />
+            ))}
           </div>
 
-          {/* TEXTO + ITENS */}
-          <div className="col-lg-5 col-md-6 col-12">
-            <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
-
-            <div className="d-flex align-items-center mb-3">
-              <div className="promo-icon">
-                <i className="bi bi-lightning-charge-fill"></i>
-              </div>
-              <p className="mb-0 font-text fs-4 ms-3">Transformação Digital</p>
-            </div>
-
-            <div className="d-flex align-items-center mb-3">
-              <div className="promo-icon">
-                <i className="bi bi-people-fill"></i>
-              </div>
-              <p className="mb-0 font-text fs-4 ms-3">Experiência completa para todos</p>
-            </div>
-
-            <div className="d-flex align-items-center">
-              <div className="promo-icon">
-                <i className="bi bi-globe2"></i>
-              </div>
-              <p className="mb-0 font-text fs-4 ms-3">Tecnologia que impulsiona resultados</p>
-            </div>
-
-          </div>
-        </div>
+        </section>
       </section>
+
+        {/* SEÇÃO - TUDO EM UM SÓ LUGAR */}
+        <section id="tudo-em-um-so-lugar" className="container-fluid tudo-em-um-lugar-block">
+
+          <div className="row align-items-center justify-content-center">
+
+            {/* IMAGEM */}
+            <div className="col-lg-5 col-md-6 col-12 text-center mb-4 mb-md-0">
+              <img
+                src={vitPhoneImg}
+                alt="Aplicativo Vitalitas"
+                className="img-fluid phone-promo-img"
+              />
+            </div>
+
+            {/* TEXTO */}
+            <div className="col-lg-5 col-md-6 col-12">
+              <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
+
+              <div className="d-flex align-items-center mb-3">
+                <div className="promo-icon">
+                  <i className="bi bi-lightning-charge-fill"></i>
+                </div>
+                <p className="mb-0 font-text fs-4 ms-3">Transformação Digital</p>
+              </div>
+
+              <div className="d-flex align-items-center mb-3">
+                <div className="promo-icon">
+                  <i className="bi bi-people-fill"></i>
+                </div>
+                <p className="mb-0 font-text fs-4 ms-3">Experiência completa para todos</p>
+              </div>
+
+              <div className="d-flex align-items-center">
+                <div className="promo-icon">
+                  <i className="bi bi-globe2"></i>
+                </div>
+                <p className="mb-0 font-text fs-4 ms-3">Tecnologia que impulsiona resultados</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* RANKING */}
+        {/* SEÇÃO - RANKING */}
+        <section id="ranking" className="container-fluid py-5">
+
+          <div className="row align-items-center justify-content-center">
+
+            <div className="col-lg-5 col-md-6 col-12">
+              <div className="ranking-title text-center my-5">
+                <h2 className="ranking-main-title">RANKING</h2>
+                <h3 className="ranking-subtitle">DINÂMICO EM TEMPO REAL</h3>
+              </div>
+
+              <div className="ranking-image-container text-center">
+                <img src={rankingTv} alt="Ranking TV" className="ranking-tv-img" />
+              </div>
+            </div>
+
+          </div>
+
+        </section>
     </div>
   );
 }

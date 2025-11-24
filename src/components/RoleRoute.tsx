@@ -14,7 +14,7 @@ export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
     return <Navigate to="/login" replace />;
   }
 
-  if (!allowedRoles.includes(user.role)) {
+  if (!allowedRoles.includes(user.Tipo)) {
     return <Navigate to="/unauthorized" replace />;
   }
 
