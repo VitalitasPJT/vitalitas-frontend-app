@@ -1,14 +1,25 @@
 import { Link } from "react-router-dom";
 import NavbarLandingPage from "../components/NavbarLandingPage";
 import gymMan from "../assets/imgs/main_img_landingPage.png";
-import agendarImg from "../assets/imgs/imagem1.png";
-import centralizarImg from "../assets/imgs/imagem2.png";
-import contratoImg from "../assets/imgs/imagem3.png";
+import agendarImg from "../assets/imgs/card1.jpg";
+import centralizarImg from "../assets/imgs/card2.jpg";
+import contratoImg from "../assets/imgs/card3.jpg";
 import yuriImg from "../assets/imgs/yuri.png";
 import tutuImg from "../assets/imgs/tutu.png";
 import sandersonImg from "../assets/imgs/sand.png";
 import vitPhoneImg from "../assets/imgs/vitalitasHomemCelular.png";
 import rankingTv from "../assets/imgs/rankingTv.png";
+
+import FeatureCarousel from "../components/FeatureCarousel";
+import type { FeatureData } from "../components/FeatureCarousel";
+
+import treinoImg1 from "../assets/imgs/imgsFunctionsLandingPage/treino1.png";
+import treinoImg2 from "../assets/imgs/imgsFunctionsLandingPage/treino2.png";
+
+import avalImg1 from "../assets/imgs/imgsFunctionsLandingPage/avaliacao1.png";
+import avalImg2 from "../assets/imgs/imgsFunctionsLandingPage/avaliacao2.png";
+
+import gestImg1 from "../assets/imgs/imgsFunctionsLandingPage/gestao1.png";
 
 import "./LandingPage.css";
 
@@ -45,6 +56,29 @@ export default function LandingPage() {
       img: sandersonImg,
     },
   ];
+
+  const features: Record<"treinos" | "avaliacoes" | "gestao", FeatureData> = {
+  treinos: {
+    title: "Professores e alunos em busca do melhor treino",
+    description:
+      "Treinos personalizados para alunos, criados em segundos pelos professores.",
+    images: [treinoImg1, treinoImg2],
+  },
+  avaliacoes: {
+    title: "Avaliações físicas completas",
+    description:
+      "Acompanhe medidas, evolução e histórico das avaliações dos alunos.",
+    images: [avalImg1, avalImg2],
+  },
+  gestao: {
+    title: "Gestão completa da academia",
+    description:
+      "Administre planos, mensalidades, pagamentos e professores de forma simples.",
+    images: [gestImg1],
+  },
+};
+
+console.log(features.treinos.images);
 
   return (
     <div className="landing-page bg-white text-dark min-vh-100 hero-section">
@@ -177,6 +211,11 @@ export default function LandingPage() {
           </div>
 
         </section>
+
+        {/* SEÇÃO - FUNCIONALIDADES */}
+
+        <FeatureCarousel features={features} initialTab="treinos" />
+
     </div>
   );
 }

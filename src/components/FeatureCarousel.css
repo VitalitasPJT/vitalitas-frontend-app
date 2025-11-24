@@ -1,0 +1,99 @@
+.feature-section {
+  margin-top: 80px;
+}
+
+/* --- IMAGEM --- */
+.feature-carousel-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-image-container {
+  background: linear-gradient(to bottom, #ffffff, #00000015);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.feature-image {
+  width: 580px;
+  max-width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* --- SETAS --- */
+.feature-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.feature-arrow:hover {
+  background: #eaeaea;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.feature-arrow.left {
+  left: -60px;
+}
+
+.feature-arrow.right {
+  right: -60px;
+}
+
+/* --- TABS --- */
+.feature-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.feature-tab {
+  padding: 12px 38px;
+  border-radius: 40px;
+  border: none;
+  background: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.25s;
+}
+
+.feature-tab:hover {
+  transform: scale(1.05);
+}
+
+.feature-tab.active {
+  background: #ff3b3b;
+  color: white;
+}
+
+/* --- TEXTO --- */
+.feature-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.feature-description {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #666;
+}
