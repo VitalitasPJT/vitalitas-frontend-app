@@ -118,9 +118,9 @@ console.log(features.treinos.images);
         <div className="row text-center mb-5">
           {servicos.map((card, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
-              <div className="card service-card h-100"
-                style={{ borderRadius: '16px' }}>
-                <img src={card.img} alt={card.title} className="card-img-top" />
+              <div className="card service-card"
+                style={{ borderRadius: '16px'}}>
+                <img src={card.img} alt={card.title} className="card-img-top service-img" />
                 <div className="card-body">
                   <h5 className="fw-semibold">{card.title}</h5>
                 </div>

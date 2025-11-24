@@ -54,7 +54,7 @@
   max-height: 520px;
   object-fit: contain;
   transform: translateX(-55%) translateY(-10%) scale(1.25);
-  filter: drop-shadow(-20px 0 40px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(-10px 0 15px rgba(0, 0, 0, 0.3));
 }
 
 /* =======================
@@ -91,7 +91,11 @@
 }
 
 .tudo-em-um-lugar-block {
+<<<<<<< HEAD
   border-top: 1px solid #a1a1a1;
+=======
+  margin-top: 60px;
+>>>>>>> b62750421d05c5fd940246236a97bb5f2fd43fe2
   padding-top: 60px;
 }
 
@@ -121,6 +125,7 @@
   width: 25%;
 }
 
+<<<<<<< HEAD
 .promo-icon {
   aspect-ratio: 1 / 1; /* mantém sempre círculo */
   flex-shrink: 0;      /* impede de ser apertado */
@@ -164,9 +169,43 @@
 }
 
 
+=======
+.service-img-wrapper {
+  width: 100%;
+  height: 200px; /* pode ajustar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* garante que a imagem não estoure */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* A imagem em si */
+.service-img {
+  max-width: 100%;
+  object-fit: contain; /* garante que NÃO corte */
+  display: block;
+}
+
+>>>>>>> b62750421d05c5fd940246236a97bb5f2fd43fe2
 /* =======================
-   RESPONSIVIDADE - NOTEBOOK (1024px)
+   RESPONSIVIDADE - NOTEBOOK 1440px e (1024px)
 ======================= */
+
+@media (max-width: 1440px) and (min-width: 900px) {
+
+  .mask-group {
+    width: 30%;
+  }
+
+  .gym-man {
+    max-height: 430px;
+    transform: translateX(-40%) translateY(-12%) scale(1.35);
+  }
+
+}
+
 @media (max-width: 1200px) and (min-width: 900px) {
 
   .hero-text {
@@ -216,6 +255,16 @@
     display: block;
     margin-top: 20px;
   }
+
+  .mask-group {
+    width: 32%;
+  }
+
+  .gym-man {
+    max-height: 320px;
+    transform: translateX(-7%) translateY(-12%) scale(1.35);
+  }
+
 }
 
 /* =======================
