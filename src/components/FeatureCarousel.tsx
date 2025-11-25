@@ -12,6 +12,12 @@ type FeatureCarouselProps = {
   initialTab: "treinos" | "avaliacoes" | "gestao";
 };
 
+const tabLabels: Record<"treinos" | "avaliacoes" | "gestao", string> = {
+  treinos: "Treinos",
+  avaliacoes: "Avaliações",
+  gestao: "Gestão",
+};
+
 export default function FeatureCarousel({ features, initialTab }: FeatureCarouselProps) {
   const [activeTab, setActiveTab] = useState(initialTab);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,49 +35,49 @@ export default function FeatureCarousel({ features, initialTab }: FeatureCarouse
   return (
     <section className="feature-section container text-center py-5">
 
-      {/* CAROUSEL IMAGEM */}
-      <div className="feature-carousel-wrapper">
+      <div className="feature-image-container">
 
-        <button className="feature-arrow left" onClick={prev}>
-          <i className="bi bi-chevron-left"></i>
-        </button>
+        {/* LINHA DA IMAGEM + SETAS */}
+        <div className="feature-image-row">
 
-        <div className="feature-image-container">
+          <button className="feature-arrow" onClick={prev}>
+            <i className="bi bi-chevron-left"></i>
+          </button>
+
           <img
             src={currentFeature.images[currentIndex]}
             alt="feature"
             className="feature-image"
           />
+
+          <button className="feature-arrow" onClick={next}>
+            <i className="bi bi-chevron-right"></i>
+          </button>
+
         </div>
 
-        <button className="feature-arrow right" onClick={next}>
-          <i className="bi bi-chevron-right"></i>
-        </button>
+        {/* TABS */}
+        <div className="feature-tabs mt-4">
+          {Object.keys(features).map((key) => (
+            <button
+              key={key}
+              onClick={() => {
+                setActiveTab(key as any);
+                setCurrentIndex(0);
+              }}
+              className={`feature-tab ${activeTab === key ? "active" : ""}`}
+            >
+              {tabLabels[key as "treinos" | "avaliacoes" | "gestao"]}
+            </button>
+          ))}
+        </div>
 
-      </div>
 
-      {/* TABS */}
-      <div className="feature-tabs mt-4">
-        {Object.keys(features).map((key) => (
-          <button
-            key={key}
-            onClick={() => {
-              setActiveTab(key as any);
-              setCurrentIndex(0);
-            }}
-            className={`feature-tab ${activeTab === key ? "active" : ""}`}
-          >
-            {key.toUpperCase()}
-          </button>
-        ))}
-      </div>
-
-      {/* TEXTO */}
-      <div className="mt-4">
-        <h2 className="feature-title">{currentFeature.title}</h2>
+        {/* TÍTULO E TEXTO */}
+        <h2 className="feature-title mt-4">{currentFeature.title}</h2>
         <p className="feature-description">{currentFeature.description}</p>
-      </div>
 
+      </div>
     </section>
   );
 }

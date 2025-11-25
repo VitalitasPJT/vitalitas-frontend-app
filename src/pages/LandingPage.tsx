@@ -13,8 +13,10 @@ import rankingTv from "../assets/imgs/rankingTv.png";
 import FeatureCarousel from "../components/FeatureCarousel";
 import type { FeatureData } from "../components/FeatureCarousel";
 
-import treinoImg1 from "../assets/imgs/imgsFunctionsLandingPage/treino1.png";
-import treinoImg2 from "../assets/imgs/imgsFunctionsLandingPage/treino2.png";
+import ContatoSection from "../components/ContatoSection";
+
+import treinoImg2 from "../assets/imgs/imgsFunctionsLandingPage/treino1.png";
+import treinoImg1 from "../assets/imgs/imgsFunctionsLandingPage/treino2.png";
 
 import avalImg1 from "../assets/imgs/imgsFunctionsLandingPage/avaliacao1.png";
 import avalImg2 from "../assets/imgs/imgsFunctionsLandingPage/avaliacao2.png";
@@ -215,6 +217,9 @@ console.log(features.treinos.images);
         {/* SEÇÃO - FUNCIONALIDADES */}
 
         <FeatureCarousel features={features} initialTab="treinos" />
+
+        {/* SEÇÃO - CONTATO */}
+      <ContatoSection></ContatoSection>
 
     </div>
   );

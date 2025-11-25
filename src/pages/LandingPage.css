@@ -91,11 +91,7 @@
 }
 
 .tudo-em-um-lugar-block {
-<<<<<<< HEAD
   border-top: 1px solid #a1a1a1;
-=======
-  margin-top: 60px;
->>>>>>> b62750421d05c5fd940246236a97bb5f2fd43fe2
   padding-top: 60px;
 }
 
@@ -125,10 +121,9 @@
   width: 25%;
 }
 
-<<<<<<< HEAD
 .promo-icon {
-  aspect-ratio: 1 / 1; /* mantém sempre círculo */
-  flex-shrink: 0;      /* impede de ser apertado */
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;    
 }
 
 /* ==============
@@ -169,26 +164,6 @@
 }
 
 
-=======
-.service-img-wrapper {
-  width: 100%;
-  height: 200px; /* pode ajustar */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* garante que a imagem não estoure */
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-
-/* A imagem em si */
-.service-img {
-  max-width: 100%;
-  object-fit: contain; /* garante que NÃO corte */
-  display: block;
-}
-
->>>>>>> b62750421d05c5fd940246236a97bb5f2fd43fe2
 /* =======================
    RESPONSIVIDADE - NOTEBOOK 1440px e (1024px)
 ======================= */

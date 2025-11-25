@@ -1,40 +1,48 @@
 .feature-section {
   margin-top: 80px;
-}
-
-/* --- IMAGEM --- */
-.feature-carousel-wrapper {
-  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .feature-image-container {
-  background: linear-gradient(to bottom, #ffffff, #00000015);
-  padding: 20px;
+  background: linear-gradient(to top, rgb(0,0,0) 20%, transparent 100%);
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 0px 30px rgba(0,0,0,0.5);
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  gap: 20px;
 }
 
+.feature-image-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* imagem */
 .feature-image {
-  width: 580px;
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  max-width: 550px;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0px 20px rgba(255, 255, 255, 0.267);
 }
 
-/* --- SETAS --- */
+/* botões */
 .feature-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: white;
-  border: none;
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: none;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,24 +51,16 @@
 }
 
 .feature-arrow:hover {
-  background: #eaeaea;
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 
-.feature-arrow.left {
-  left: -60px;
-}
-
-.feature-arrow.right {
-  right: -60px;
-}
-
-/* --- TABS --- */
+/* TABS */
 .feature-tabs {
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-top: 40px;
+  margin-top: 30px;
+  flex-wrap: wrap; 
 }
 
 .feature-tab {
@@ -75,19 +75,16 @@
   transition: 0.25s;
 }
 
-.feature-tab:hover {
-  transform: scale(1.05);
-}
-
 .feature-tab.active {
   background: #ff3b3b;
   color: white;
 }
 
-/* --- TEXTO --- */
+/* TEXTOS */
 .feature-title {
   font-size: 1.8rem;
   font-weight: 800;
+  color: white;
 }
 
 .feature-description {
@@ -95,5 +92,93 @@
   margin: 0 auto;
   margin-top: 10px;
   font-size: 1.1rem;
-  color: #666;
+  color: white;
+}
+
+/* ------------------------------------------------------ */
+/*                  RESPONSIVIDADE                        */
+/* ------------------------------------------------------ */
+
+/* Tablets (até 1024px) */
+@media (max-width: 1024px) {
+  .feature-image-container {
+    width: 80%;
+    height: 650px;
+  }
+
+  .feature-image {
+    max-width: 450px;
+    max-height: 350px;
+  }
+
+  .feature-arrow {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Celulares grandes (768px) */
+@media (max-width: 768px) {
+  .feature-image-container {
+    width: 90%;
+    height: auto; 
+    padding: 30px 0;
+  }
+
+  .feature-image-row {
+    gap: 20px;
+  }
+
+  .feature-image {
+    max-width: 300px;
+    max-height: 250px;
+  }
+
+  .feature-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .feature-tab {
+    padding: 10px 30px;
+    font-size: 1rem;
+  }
+
+  .feature-title {
+    font-size: 1.5rem;
+  }
+
+  .feature-description {
+    font-size: 1rem;
+  }
+}
+
+/* Celulares pequenos (até 480px) */
+@media (max-width: 480px) {
+  .feature-image-row {
+    gap: 14px;
+  }
+
+  .feature-image {
+    max-width: 230px;
+    max-height: 180px;
+  }
+
+  .feature-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .feature-tab {
+    padding: 8px 22px;
+    font-size: 0.9rem;
+  }
+
+  .feature-title {
+    font-size: 1.3rem;
+  }
+
+  .feature-description {
+    font-size: 0.9rem;
+  }
 }
