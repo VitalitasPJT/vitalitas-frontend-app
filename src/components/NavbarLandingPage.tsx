@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from "../assets/imgs/logo_loginPage.png";
 
 const Navbar: React.FC = () => {
     const [open, setOpen] = useState(false);
@@ -10,11 +11,7 @@ const Navbar: React.FC = () => {
 
                 {/* Logo + Nome */}
                 <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
-                    <img
-                        src="./src/assets/imgs/logo_loginPage.png"
-                        alt="logo_vitalitas"
-                        style={{ width: "35px" }}
-                    />
+                    <img src={logo} alt="logo_vitalitas" style={{ width: "35px" }} />
                     <h1 className="font-title mb-0" style={{ fontSize: "20px" }}>VITALITAS</h1>
                 </Link>
 
