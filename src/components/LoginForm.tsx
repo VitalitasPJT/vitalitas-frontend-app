@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
 import "./LoginForm.css";
 import { useAuth } from "../contexts/authContext";
 import { useNavigate } from "react-router-dom";
@@ -66,7 +65,7 @@ export default function LoginForm() {
 
           <input
             type="email"
-            className="form-control border-0 p-2"
+            className="form-control border-start-0 border-end-0"
             id="inputEmail"
             placeholder="Digite seu e-mail..."
             value={email}
@@ -90,7 +89,7 @@ export default function LoginForm() {
 
           <input
             type={showPassword ? "text" : "password"}
-            className="form-control p-2"
+            className="form-control border-start-0 border-end-0"
             id="inputSenha"
             placeholder="Digite sua senha..."
             value={password}
@@ -113,12 +112,8 @@ export default function LoginForm() {
 
       {/* Botão */}
       <div className="form-check m-2 p-0 d-flex justify-content-center">
-        <button
-          type="submit"
-          className="btn btn-danger m-2 p-2 w-50"
-          disabled={loading}
-        >
-          {loading ? "Aguarde..." : "Login"}
+        <button type="submit" className="btn btn-danger m-2 p-2 w-50">
+          Login
         </button>
       </div>
 
