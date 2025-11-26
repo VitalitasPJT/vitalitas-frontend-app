@@ -29,18 +29,6 @@ export default function LoginPage() {
                         </p>
                     </div>
                     <LoginForm />
-
-                    <div className="text-center my-3 d-flex align-items-center justify-content-center">
-                        <div className="flex-grow-1 border-bottom border-dark mx-3"></div>
-                        <span className="text-uppercase small fw-bold text-dark">ou logue com</span>
-                        <div className="flex-grow-1 border-bottom border-dark mx-3"></div>
-                    </div>
-
-                    <div className="text-center">
-                        <button className="btn btn-sm bg-black rounded-circle">
-                            <i className="bi bi-google text-white"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

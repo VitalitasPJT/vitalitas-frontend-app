@@ -12,32 +12,44 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   async function handleSubmit(e: any) {
     e.preventDefault();
+
+    setEmailError("");
+    setPasswordError("");
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // validação de email
+    if (!emailRegex.test(email)) {
+      setEmailError("Digite um e-mail com formato válido.");
+      return;
+    }
 
     try {
       const user = await login(email, password);
 
       const roleRoutes: any = {
-        Aluno: "/vitalitas/aluno",
-        Administrador: "/vitalitas/admin",
-        Professor: "/vitalitas/professor",
+        Aluno: "/user/aluno",
+        Administrador: "/user/admin",
+        Professor: "/user/professor",
       };
 
       const route = roleRoutes[user.Tipo] || "/";
-       console.log("Usuário retornado pelo login:", user);
-       console.log(roleRoutes[user.Tipo]);
-       console.log(navigate(route));
-
       navigate(route);
 
     } catch (err) {
-      alert("Email ou senha inválidos");
+      // erro de autenticação → aparece abaixo do campo de senha
+      setPasswordError("Email ou senha inválidos.");
     }
   }
 
   return (
     <form
+      noValidate
       className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto"
       onSubmit={handleSubmit}
     >
@@ -45,6 +57,7 @@ export default function LoginForm() {
       {/* Email */}
       <div className="form-group m-2">
         <label htmlFor="inputEmail" className="">Email</label>
+
         <div className="input-group border border-black border-opacity-75 rounded-2">
           <span className="input-group-text bg-white">
             <i className="bi bi-person"></i>
@@ -54,17 +67,21 @@ export default function LoginForm() {
             type="email"
             className="form-control border-start-0 border-end-0"
             id="inputEmail"
-            aria-describedby="emailHelp"
             placeholder="Digite seu e-mail..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+
+        {emailError && (
+          <p className="errorMessage small mt-1">{emailError}</p>
+        )}
       </div>
 
       {/* Senha */}
       <div className="form-group m-2">
         <label htmlFor="inputSenha" className="">Senha</label>
+
         <div className="input-group border border-dark border-opacity-75 rounded-2">
           <span className="input-group-text bg-white">
             <i className="bi bi-key"></i>
@@ -78,6 +95,7 @@ export default function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+
           <button
             type="button"
             className="btn btn-sm"
@@ -86,16 +104,13 @@ export default function LoginForm() {
             <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
           </button>
         </div>
+
+        {passwordError && (
+          <p className="errorMessage small mt-1">{passwordError}</p>
+        )}
       </div>
 
-      {/* Esqueceu a senha */}
-      <div className="d-flex justify-content-end m-2">
-        <button type="button" className="btn btn-sm text-muted">
-          Esqueceu a senha?
-        </button>
-      </div>
-
-      {/* Botão Acessar */}
+      {/* Botão */}
       <div className="form-check m-2 p-0 d-flex justify-content-center">
         <button type="submit" className="btn btn-danger m-2 p-2 w-50">
           Login
