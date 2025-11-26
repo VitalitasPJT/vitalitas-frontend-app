@@ -46,6 +46,11 @@ html, body, #root {
   font-family: var(--font-button);
 }
 
+.font-nav {
+  font-family: var(--font-nav);
+  font-size: 14px;
+}
+
 .font-text {
   font-family: var(--font-text);
 }
@@ -58,15 +63,30 @@ html, body, #root {
   background-color: var(--red-color);
   color: white;
   font-family: var(--font-button);
-  padding: 1.0rem 1.5rem;
+  padding: 1.0rem 1rem;
   border-radius: 10px;
   text-decoration: none;
   font-size: large;
-  width: 30%;
   text-align: center;
 }
 
 .btn_redColor:hover {
+  transform: scale(1.03);
+  background-color: #e6445d;
+}
+
+.btn_blackColor {
+  background-color: var(--dark-color);
+  color: white;
+  font-family: var(--font-button);
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: large;
+  text-align: center;
+}
+
+.btn_blackColor:hover {
   transform: scale(1.03);
   background-color: #e6445d;
 }
@@ -79,11 +99,28 @@ html, body, #root {
   border-radius: 10px;
   text-decoration: none;
   font-size: large;
-  width: 30%;
   text-align: center;
 }
 
 .btn_greyColor:hover {
   transform: scale(1.03);
   background-color: #3b3b3b;
+}
+
+.btn_redColor,
+.btn_blackColor,
+.btn_greyColor {
+  width: auto;
+  max-width: 100%; 
+}
+
+@media (max-width: 768px) {
+  .btn_redColor,
+  .btn_blackColor,
+  .btn_greyColor {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    max-width: 220px;
+  }
 }

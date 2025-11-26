@@ -1,0 +1,56 @@
+.contato-section {
+  padding: 80px 0;
+}
+
+.contato-form input,
+.contato-form textarea {
+  font-size: 0.95rem;
+  padding: 12px 14px;
+}
+
+.contato-form textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.contato-img {
+  max-width: 80%;    
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.btn:hover {
+    transform: scale(1.02);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #000000;     
+  background-color: #fff;
+  outline: none;
+  transition: all .2s ease;
+}
+
+/* foco mais bonito */
+.form-input:focus {
+  background: #ffffff;
+}
+
+/* textarea */
+textarea.form-input {
+  min-height: 100px;
+  resize: none;
+}
+
+/* botão */
+.submit-btn:hover {
+  transform: scale(1.02);
+}
+
+select.form-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

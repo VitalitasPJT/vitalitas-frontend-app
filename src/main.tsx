@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './contexts/authContext.tsx'
 
 // imports bootstrap para css e js e icons
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,8 +12,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <BrowserRouter basename="/vitalitas-frontend-app" >
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter >
   </StrictMode>,
 )

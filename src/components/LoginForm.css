@@ -1,17 +1,66 @@
-.form-control:focus,
-.btn:focus {
-  outline: none;
-  box-shadow: none;
+/* ==========================================================================
+   1. RESET DE FOCUS (REMOVE BORDA AZUL PADRÃO DO BOOTSTRAP)
+   ========================================================================== */
+
+input:focus,
+button:focus,
+textarea:focus,
+input.form-control:focus,
+textarea.form-control:focus,
+button.btn:focus,
+button.btn:active:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: inherit !important;
 }
 
-/* LoginForm.css */
+/* ==========================================================================
+   2. INPUT-GROUP (CORRIGE BORDA ESCURECIDA E DEIXA FOCUS UNIFORME)
+   ========================================================================== */
 
-/* Container do floating label */
+/* Borda e destaque do grupo inteiro quando qualquer elemento estiver em foco */
+.input-group:focus-within {
+  border-color: #444 !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1) !important;
+  border-radius: 6px;
+}
+
+/* Ícone do input-group nunca escurece */
+.input-group-text {
+  border-right: none !important;
+  background-color: white !important;
+}
+
+/* Garante consistência visual nos elementos internos */
+.input-group .form-control,
+.input-group .input-group-text {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Remove foco azul interno do próprio input */
+.input-group .form-control:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   3. FOCUS PERSONALIZADO (APENAS PARA INPUTS FORA DO INPUT-GROUP)
+   ========================================================================== */
+
+input.form-control:focus {
+  border-color: #444 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ==========================================================================
+   4. FLOATING LABEL (CASO VOCÊ USE ESSE ESTILO)
+   ========================================================================== */
+
 .floating-label {
   position: relative;
 }
 
-/* Input normal */
 .floating-label .form-control {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -19,7 +68,6 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* Label flutuante */
 .floating-label label {
   position: absolute;
   top: 1rem;
@@ -30,26 +78,37 @@
   transition: all 0.2s ease-out;
 }
 
-/* Quando o input está em foco ou preenchido */
 .floating-label .form-control:focus + label,
 .floating-label .form-control:not(:placeholder-shown) + label {
   top: 0.2rem;
   left: 0.75rem;
   font-size: 0.75rem;
-  color: #333; /* cor do label flutuante */
+  color: #333;
 }
 
-/* Outline escuro no foco */
 .floating-label .form-control:focus {
-  outline: none;
   border-color: #444;
   box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
 }
 
-/* Botão de mostrar senha */
+/* ==========================================================================
+   5. BOTÃO DE MOSTRAR SENHA
+   ========================================================================== */
+
 .toggle-password {
   position: absolute;
   right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* ==========================================================================
+   6. MENSAGENS DE ERRO
+   ========================================================================== */
+
+.errorMessage {
+  font-family: var(--font-text);
+  color: var(--red-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }

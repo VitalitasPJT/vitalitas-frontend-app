@@ -1,39 +1,113 @@
-// src/components/Navbar.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from "../assets/imgs/logo_loginPage.png";
 
 const Navbar: React.FC = () => {
+    const [open, setOpen] = useState(false);
+
     return (
-        <nav
-            style={{
-                backgroundColor: '#000',
-                color: '#fff',
-                padding: '20px',
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                zIndex: 1000
-            }}
-            className="navbarLandingPage navbar navbar-expand-lg border-top border-primary px-4 justify-content-between"
-        >
-            {/* Esquerda: Logo + Texto */}
-            <div className="d-flex align-items-center gap-2">
-                <img
-                    src="./src/assets/imgs/logo_loginPage.png"
-                    alt="logo_vitalitas"
-                    className="img-fluid"
-                    style={{ maxWidth: '70px', height: 'auto' }}
-                />
-                <h1 className="navbar-brand font-title fw-bold mb-0" style={{ color: '#fff' }}>VITALITAS</h1>
+        <nav className="navbar navbar-expand-md bg-white fixed-top shadow-sm py-3" style={{ zIndex: 1000 }}>
+            <div className="container-fluid px-4">
+
+                {/* Logo + Nome */}
+                <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
+                    <img src={logo} alt="logo_vitalitas" style={{ width: "35px" }} />
+                    <h1 className="font-title mb-0" style={{ fontSize: "20px" }}>VITALITAS</h1>
+                </Link>
+
+                {/* Botão Hamburguer */}
+                <button
+                    className="navbar-toggler border-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu"
+                    aria-expanded={open}
+                    onClick={() => setOpen(!open)}
+                >
+                    <i className={`bi ${open ? "bi-x-lg" : "bi-list"} fs-2`}></i>
+                </button>
+
+                {/* MENU */}
+                <div className="collapse navbar-collapse" id="navbarMenu">
+
+                    {/* ESQUERDA*/}
+                    <ul className="navbar-nav ms-md-4 gap-md-4 gap-3
+                   flex-md-row flex-column 
+                   align-items-md-center align-items-center 
+                   mt-3 mt-md-0 text-center text-md-start">
+                        <li className="nav-item">
+                            <a
+                                href="#servicos"
+                                className="nav-link text-dark font-nav hover-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById("servicos")?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                            >
+                                Serviços
+                            </a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a
+                                href="#contato"
+                                className="nav-link text-dark font-nav hover-link"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                            >
+                                Contato
+                            </a>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link to="/sobre" className="nav-link text-dark font-nav hover-link">
+                                Sobre nós
+                            </Link>
+                        </li>
+                    </ul>
+
+                    {/* DIREITA*/}
+                    <div className="d-flex flex-md-row flex-column 
+                    align-items-md-center align-items-center 
+                    justify-content-md-end 
+                    gap-md-4 gap-3 
+                    mt-4 mt-md-0 ms-md-auto text-center text-md-end">
+
+                        <div className="d-flex align-items-center gap-2">
+                            <i className="bi bi-globe text-dark"></i>
+                            <span className="text-dark font-nav">PT-BR</span>
+                        </div>
+
+                        <Link to="/ajuda" className="text-dark font-nav text-decoration-none hover-link">
+                            Ajuda
+                        </Link>
+
+                        <Link to="/parceiro" className="text-dark font-nav text-decoration-none hover-link">
+                            Seja Parceiro
+                        </Link>
+
+                        <Link
+                            to="/vitalitas/user/login"
+                            className="btn_blackColor navbar-button rounded-pill px-4 fw-bold fs-6"
+                        >
+                            ACESSAR
+                        </Link>
+                    </div>
+                </div>
+
             </div>
 
-            {/* Direita: Botão */}
-            <div className="d-flex align-items-center">
-                <Link to={'/login'} className="btn btn-danger rounded-pill px-4 fw-bold">
-                    ACESSAR
-                </Link>
-            </div>
+            <style>
+                {`
+                .hover-link:hover {
+                    color: #dc3545 !important;
+                    transition: color 0.3s ease;
+                }
+                `}
+            </style>
         </nav>
     );
 };

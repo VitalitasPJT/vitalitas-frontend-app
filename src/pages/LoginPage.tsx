@@ -1,5 +1,6 @@
 import LoginForm from "../components/LoginForm";
 import bgImage from "../assets/imgs/img_gym_login.png";
+import logo from "../assets/imgs/logo_loginPage.png";
 
 export default function LoginPage() {
     return (
@@ -19,12 +20,7 @@ export default function LoginPage() {
             <div className="col-12 col-md-6 col-xxl-5 align-content-center p-4">
                 <div className="d-flex flex-column">
                     <div className="text-center m-2">
-                        <img
-                            src="./src/assets/imgs/logo_loginPage.png"
-                            alt="Logo"
-                            width={150}
-                            className=""
-                        />
+                        <img src={logo} alt="Logo" width={150} />
                         <h2 className="fw-bold fs-1 font-title">
                             Conecte-se agora
                         </h2>

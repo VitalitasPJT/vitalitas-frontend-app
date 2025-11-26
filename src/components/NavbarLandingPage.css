@@ -1,0 +1,74 @@
+/* ====== NavbarLandingPage.css ====== */
+
+/* Hover suave */
+.hover-link:hover {
+  color: #dc3545 !important;
+  transition: color 0.3s ease;
+}
+
+/* Transição geral */
+.navbarLandingPage {
+  transition: all 0.3s ease;
+}
+
+/* Botão padrão da navbar */
+.navbar-button {
+  font-size: 0.9rem;
+  padding: 8px 22px;
+}
+
+/* --- RESPONSIVIDADE --- */
+
+/* Tablets e laptops menores */
+@media (max-width: 1024px) {
+  .navbarLandingPage h1 {
+    font-size: 1rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.95rem !important;
+  }
+
+  .navbar-button {
+    font-size: 0.85rem !important;
+    padding: 6px 16px !important;
+  }
+
+  .nav-end {
+    gap: 1rem !important;
+  }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+  .navbarLandingPage .row {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .navbarLandingPage .col-md-6 {
+    width: 100%;
+    justify-content: center !important;
+  }
+
+  .navbarLandingPage .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .navbar-button {
+    width: 100%;
+    max-width: 220px;
+    font-size: 0.9rem !important;
+    padding: 8px 20px !important;
+  }
+
+  .nav-end {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+}

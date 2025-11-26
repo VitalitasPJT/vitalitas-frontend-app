@@ -1,113 +1,90 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import "./LoginForm.css";
+import { useAuth } from "../contexts/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false);
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [erros, setErros] = useState<{ email?: string; senha?: string; servidor?: string }>({});
-  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  function validarEmail(email: string): boolean {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
-  
-  async function validarSenha(senha: string): Promise<string[]> {
-    const response = await fetch("https://sua-api.com/validar-senha", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ senha })
-    });
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-    const data = await response.json();
-    return response.ok ? [] : data.erros || ["Erro ao validar a senha."];
-  }
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    let errosTemp: { email?: string; senha?: string; servidor?: string } = {};
 
-    if (!email) errosTemp.email = "O e-mail é obrigatório.";
-    else if (!validarEmail(email)) errosTemp.email = "Formato de e-mail inválido.";
+    setEmailError("");
+    setPasswordError("");
 
-    if (!senha) errosTemp.senha = "A senha é obrigatória.";
-    else {
-      const falhasSenha = await validarSenha(senha);
-      if (falhasSenha.length > 0) errosTemp.senha = falhasSenha.join(" ");
-    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (Object.keys(errosTemp).length > 0) {
-      setErros(errosTemp);
+    // validação de email
+    if (!emailRegex.test(email)) {
+      setEmailError("Digite um e-mail com formato válido.");
       return;
     }
 
-    setErros({});
-    setLoading(true);
-
     try {
-      const resposta = await fetch("https://sua-api.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, senha })
-      });
+      const user = await login(email, password);
 
-      const data = await resposta.json();
+      const roleRoutes: any = {
+        Aluno: "/user/aluno",
+        Administrador: "/user/admin",
+        Professor: "/user/professor",
+      };
 
-      if (!resposta.ok) {
-        setErros({ servidor: data.mensagem || "Erro ao fazer login." });
-      } else {
-        console.log("Logado:", data);
-        alert("Login realizado com sucesso!");
-      }
-    } catch (erro) {
-      setErros({ servidor: "Erro ao conectar ao servidor." });
+      const route = roleRoutes[user.Tipo] || "/";
+      navigate(route);
+
+    } catch (err) {
+      // erro de autenticação → aparece abaixo do campo de senha
+      setPasswordError("Email ou senha inválidos.");
     }
-
-    setLoading(false);
   }
 
   return (
-    <form className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto"
-          onSubmit={handleSubmit}>
+    <form
+      noValidate
+      className="m-2 d-flex flex-column justify-contents-between w-75 mx-auto"
+      onSubmit={handleSubmit}
+    >
 
       {/* Email */}
-      <div className="form-group m-2 pt-2">
-        <label htmlFor="inputEmail">Email</label>
+      <div className="form-group m-2">
+        <label htmlFor="inputEmail" className="">Email</label>
 
-        <div className="input-group border border-black rounded-2">
-          <span className="input-group-text bg-white p-2">
-            <i className="bi bi-envelope"></i>
+        <div className="input-group border border-black border-opacity-75 rounded-2">
+          <span className="input-group-text bg-white">
+            <i className="bi bi-person"></i>
           </span>
 
           <input
             type="email"
             className="form-control border-0 p-2"
             id="inputEmail"
-            name="email"
             placeholder="Digite seu e-mail..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{
-              outline: "none",
-              border: "none",
-              boxShadow: "0 1px 6px 0 rgba(0,0,0,0.5)",
-            }}
           />
         </div>
 
-        {erros.email && (
-          <small className="text-danger">{erros.email}</small>
+        {emailError && (
+          <p className="errorMessage small mt-1">{emailError}</p>
         )}
       </div>
 
       {/* Senha */}
       <div className="form-group m-2">
-        <label htmlFor="inputSenha">Senha</label>
+        <label htmlFor="inputSenha" className="">Senha</label>
 
-        <div className="input-group border border-dark rounded-2">
-          <span className="input-group-text bg-white p-2">
+        <div className="input-group border border-dark border-opacity-75 rounded-2">
+          <span className="input-group-text bg-white">
             <i className="bi bi-key"></i>
           </span>
 
@@ -116,13 +93,8 @@ export default function LoginForm() {
             className="form-control p-2"
             id="inputSenha"
             placeholder="Digite sua senha..."
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            style={{
-              outline: "none",
-              border: "none",
-              boxShadow: "0 1px 6px 0 rgba(0,0,0,0.5)",
-            }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
@@ -134,26 +106,12 @@ export default function LoginForm() {
           </button>
         </div>
 
-        {erros.senha && (
-          <small className="text-danger">{erros.senha}</small>
+        {passwordError && (
+          <p className="errorMessage small mt-1">{passwordError}</p>
         )}
       </div>
 
-      {/* Erro do servidor */}
-      {erros.servidor && (
-        <div className="m-2">
-          <small className="text-danger">{erros.servidor}</small>
-        </div>
-      )}
-
-      {/* Esqueceu a senha */}
-      <div className="d-flex justify-content-end m-2">
-        <button type="button" className="btn btn-sm text-muted">
-          Esqueceu a senha?
-        </button>
-      </div>
-
-      {/* Botão Login */}
+      {/* Botão */}
       <div className="form-check m-2 p-0 d-flex justify-content-center">
         <button
           type="submit"

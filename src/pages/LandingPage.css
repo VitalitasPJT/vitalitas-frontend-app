@@ -1,0 +1,301 @@
+/* =======================
+   HERO SECTION
+======================= */
+.hero-section {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text {
+  margin-left: 15%;
+  max-width: 600px;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: black;
+  line-height: 1.1;
+}
+
+.hero-subtext {
+  font-size: 1.3rem;
+  color: #000;
+}
+
+/* =======================
+   MÁSCARA + IMAGEM
+======================= */
+.mask-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.mask-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+  z-index: 1;
+}
+
+.gym-man {
+  position: relative;
+  z-index: 2;
+  max-height: 520px;
+  object-fit: contain;
+  transform: translateX(-55%) translateY(-10%) scale(1.25);
+  filter: drop-shadow(-10px 0 15px rgba(0, 0, 0, 0.3));
+}
+
+/* =======================
+   SEÇÃO SERVIÇOS + DEPOIMENTOS
+======================= */
+.shadow-section {
+  background: #fff;
+  padding: 50px 0px;
+  border-top: 1px solid #c2c2c2;
+}
+
+.service-card,
+.testimonial-card {
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+  border-radius: 16px 16px 0 0;
+  height: 200px;
+  object-fit: cover;
+}
+
+.testimonial-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.tudo-em-um-lugar-block {
+  border-top: 1px solid #a1a1a1;
+  padding-top: 60px;
+}
+
+.phone-promo-img {
+  max-width: 450px;
+  filter: drop-shadow(0px 8px 25px rgba(0,0,0,0.25));
+}
+
+/* Icon circles */
+.promo-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--red-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-icon i {
+  color: #fff;
+  font-size: 2.3rem;
+}
+
+/* Botão hero */
+.join-btn {
+  width: 25%;
+}
+
+.promo-icon {
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;    
+}
+
+/* ==============
+   SEÇÃO RANKING
+================= */
+
+.ranking-title {
+  text-align: center;
+}
+
+.ranking-main-title {
+  font-size: 5.5rem;
+  font-family: var(--font-title);
+  color: var(--red-color);
+  line-height: 1;
+  
+}
+
+.ranking-subtitle {
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin-top: -8px;
+  font-family: var(--font-title);
+}
+
+.ranking-image-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.ranking-tv-img {
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0px 10px 25px rgba(0,0,0,0.75));
+}
+
+
+/* =======================
+   RESPONSIVIDADE - NOTEBOOK 1440px e (1024px)
+======================= */
+
+@media (max-width: 1440px) and (min-width: 900px) {
+
+  .mask-group {
+    width: 30%;
+  }
+
+  .gym-man {
+    max-height: 430px;
+    transform: translateX(-40%) translateY(-12%) scale(1.35);
+  }
+
+}
+
+@media (max-width: 1200px) and (min-width: 900px) {
+
+  .hero-text {
+    margin-left: 8%;
+    max-width: 500px;
+  }
+
+  .hero-title {
+    font-size: 3.3rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.15rem;
+  }
+
+  .mask-group {
+    width: 42%;
+  }
+
+  .gym-man {
+    max-height: 430px;
+    transform: translateX(-40%) translateY(-12%) scale(1.35);
+  }
+
+}
+
+/* =======================
+   TABLET
+======================= */
+@media (max-width: 991px) {
+  .hero-text {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.1rem;
+  }
+
+  .join-btn {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+  }
+
+  .mask-group {
+    width: 32%;
+  }
+
+  .gym-man {
+    max-height: 320px;
+    transform: translateX(-7%) translateY(-12%) scale(1.35);
+  }
+
+}
+
+/* =======================
+   MOBILE
+======================= */
+@media (max-width: 768px) {
+  .mask-group {
+    display: none !important;
+  }
+
+  .hero-section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .phone-promo-img {
+    max-width: 260px;
+  }
+
+  .ranking-main-title {
+    font-size: 2.4rem;
+  }
+
+  .ranking-subtitle {
+    font-size: 1.0rem;
+  }
+
+  .ranking-tv-img {
+    width: 100%;
+  }
+}
+
+/* =======================
+   MOBILE SMALL
+======================= */
+
+@media (max-width: 360px) {
+  .promo-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .promo-icon i {
+    font-size: 1.7rem;
+  }
+
+  .tudo-em-um-lugar-block p {
+    font-size: 1rem !important;
+  }
+}
+
