@@ -40,32 +40,6 @@ const Navbar: React.FC = () => {
                    align-items-md-center align-items-center 
                    mt-3 mt-md-0 text-center text-md-start">
                         <li className="nav-item">
-                            <a
-                                href="#servicos"
-                                className="nav-link text-dark font-nav hover-link"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById("servicos")?.scrollIntoView({ behavior: "smooth" });
-                                }}
-                            >
-                                Serviços
-                            </a>
-                        </li>
-
-                        <li className="nav-item">
-                            <a
-                                href="#contato"
-                                className="nav-link text-dark font-nav hover-link"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
-                                }}
-                            >
-                                Contato
-                            </a>
-                        </li>
-
-                        <li className="nav-item">
                             <Link to="/" className="nav-link text-dark font-nav hover-link">
                                 Home
                             </Link>

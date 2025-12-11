@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage.tsx";
 import LoginPage from "../pages/LoginPage.tsx";
 import Sobre from "../pages/sobreNos.tsx";
+import AlunoDashboard from "../pages/AlunoDashboard.tsx";
+import ProfessorDashboard from "../pages/ProfessorDashboard.tsx";
+import AdminDashboard from "../pages/AdminDashboard.tsx";
 import { RoleRoute } from "../components/RoleRoute.tsx";
 
 export default function AppRoutes() {

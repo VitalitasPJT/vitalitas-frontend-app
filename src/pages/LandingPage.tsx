@@ -60,30 +60,30 @@ export default function LandingPage() {
   ];
 
   const features: Record<"treinos" | "avaliacoes" | "gestao", FeatureData> = {
-  treinos: {
-    title: "Professores e alunos em busca do melhor treino",
-    description:
-      "Treinos personalizados para alunos, criados em segundos pelos professores.",
-    images: [treinoImg1, treinoImg2],
-  },
-  avaliacoes: {
-    title: "Avaliações físicas completas",
-    description:
-      "Acompanhe medidas, evolução e histórico das avaliações dos alunos.",
-    images: [avalImg1, avalImg2],
-  },
-  gestao: {
-    title: "Gestão completa da academia",
-    description:
-      "Administre planos, mensalidades, pagamentos e professores de forma simples.",
-    images: [gestImg1],
-  },
-};
+    treinos: {
+      title: "Professores e alunos em busca do melhor treino",
+      description:
+        "Treinos personalizados para alunos, criados em segundos pelos professores.",
+      images: [treinoImg1, treinoImg2],
+    },
+    avaliacoes: {
+      title: "Avaliações físicas completas",
+      description:
+        "Acompanhe medidas, evolução e histórico das avaliações dos alunos.",
+      images: [avalImg1, avalImg2],
+    },
+    gestao: {
+      title: "Gestão completa da academia",
+      description:
+        "Administre planos, mensalidades, pagamentos e professores de forma simples.",
+      images: [gestImg1],
+    },
+  };
 
-console.log(features.treinos.images);
+  console.log(features.treinos.images);
 
   return (
-    <div className="landing-page bg-white text-dark min-vh-100 hero-section">
+    <div className="landing-page bg-white text-dark min-vh-100">
       <NavbarLandingPage />
 
       {/* HERO SECTION */}
@@ -121,7 +121,7 @@ console.log(features.treinos.images);
           {servicos.map((card, i) => (
             <div key={i} className="col-md-4 col-sm-12 mb-4">
               <div className="card service-card"
-                style={{ borderRadius: '16px'}}>
+                style={{ borderRadius: '16px' }}>
                 <img src={card.img} alt={card.title} className="card-img-top service-img" />
                 <div className="card-body">
                   <h5 className="fw-semibold">{card.title}</h5>
@@ -150,76 +150,122 @@ console.log(features.treinos.images);
         </section>
       </section>
 
-        {/* SEÇÃO - TUDO EM UM SÓ LUGAR */}
-        <section id="tudo-em-um-so-lugar" className="container-fluid tudo-em-um-lugar-block">
+      {/* SEÇÃO - TUDO EM UM SÓ LUGAR */}
+      <section id="tudo-em-um-so-lugar" className="container-fluid tudo-em-um-lugar-block">
 
-          <div className="row align-items-center justify-content-center">
+        <div className="row align-items-center justify-content-center">
 
-            {/* IMAGEM */}
-            <div className="col-lg-5 col-md-6 col-12 text-center mb-4 mb-md-0">
-              <img
-                src={vitPhoneImg}
-                alt="Aplicativo Vitalitas"
-                className="img-fluid phone-promo-img"
-              />
-            </div>
-
-            {/* TEXTO */}
-            <div className="col-lg-5 col-md-6 col-12">
-              <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
-
-              <div className="d-flex align-items-center mb-3">
-                <div className="promo-icon">
-                  <i className="bi bi-lightning-charge-fill"></i>
-                </div>
-                <p className="mb-0 font-text fs-4 ms-3">Transformação Digital</p>
-              </div>
-
-              <div className="d-flex align-items-center mb-3">
-                <div className="promo-icon">
-                  <i className="bi bi-people-fill"></i>
-                </div>
-                <p className="mb-0 font-text fs-4 ms-3">Experiência completa para todos</p>
-              </div>
-
-              <div className="d-flex align-items-center">
-                <div className="promo-icon">
-                  <i className="bi bi-globe2"></i>
-                </div>
-                <p className="mb-0 font-text fs-4 ms-3">Tecnologia que impulsiona resultados</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* RANKING */}
-        {/* SEÇÃO - RANKING */}
-        <section id="ranking" className="container-fluid py-5">
-
-          <div className="row align-items-center justify-content-center">
-
-            <div className="col-lg-5 col-md-6 col-12">
-              <div className="ranking-title text-center my-5">
-                <h2 className="ranking-main-title">RANKING</h2>
-                <h3 className="ranking-subtitle">DINÂMICO EM TEMPO REAL</h3>
-              </div>
-
-              <div className="ranking-image-container text-center">
-                <img src={rankingTv} alt="Ranking TV" className="ranking-tv-img" />
-              </div>
-            </div>
-
+          {/* IMAGEM */}
+          <div className="col-lg-5 col-md-6 col-12 text-center mb-4 mb-md-0">
+            <img
+              src={vitPhoneImg}
+              alt="Aplicativo Vitalitas"
+              className="img-fluid phone-promo-img"
+            />
           </div>
 
-        </section>
+          {/* TEXTO */}
+          <div className="col-lg-5 col-md-6 col-12">
+            <h2 className="font-title fs-1 mb-4">TUDO EM UM SÓ LUGAR</h2>
 
-        {/* SEÇÃO - FUNCIONALIDADES */}
+            <div className="d-flex align-items-center mb-3">
+              <div className="promo-icon">
+                <i className="bi bi-lightning-charge-fill"></i>
+              </div>
+              <p className="mb-0 font-text fs-4 ms-3">Transformação Digital</p>
+            </div>
 
-        <FeatureCarousel features={features} initialTab="treinos" />
+            <div className="d-flex align-items-center mb-3">
+              <div className="promo-icon">
+                <i className="bi bi-people-fill"></i>
+              </div>
+              <p className="mb-0 font-text fs-4 ms-3">Experiência completa para todos</p>
+            </div>
 
-        {/* SEÇÃO - CONTATO */}
-      <ContatoSection></ContatoSection>
+            <div className="d-flex align-items-center">
+              <div className="promo-icon">
+                <i className="bi bi-globe2"></i>
+              </div>
+              <p className="mb-0 font-text fs-4 ms-3">Tecnologia que impulsiona resultados</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* RANKING */}
+      {/* SEÇÃO - RANKING */}
+      <section id="ranking" className="container-fluid py-5">
+
+        <div className="row align-items-center justify-content-center">
+
+          <div className="col-lg-5 col-md-6 col-12">
+            <div className="ranking-title text-center my-5">
+              <h2 className="ranking-main-title">RANKING</h2>
+              <h3 className="ranking-subtitle">DINÂMICO EM TEMPO REAL</h3>
+            </div>
+
+            <div className="ranking-image-container text-center">
+              <img src={rankingTv} alt="Ranking TV" className="ranking-tv-img" />
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* SEÇÃO - FUNCIONALIDADES */}
+
+      <FeatureCarousel features={features} initialTab="treinos" />
+
+      {/* SEÇÃO - CONTATO */}
+      <section id="contato">
+        <ContatoSection></ContatoSection>
+      </section>
+
+
+      {/* SEÇÃO - RODAPE */}
+      <footer
+        className="w-100 mt-5 pt-5 pb-5 bg-white footer-rounded-top"
+        style={{
+          borderTopLeftRadius: "20px",
+          borderTopRightRadius: "20px",
+          boxShadow: "0 -6px 18px rgba(0, 0, 0, 0.2)"
+        }}
+      >
+
+        <div className="container text-center">
+          <div className="row mb-3">
+            {/* CONTATO */}
+            <div className="col-md-4 mb-3">
+              <h6 className="fw-bold">CONTATO</h6>
+              <p className="mb-0 font-text">vitalitas@gmail.com</p>
+            </div>
+
+
+            {/* LINKS */}
+            <div className="col-md-4 mb-3">
+              <h6 className="fw-bold">LINKS</h6>
+              <p className="mb-0 font-text">Parceria</p>
+              <a href="/vitalitas-frontend-app/vitalitas/user/login">Área de acesso</a>
+            </div>
+
+
+            {/* REDES SOCIAIS */}
+            <div className="col-md-4 mb-3">
+              <h6 className="fw-bold">REDES SOCIAIS</h6>
+              <p className="mb-0 font-text">@vitalitas</p>
+            </div>
+          </div>
+
+
+          <div className="text-center small mt-3 font-text">
+            © 2025 Vitalitas. Todos os direitos reservados. |{' '}
+            <a href="#">Política de Privacidade</a> |{' '}
+            <a href="#">Termos de Uso</a>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );
