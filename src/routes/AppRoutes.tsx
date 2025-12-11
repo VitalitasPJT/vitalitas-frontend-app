@@ -1,10 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage.tsx";
 import LoginPage from "../pages/LoginPage.tsx";
-import AlunoDashboard from "../pages/AlunoDashboard";
-import ProfessorDashboard from "../pages/ProfessorDashboard";
-import AdminDashboard from "../pages/AdminDashboard";
-
+import Sobre from "../pages/sobreNos.tsx";
 import { RoleRoute } from "../components/RoleRoute.tsx";
 
 export default function AppRoutes() {
@@ -12,6 +9,9 @@ export default function AppRoutes() {
         <Routes>
 
             <Route path="/" element={<LandingPage />} />
+            <Route path="/sobre" element={<Sobre />} />
+
+
             <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
             <Route
