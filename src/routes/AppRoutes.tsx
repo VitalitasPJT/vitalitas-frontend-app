@@ -7,6 +7,7 @@ import ProfessorDashboard from "../pages/ProfessorDashboard.tsx";
 import AdminDashboard from "../pages/AdminDashboard.tsx";
 import { RoleRoute } from "../components/RoleRoute.tsx";
 import ErrorPage from "../pages/ErrorPage";
+import FirstAcess from "../pages/PasswordResetPage.tsx";
 
 export default function AppRoutes() {
     return (
@@ -15,8 +16,8 @@ export default function AppRoutes() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/sobre" element={<Sobre />} />
 
-
             <Route path="/vitalitas/user/login" element={<LoginPage />} />
+            <Route path="/vitalitas/passwordreset" element={<FirstAcess/>} />       {/* Por enquanto acessar pela url */}
 
             <Route
                 path="/user/aluno"
