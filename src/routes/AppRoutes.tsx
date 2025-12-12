@@ -6,6 +6,7 @@ import AlunoDashboard from "../pages/AlunoDashboard.tsx";
 import ProfessorDashboard from "../pages/ProfessorDashboard.tsx";
 import AdminDashboard from "../pages/AdminDashboard.tsx";
 import { RoleRoute } from "../components/RoleRoute.tsx";
+import ErrorPage from "../pages/ErrorPage";
 
 export default function AppRoutes() {
     return (
@@ -41,6 +42,11 @@ export default function AppRoutes() {
                     </RoleRoute>
                 }
             />
+
+            {/* Rotas p/ página de erro */}
+            <Route path="/erro/:code" element={<ErrorPage />} />
+ 
+            <Route path="*" element={<ErrorPage />} />
         </Routes>
     );
 }

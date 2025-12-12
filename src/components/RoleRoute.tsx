@@ -11,11 +11,11 @@ export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
   const { user } = useAuth();
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/erro/401" replace />;
   }
 
   if (!allowedRoles.includes(user.Tipo)) {
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/erro/403" replace />;
   }
 
   return <>{children}</>;
