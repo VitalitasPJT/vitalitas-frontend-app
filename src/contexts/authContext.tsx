@@ -1,64 +1,112 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import { loginRequest } from "../services/authService";
 
-interface User {
-    Id: number;
-    Nome: string;
-    Email: string;
-    Tipo: "Aluno" | "Administrador" | "Professor";
+/* =======================
+   TYPES
+======================= */
+
+export interface User {
+  Id: number;
+  Tipo: "Aluno" | "Administrador" | "Professor";
+  SenhaFlag: boolean;
 }
 
-interface AuthContextType {
-    user: User | null;
-    login: (email: string, password: string) => Promise<User>;
-    logout: () => void;
+interface LoginApiResponse {
+  response: User;
+  token: string;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+interface JwtPayload {
+  exp: number;
+}
 
-export function AuthProvider({ children }: any) {
-    const [user, setUser] = useState<User | null>(null);
+export interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<User>;
+  logout: () => void;
+}
 
-    useEffect(() => {
-        try {
-            const savedUser = localStorage.getItem("user");
+/* =======================
+   CONTEXT
+======================= */
 
-            if (!savedUser || savedUser === "undefined" || savedUser === "null") {
-                setUser(null);
-                return;
-            }
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-            setUser(JSON.parse(savedUser));
+/* =======================
+   PROVIDER
+======================= */
 
-        } catch (err) {
-            console.error("Erro ao carregar user do localStorage:", err);
-            setUser(null);
-        }
-    }, []);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    async function login(email: string, password: string): Promise<User> {
-        const data = await loginRequest(email, password);
+  const isAuthenticated = !!user && !!token;
 
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
 
-        return data;
+    if (!storedUser || !storedToken) {
+      logout();
+      return;
     }
 
-    function logout() {
-        setUser(null);
-        localStorage.removeItem("user");
+    try {
+      const decoded = jwtDecode<JwtPayload>(storedToken);
+
+      if (decoded.exp * 1000 < Date.now()) {
+        logout();
+        setLoading(false);
+        return;
+      }
+
+      setUser(JSON.parse(storedUser));
+      setToken(storedToken);
+    } catch {
+      logout();
+    } finally {
+        setLoading(false);
     }
+  }, []);
 
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
-}
+  async function login(email: string, password: string): Promise<User> {
+    const data: LoginApiResponse = await loginRequest(email, password);
 
-export function useAuth() {
-    const context = useContext(AuthContext);
-    if (!context) throw new Error("useAuth precisa estar dentro do AuthProvider");
-    return context;
+    const { response: user, token } = data;
+
+    setUser(user);
+    setToken(token);
+
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+
+    return user;
+  }
+
+  function logout() {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        isAuthenticated,
+        loading,
+        login,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

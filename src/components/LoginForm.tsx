@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./LoginForm.css";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
@@ -23,7 +23,6 @@ export default function LoginForm() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // validação de email
     if (!emailRegex.test(email)) {
       setEmailError("Digite um e-mail com formato válido.");
       return;
@@ -42,7 +41,6 @@ export default function LoginForm() {
       navigate(route);
 
     } catch (err) {
-      // erro de autenticação → aparece abaixo do campo de senha
       setPasswordError("Email ou senha inválidos.");
     }
   }

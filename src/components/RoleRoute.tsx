@@ -1,6 +1,5 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../hooks/useAuth";
 
 interface RoleRouteProps {
   children: React.ReactNode;
@@ -8,10 +7,14 @@ interface RoleRouteProps {
 }
 
 export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
-  const { user } = useAuth();
+  const { user, isAuthenticated, loading } = useAuth();
 
-  if (!user) {
-    return <Navigate to="/erro/401" replace />;
+  if (loading) {
+    return null;
+  }
+
+  if (!isAuthenticated || !user) {
+    return <Navigate to="/vitalitas/user/login" replace />;
   }
 
   if (!allowedRoles.includes(user.Tipo)) {
