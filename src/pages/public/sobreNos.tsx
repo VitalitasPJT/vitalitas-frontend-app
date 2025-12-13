@@ -1,11 +1,11 @@
-import NavbarSobreNos from "../components/NavbarSobreNos";
+import NavbarSobreNos from "../../components/NavbarSobreNos";
 import "./LandingPage.css";
 
-import iuriImg from "../assets/imgs/yuri.png";
-import sandersonImg from "../assets/imgs/sand.png";
-import hugoImg from "../assets/imgs/hugo.png";
-import guaritaImg from "../assets/imgs/guarita.png";
-import pedroImg from "../assets/imgs/pedro.png";
+import iuriImg from "../../assets/imgs/yuri.png";
+import sandersonImg from "../../assets/imgs/sand.png";
+import hugoImg from "../../assets/imgs/hugo.png";
+import guaritaImg from "../../assets/imgs/guarita.png";
+import pedroImg from "../../assets/imgs/pedro.png";
 
 export default function Sobre() {
   return (

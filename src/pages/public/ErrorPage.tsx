@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import logo from "../assets/imgs/logo_loginPage.png";
-import errorImage from "../assets/imgs/errorImage.png";
+import logo from "../../assets/imgs/logo_loginPage.png";
+import errorImage from "../../assets/imgs/errorImage.png";
 
 type ErrorType = "404" | "500" | "401" | "403";
 

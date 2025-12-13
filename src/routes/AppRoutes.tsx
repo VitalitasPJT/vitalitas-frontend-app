@@ -1,53 +1,82 @@
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "../pages/LandingPage.tsx";
-import LoginPage from "../pages/LoginPage.tsx";
-import Sobre from "../pages/sobreNos.tsx";
-import AlunoDashboard from "../pages/AlunoDashboard.tsx";
-import ProfessorDashboard from "../pages/ProfessorDashboard.tsx";
-import AdminDashboard from "../pages/AdminDashboard.tsx";
-import { RoleRoute } from "../components/RoleRoute.tsx";
-import ErrorPage from "../pages/ErrorPage";
-import FirstAcess from "../pages/PasswordResetPage.tsx";
+
+// Páginas públicas
+import LandingPage from "../pages/public/LandingPage";
+import LoginPage from "../pages/public/LoginPage";
+import Sobre from "../pages/public/sobreNos";
+
+// Dashboards
+import AlunoDashboard from "../pages/private/AlunoDashboard";
+import ProfessorDashboard from "../pages/private/ProfessorDashboard";
+import AdminDashboard from "../pages/private/AdminDashboard";
+
+// Outras páginas
+import FirstAcess from "../pages/private/PasswordResetPage";
+import ErrorPage from "../pages/public/ErrorPage";
+
+// Guards
+import { PrivateRoute } from "./PrivateRoute";
+import { RoleRoute } from "./RoleRoute";
 
 export default function AppRoutes() {
-    return (
-        <Routes>
+  return (
+    <Routes>
 
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/sobre" element={<Sobre />} />
+      {/* ======================
+         ROTAS PÚBLICAS
+      ====================== */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/sobre" element={<Sobre />} />
+      <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
-            <Route path="/vitalitas/user/login" element={<LoginPage />} />
-            <Route path="/vitalitas/passwordreset" element={<FirstAcess/>} />       {/* Por enquanto acessar pela url */}
+      {/* ======================
+         ROTAS PRIVADAS (JWT)
+      ====================== */}
+      <Route
+        path="/vitalitas/user/resetpassword"
+        element={
+          <PrivateRoute>
+            <FirstAcess />
+          </PrivateRoute>
+        }
+      />
 
-            <Route
-                path="/user/aluno"
-                element={
-                    <RoleRoute allowedRoles={["Aluno"]}>
-                        <AlunoDashboard />
-                    </RoleRoute>
-                }
-            />
-            <Route
-                path="/user/professor"
-                element={
-                    <RoleRoute allowedRoles={["Professor"]}>
-                        <ProfessorDashboard />
-                    </RoleRoute>
-                }
-            />
-            <Route
-                path="/user/admin"
-                element={
-                    <RoleRoute allowedRoles={["Administrador"]}>
-                        <AdminDashboard />
-                    </RoleRoute>
-                }
-            />
+      {/* ======================
+         DASHBOARDS POR ROLE
+      ====================== */}
+      <Route
+        path="/user/aluno"
+        element={
+          <RoleRoute allowedRoles={["Aluno"]}>
+            <AlunoDashboard />
+          </RoleRoute>
+        }
+      />
 
-            {/* Rotas p/ página de erro */}
-            <Route path="/erro/:code" element={<ErrorPage />} />
- 
-            <Route path="*" element={<ErrorPage />} />
-        </Routes>
-    );
+      <Route
+        path="/user/professor"
+        element={
+          <RoleRoute allowedRoles={["Professor"]}>
+            <ProfessorDashboard />
+          </RoleRoute>
+        }
+      />
+
+      <Route
+        path="/user/admin"
+        element={
+          <RoleRoute allowedRoles={["Administrador"]}>
+            <AdminDashboard />
+          </RoleRoute>
+        }
+      />
+
+      {/* ======================
+         ERROS
+      ====================== */}
+      <Route path="/erro/:code" element={<ErrorPage />} />
+      <Route path="*" element={<ErrorPage />} />
+
+    </Routes>
+  );
 }

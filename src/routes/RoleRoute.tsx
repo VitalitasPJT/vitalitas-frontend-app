@@ -1,3 +1,4 @@
+import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
@@ -10,11 +11,15 @@ export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
   const { user, isAuthenticated, loading } = useAuth();
 
   if (loading) {
-    return null;
+    return <div>Carregando...</div>;
   }
 
   if (!isAuthenticated || !user) {
     return <Navigate to="/vitalitas/user/login" replace />;
+  }
+
+  if (user.SenhaFlag === false) {
+    return <Navigate to="/vitalitas/user/resetpassword" replace />;
   }
 
   if (!allowedRoles.includes(user.Tipo)) {

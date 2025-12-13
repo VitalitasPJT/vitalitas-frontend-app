@@ -28,6 +28,7 @@ export interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<User>;
   logout: () => void;
+  updateUser: (user: User) => void;
 }
 
 /* =======================
@@ -52,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const storedToken = localStorage.getItem("token");
 
     if (!storedUser || !storedToken) {
-      logout();
+      setLoading(false);
       return;
     }
 
@@ -70,14 +71,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
       logout();
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   }, []);
+
 
   async function login(email: string, password: string): Promise<User> {
     const data: LoginApiResponse = await loginRequest(email, password);
 
     const { response: user, token } = data;
+
+    console.log("LOGIN RESPONSE:", data.response);
 
     setUser(user);
     setToken(token);
@@ -95,6 +99,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("token");
   }
 
+  function updateUser(updatedUser: User) {
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -104,6 +113,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         loading,
         login,
         logout,
+        updateUser,
       }}
     >
       {children}

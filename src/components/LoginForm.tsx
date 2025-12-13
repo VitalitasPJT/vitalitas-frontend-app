@@ -31,14 +31,18 @@ export default function LoginForm() {
     try {
       const user = await login(email, password);
 
+      if (user.SenhaFlag === false) {
+        navigate("/vitalitas/user/resetpassword");
+        return;
+      }
+
       const roleRoutes: any = {
         Aluno: "/user/aluno",
         Administrador: "/user/admin",
         Professor: "/user/professor",
       };
 
-      const route = roleRoutes[user.Tipo] || "/";
-      navigate(route);
+      navigate(roleRoutes[user.Tipo]);
 
     } catch (err) {
       setPasswordError("Email ou senha inválidos.");

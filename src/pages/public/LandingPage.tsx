@@ -1,27 +1,27 @@
 import { Link } from "react-router-dom";
-import NavbarLandingPage from "../components/NavbarLandingPage";
-import gymMan from "../assets/imgs/main_img_landingPage.png";
-import agendarImg from "../assets/imgs/card1.jpg";
-import centralizarImg from "../assets/imgs/card2.jpg";
-import contratoImg from "../assets/imgs/card3.jpg";
-import yuriImg from "../assets/imgs/yuri.png";
-import tutuImg from "../assets/imgs/tutu.png";
-import sandersonImg from "../assets/imgs/sand.png";
-import vitPhoneImg from "../assets/imgs/vitalitasHomemCelular.png";
-import rankingTv from "../assets/imgs/rankingTv.png";
+import NavbarLandingPage from "../../components/NavbarLandingPage";
+import gymMan from "../../assets/imgs/main_img_landingPage.png";
+import agendarImg from "../../assets/imgs/card1.jpg";
+import centralizarImg from "../../assets/imgs/card2.jpg";
+import contratoImg from "../../assets/imgs/card3.jpg";
+import yuriImg from "../../assets/imgs/yuri.png";
+import tutuImg from "../../assets/imgs/tutu.png";
+import sandersonImg from "../../assets/imgs/sand.png";
+import vitPhoneImg from "../../assets/imgs/vitalitasHomemCelular.png";
+import rankingTv from "../../assets/imgs/rankingTv.png";
 
-import FeatureCarousel from "../components/FeatureCarousel";
-import type { FeatureData } from "../components/FeatureCarousel";
+import FeatureCarousel from "../../components/FeatureCarousel";
+import type { FeatureData } from "../../components/FeatureCarousel";
 
-import ContatoSection from "../components/ContatoSection";
+import ContatoSection from "../../components/ContatoSection";
 
-import treinoImg2 from "../assets/imgs/imgsFunctionsLandingPage/treino1.png";
-import treinoImg1 from "../assets/imgs/imgsFunctionsLandingPage/treino2.png";
+import treinoImg2 from "../../assets/imgs/imgsFunctionsLandingPage/treino1.png";
+import treinoImg1 from "../../assets/imgs/imgsFunctionsLandingPage/treino2.png";
 
-import avalImg1 from "../assets/imgs/imgsFunctionsLandingPage/avaliacao1.png";
-import avalImg2 from "../assets/imgs/imgsFunctionsLandingPage/avaliacao2.png";
+import avalImg1 from "../../assets/imgs/imgsFunctionsLandingPage/avaliacao1.png";
+import avalImg2 from "../../assets/imgs/imgsFunctionsLandingPage/avaliacao2.png";
 
-import gestImg1 from "../assets/imgs/imgsFunctionsLandingPage/gestao1.png";
+import gestImg1 from "../../assets/imgs/imgsFunctionsLandingPage/gestao1.png";
 
 import "./LandingPage.css";
 

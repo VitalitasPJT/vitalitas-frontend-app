@@ -1,6 +1,6 @@
-import LoginForm from "../components/LoginForm";
-import bgImage from "../assets/imgs/img_gym_login.png";
-import logo from "../assets/imgs/logo_loginPage.png";
+import LoginForm from "../../components/LoginForm";
+import bgImage from "../../assets/imgs/img_gym_login.png";
+import logo from "../../assets/imgs/logo_loginPage.png";
 
 export default function LoginPage() {
     return (
