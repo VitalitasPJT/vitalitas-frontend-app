@@ -24,8 +24,8 @@ export default function LoginPage() {
                         <h2 className="fw-bold fs-1 font-title">
                             Conecte-se agora
                         </h2>
-                        <p className="m-0 fs-5 font-text">
-                            Faça login com seu e-mail
+                        <p className="m-0 fs-5 font-text fw-bold">
+                            e seja Bem Vindo de volta !
                         </p>
                     </div>
                     <LoginForm />
