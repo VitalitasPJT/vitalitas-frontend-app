@@ -1,7 +1,7 @@
 import "./LoginForm.css";
 import { useState } from "react";
 import "./LoginForm.css";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import ModalRecuperarSenha from "./ModalRecuperarSenha";
 
