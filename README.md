@@ -10,6 +10,14 @@ O objetivo é fornecer uma experiência intuitiva, responsiva e segura, garantin
 
 [Link do Protótipo Figma - Clique aqui!](https://www.figma.com/proto/0NrgmDD9v0esjj0oIQD4KC/Website---Vitalitas?node-id=1118-62&t=8dMGgIXzAR59QADD-1&scaling=min-zoom&content-scaling=fixed&page-id=939%3A3&starting-point-node-id=1118%3A62)
 
+## Contexto Acadêmico
+
+O projeto Vitalitas está sendo desenvolvido no contexto dos Projetos Integradores do **Centro Universitário de Brasília (CEUB)**, instituição de ensino que incentiva, orienta e acompanha continuamente todas as etapas de concepção, planejamento e evolução da solução.
+
+A iniciativa integra a proposta pedagógica do curso ao promover a aplicação prática dos conhecimentos adquiridos ao longo da formação acadêmica, estimulando a construção de um produto com impacto real e alinhado às demandas do mercado.
+
+O desenvolvimento ocorre com acompanhamento docente e abordagem baseada em metodologia ágil, promovendo integração multidisciplinar entre diversas áreas da tecnologia como Engenharia de Software, Banco de Dados, Programação Web e Arquitetura de Sistemas.
+
 ## Visão Geral do Projeto
 
 - **Qual problema ele resolve?**
@@ -97,7 +105,8 @@ Essas tecnologias foram escolhidas por oferecerem:
 - **Produtividade**: React e suas bibliotecas aceleram o desenvolvimento com componentes reutilizáveis.
 - **Escalabilidade**: TypeScript garante tipagem estática e maior segurança no código.
 - **Padronização visual**: Bootstrap e React-Bootstrap permitem consistência na interface.
-- **Segurança**: JWT garante autenticação confiável e controle de acesso. - **Flexibilidade**: Axios facilita a integração com APIs internas e externas.
+- **Segurança**: JWT garante autenticação confiável e controle de acesso.
+- **Flexibilidade**: Axios facilita a integração com APIs internas e externas.
 
 ## MVP - Funcionalidades Incluídas
 
@@ -189,3 +198,10 @@ As funcionalidades abaixo não fazem parte do MVP e estão previstas para versõ
 - Lembretes automáticos para ingestão de água
 
 - Explicações automatizadas de avaliações com uso de Inteligência Artificial
+
+## Equipe de Desenvolvimento – Frontend
+
+| Nome | LinkedIn | GitHub |
+|------|----------|--------|
+| Arthur Guaritá Brasil | [LinkedIn](https://www.linkedin.com/in/arthur-guaritá-brasil-09384b379/) | [GitHub](https://github.com/arthurguaritabrasil) |
+| Iuri Guimarães Pinheiro | [LinkedIn](https://www.linkedin.com/in/iuri-guimarães-pinheiro-97159b310/) | [GitHub](https://github.com/IuriGP) |
