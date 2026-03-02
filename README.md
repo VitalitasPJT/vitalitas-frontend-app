@@ -66,15 +66,6 @@ A pasta `./src` possui a seguinte estrutura:
 - **react-dom**: renderização dos componentes React no DOM
 - **react-router-dom**: gerenciamento de rotas e navegação
 
-### Por que escolher essas tecnologias?
-Essas tecnologias foram escolhidas por oferecerem:
-
-- **Produtividade**: React e suas bibliotecas aceleram o desenvolvimento com componentes reutilizáveis.
-- **Escalabilidade**: TypeScript garante tipagem estática e maior segurança no código.
-- **Padronização visual**: Bootstrap e React-Bootstrap permitem consistência na interface.
-- **Segurança**: JWT garante autenticação confiável e controle de acesso.
-- **Flexibilidade**: Axios facilita a integração com APIs internas e externas.
-
 ## Pré-requisitos
 
 Antes de rodar o projeto, você precisa ter instalado:
