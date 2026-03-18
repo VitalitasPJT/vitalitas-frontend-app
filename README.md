@@ -91,6 +91,49 @@ Na pasta do projeto, rode:
 
 `npm run dev -- --port 3000` - Inicia o servidor front de desenvolvimento do Vite na porta 3000
 
+## Fluxo de Branches
+
+O repositório segue um fluxo simples e direto, com duas branches principais:
+
+| Branch | Finalidade |
+|--------|-----------|
+| `prd`  | Ambiente de **produção** — código estável e validado |
+| `des`  | Ambiente de **desenvolvimento/testes** — integração contínua da equipe |
+
+### Como funciona
+```
+feature/login_feature ──► des ──► [QA / Testes] ──► prd
+```
+
+1. **Crie uma branch de feature** a partir de `des`, com nome descritivo:
+```bash
+   git checkout des
+   git checkout -b feature/nome_da_feature
+```
+
+2. **Desenvolva e faça commits** na sua branch normalmente.
+
+3. **Abra um Pull Request para `des`** ao finalizar. A feature entra no ambiente de testes.
+
+4. **A equipe de QA valida** o comportamento na branch `des`.
+
+5. **Validou? Abre PR para `prd`** e a feature vai ao ar.
+
+> ⚠️ **Nunca faça commits diretos em `prd` ou `des`.** Todo código entra via Pull Request.
+
+### Nomenclatura de branches
+
+Use prefixos para deixar claro o tipo de trabalho:
+
+| Prefixo | Uso |
+|---------|-----|
+| `feature/` | Nova funcionalidade |
+| `fix/` | Correção de bug |
+| `hotfix/` | Correção urgente em produção |
+| `chore/` | Ajustes técnicos, configs, refatorações |
+
+**Exemplos:** `feature/login_feature`, `fix/corrige_cadastro`, `hotfix/token_expirado`
+
 ## Equipe de Desenvolvimento – Frontend
 
 | Nome | LinkedIn | GitHub |
