@@ -1,18 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 
 // Páginas públicas
-import LandingPage from "../pages/public/LandingPage";
-import LoginPage from "../pages/public/LoginPage";
-import Sobre from "../pages/public/sobreNos";
+import LandingPage from "../../pages/public/LandingPage";
+import LoginPage from "../../pages/public/LoginPage";
 
 // Dashboards
-import AlunoDashboard from "../pages/private/AlunoDashboard";
-import ProfessorDashboard from "../pages/private/ProfessorDashboard";
-import AdminDashboard from "../pages/private/AdminDashboard";
+import AlunoDashboard from "../../pages/private/AlunoDashboard";
+import ProfessorDashboard from "../../pages/private/ProfessorDashboard";
+import AdminDashboard from "../../pages/private/AdminDashboard";
 
 // Outras páginas
-import FirstAcess from "../pages/private/PasswordResetPage";
-import ErrorPage from "../pages/public/ErrorPage";
+import FirstAcess from "../../pages/private/PasswordResetPage";
+import ErrorPage from "../../pages/public/ErrorPage";
 
 // Guards
 import { PrivateRoute } from "./PrivateRoute";
@@ -26,7 +25,6 @@ export default function AppRoutes() {
          ROTAS PÚBLICAS
       ====================== */}
       <Route path="/" element={<LandingPage />} />
-      <Route path="/sobre" element={<Sobre />} />
       <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
       {/* ======================

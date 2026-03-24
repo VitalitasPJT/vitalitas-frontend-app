@@ -1,0 +1,55 @@
+html, body, #root {
+  height: 100%;
+}
+
+:root {
+  --red-color: #EE2B47;
+  --white-color: #FFFFFF;
+  --dark-color: #000000;
+  --grey-color: #2C2C2C;
+  --font-title: 'Montserrat', sans-serif;
+  --font-button:'Roboto', sans-serif;
+  --font-nav: 'Poppins', sans-serif;
+  --font-text: 'Inter', sans-serif;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto_Condensed-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url(./assets/fonts/Inter_18pt-Light.ttf) format('truetype');
+  font-style: normal;
+}
+
+.font-title {
+  font-family: var(--font-title);
+}
+
+.font-button {
+  font-family: var(--font-button);
+}
+
+.font-nav {
+  font-family: var(--font-nav);
+}
+
+.font-text {
+  font-family: var(--font-text);
+}
