@@ -1,6 +1,6 @@
 export function KnowYourStudentsSection() {
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section className="bg-[#e5e5e5] py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-[36px] lg:text-[42px] font-bold text-[#0d0d0d] mb-6">

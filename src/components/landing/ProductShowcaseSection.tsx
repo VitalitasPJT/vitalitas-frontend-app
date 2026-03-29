@@ -1,5 +1,5 @@
 import { useState } from "react";
-import imgContainer1 from "figma:asset/e928e3604273900cf724558493032f5535d4ef42.png";
+import imgContainer1 from "../../assets/imgs/hugo.png";
 
 export function ProductShowcaseSection() {
   const [activeTab, setActiveTab] = useState<"manager" | "finance" | "student" | "assessments">("manager");
@@ -12,7 +12,7 @@ export function ProductShowcaseSection() {
   ];
 
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section id="produto" className="bg-white py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
         {/* Header */}
         <div className="text-center mb-12">
@@ -33,11 +33,10 @@ export function ProductShowcaseSection() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-2.5 rounded-full text-[15px] font-medium transition-colors ${
-                activeTab === tab.id
-                  ? "bg-[#e8001c] text-white"
-                  : "bg-[#f5f5f5] text-[#6b6b6b] hover:bg-[#e5e5e5]"
-              }`}
+              className={`px-6 py-2.5 rounded-full text-[15px] font-medium transition-colors ${activeTab === tab.id
+                ? "bg-[#e8001c] text-white"
+                : "bg-[#f5f5f5] text-[#6b6b6b] hover:bg-[#e5e5e5]"
+                }`}
             >
               {tab.label}
             </button>
@@ -92,67 +91,83 @@ export function ProductShowcaseSection() {
                   <h3 className="text-[16px] font-semibold text-[#0a0a0a] mb-4">Lista de Alunos</h3>
                   <div className="space-y-3">
                     {/* Student Row 1 */}
-                    <div className="flex items-center gap-4 pb-4 border-b border-[#f5f5f5]">
-                      <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-[14px] font-semibold text-white">M</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pb-4 border-b border-[#f5f5f5]">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-[14px] font-semibold text-white">M</span>
+                        </div>
+                        <div>
+                          <p className="text-[14px] font-medium text-[#0a0a0a]">Maria Silva</p>
+                          <p className="text-[12px] text-[#6b6b6b]">Premium • Hoje às 07:30</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="text-[14px] font-medium text-[#0a0a0a]">Maria Silva</p>
-                        <p className="text-[12px] text-[#6b6b6b]">Premium • Hoje às 07:30</p>
+                      <div className="flex items-center gap-2 flex-wrap ml-13 sm:ml-0">
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Em dia</span>
+                        <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
+                          Detalhes
+                        </button>
                       </div>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Em dia</span>
-                      <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
-                        Detalhes
-                      </button>
                     </div>
 
                     {/* Student Row 2 */}
-                    <div className="flex items-center gap-4 pb-4 border-b border-[#f5f5f5]">
-                      <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-[14px] font-semibold text-white">J</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pb-4 border-b border-[#f5f5f5]">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-[14px] font-semibold text-white">M</span>
+                        </div>
+                        <div>
+                          <p className="text-[14px] font-medium text-[#0a0a0a]">João Santos</p>
+                          <p className="text-[12px] text-[#6b6b6b]">Basic • Ontem às 08:00</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="text-[14px] font-medium text-[#0a0a0a]">João Santos</p>
-                        <p className="text-[12px] text-[#6b6b6b]">Basic • Ontem às 18:00</p>
+                      <div className="flex items-center gap-2 flex-wrap ml-13 sm:ml-0">
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Em dia</span>
+                        <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
+                          Detalhes
+                        </button>
                       </div>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Em dia</span>
-                      <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
-                        Detalhes
-                      </button>
                     </div>
 
                     {/* Student Row 3 */}
-                    <div className="flex items-center gap-4 pb-4 border-b border-[#f5f5f5]">
-                      <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-[14px] font-semibold text-white">A</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pb-4 border-b border-[#f5f5f5]">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-[14px] font-semibold text-white">M</span>
+                        </div>
+                        <div>
+                          <p className="text-[14px] font-medium text-[#0a0a0a]">Ana Costa</p>
+                          <p className="text-[12px] text-[#6b6b6b]">Premium • 02/03 às 07:30</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="text-[14px] font-medium text-[#0a0a0a]">Ana Costa</p>
-                        <p className="text-[12px] text-[#6b6b6b]">Premium • 02/03 às 19:15</p>
+                      <div className="flex items-center gap-2 flex-wrap ml-13 sm:ml-0">
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
+                        <span className="text-[12px] font-medium text-[#ff0000] bg-[#FFE8E8] px-3 py-1 rounded-full">Pendente</span>
+                        <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
+                          Detalhes
+                        </button>
                       </div>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
-                      <span className="text-[12px] font-medium text-[#e8001c] bg-[#ffe8e8] px-3 py-1 rounded-full">Pendente</span>
-                      <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
-                        Detalhes
-                      </button>
                     </div>
 
                     {/* Student Row 4 */}
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-[14px] font-semibold text-white">P</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pb-4 border-b border-[#f5f5f5]">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="w-10 h-10 bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-[14px] font-semibold text-white">M</span>
+                        </div>
+                        <div>
+                          <p className="text-[14px] font-medium text-[#0a0a0a]">Pedro Oliveira</p>
+                          <p className="text-[12px] text-[#6b6b6b]">Premium • Hoje às 06:45</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="text-[14px] font-medium text-[#0a0a0a]">Pedro Oliveira</p>
-                        <p className="text-[12px] text-[#6b6b6b]">Premium • Hoje às 06:45</p>
+                      <div className="flex items-center gap-2 flex-wrap ml-13 sm:ml-0">
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
+                        <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Em dia</span>
+                        <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
+                          Detalhes
+                        </button>
                       </div>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Ativo</span>
-                      <span className="text-[12px] font-medium text-[#1a9e5a] bg-[#d4edda] px-3 py-1 rounded-full">Em dia</span>
-                      <button className="bg-[#f5f5f5] px-4 py-2 rounded-[10px] text-[13px] font-medium text-[#0d0d0d] hover:bg-[#e5e5e5] transition-colors">
-                        Detalhes
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -161,7 +176,7 @@ export function ProductShowcaseSection() {
 
             {activeTab === "finance" && (
               <div className="flex items-center justify-center py-16">
-                <img src={imgContainer1} alt="Financeiro" className="max-w-full rounded-[10px]" />
+                <p className="text-[18px] text-[#6b6b6b]">Visualização de Finanças</p>
               </div>
             )}
 

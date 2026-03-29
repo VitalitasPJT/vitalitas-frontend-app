@@ -1,13 +1,15 @@
 import svgPaths from "../../imports/svg-30hlfm6d6z";
 import imgContainer1 from "../../assets/imgs/imgContainerUsers.png";
+import { useState } from "react";
 
 export function ManagerSection() {
+  const [zoomAberto, setZoomAberto] = useState(false);
   const features = [
     {
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2V22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d={svgPaths.p2ba0dca0} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 2V22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p2ba0dca0} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
       title: "Gestão financeira integrada",
@@ -16,10 +18,10 @@ export function ManagerSection() {
     {
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d={svgPaths.p1d820380} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d={svgPaths.p161d4800} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d={svgPaths.p2981fe00} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d={svgPaths.p13e20900} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d={svgPaths.p1d820380} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p161d4800} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p2981fe00} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p13e20900} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
       title: "Matrículas e cadastros",
@@ -28,10 +30,10 @@ export function ManagerSection() {
     {
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d={svgPaths.p36c5af80} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M18 17V9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M13 17V5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 17V14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d={svgPaths.p36c5af80} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M18 17V9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M13 17V5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M8 17V14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
       title: "Relatórios e retenção",
@@ -40,7 +42,7 @@ export function ManagerSection() {
     {
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d={svgPaths.p1023c700} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d={svgPaths.p1023c700} stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
       title: "Comunicação integrada",
@@ -49,7 +51,7 @@ export function ManagerSection() {
   ];
 
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section id="funcionalidades" className="bg-white py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
@@ -87,24 +89,50 @@ export function ManagerSection() {
           {/* Right Content - Dashboard Image */}
           <div className="relative">
             <div className="bg-white rounded-[16px] shadow-[0px_0px_14.9px_0px_rgba(0,0,0,0.62)] overflow-hidden">
-              {/* Browser Header */}
               <div className="bg-[#b1b1b1] h-[40px] flex items-center px-4 gap-6">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#febc2e]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#28c840]"></div>
-                </div>
-                <div className="bg-[#e5e5e5] px-3 py-1 rounded flex-1 max-w-md">
-                  <span className="text-[11px] text-[#6b6b6b]">app.vitalitas.com.br/dashboard</span>
-                </div>
+                {/* browser dots... */}
               </div>
 
-              {/* Dashboard Image */}
-              <div className="relative w-full h-[320px]">
-                <img src={imgContainer1} alt="Dashboard" className="w-full h-full object-cover" />
+              {/* Imagem clicável */}
+              <div
+                className="relative w-full group cursor-zoom-in"
+                onClick={() => setZoomAberto(true)}
+              >
+                <img src={imgContainer1} alt="Dashboard" className="w-full h-auto object-contain" />
+
+                {/* Overlay hint */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 text-white text-[13px] px-3 py-1.5 rounded-full">
+                    Clique para ampliar
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Modal de zoom */}
+          {zoomAberto && (
+            <div
+              className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4 lg:p-12 cursor-zoom-out"
+              onClick={() => setZoomAberto(false)}
+            >
+              {/* Botão fechar */}
+              <button
+                className="absolute top-4 right-4 text-white bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors"
+                onClick={() => setZoomAberto(false)}
+              >
+                ✕
+              </button>
+
+              <img
+                src={imgContainer1}
+                alt="Dashboard ampliado"
+                className="max-w-full max-h-full object-contain rounded-[12px] shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
+
         </div>
       </div>
     </section>

@@ -46,7 +46,7 @@ export function StudentSection() {
   ];
 
   return (
-    <section className="bg-[#e5e5e5] py-16 lg:py-24">
+    <section id="alunos" className="bg-[#e5e5e5] py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content - Mobile Mockups */}

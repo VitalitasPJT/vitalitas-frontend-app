@@ -1,65 +1,40 @@
+import svgPaths from "../../imports/svg-30hlfm6d6z";
+
 export function GetStartedSection() {
   return (
-    <section className="bg-[#0d0d0d] py-16 lg:py-24">
-      <div className="max-w-4xl mx-auto px-8 text-center">
-        <h2 className="text-[36px] lg:text-[48px] font-bold text-white mb-6">
-          Pronto para começar?
-        </h2>
-        <p className="text-[18px] text-[#9b9b9b] mb-12 max-w-2xl mx-auto leading-relaxed">
-          Transforme a gestão da sua academia e ofereça a melhor experiência para seus alunos. Comece hoje mesmo com o Vitalitas.
+    <section className="bg-gradient-to-b from-[#0d0d0d] to-[#1a0004] py-24 lg:py-32">
+      <div className="max-w-7xl mx-auto px-8 lg:px-24 flex flex-col items-center text-center gap-6">
+
+        <p className="text-[13px] font-medium text-[#e8001c] tracking-[1.3px] uppercase">
+          COMECE AGORA
         </p>
 
-        {/* Form */}
-        <div className="bg-white rounded-[16px] p-8 lg:p-12 max-w-md mx-auto">
-          <h3 className="text-[24px] font-bold text-[#0d0d0d] mb-6">
-            Solicite uma demonstração
-          </h3>
-          
-          <form className="space-y-4">
-            <div>
-              <input
-                type="text"
-                placeholder="Nome completo"
-                className="w-full px-4 py-3 border border-[#e5e5e5] rounded-[8px] text-[15px] text-[#0d0d0d] placeholder:text-[#9b9b9b] focus:outline-none focus:border-[#e8001c] transition-colors"
-              />
-            </div>
-            
-            <div>
-              <input
-                type="email"
-                placeholder="E-mail profissional"
-                className="w-full px-4 py-3 border border-[#e5e5e5] rounded-[8px] text-[15px] text-[#0d0d0d] placeholder:text-[#9b9b9b] focus:outline-none focus:border-[#e8001c] transition-colors"
-              />
-            </div>
-            
-            <div>
-              <input
-                type="tel"
-                placeholder="Telefone"
-                className="w-full px-4 py-3 border border-[#e5e5e5] rounded-[8px] text-[15px] text-[#0d0d0d] placeholder:text-[#9b9b9b] focus:outline-none focus:border-[#e8001c] transition-colors"
-              />
-            </div>
-            
-            <div>
-              <input
-                type="text"
-                placeholder="Nome da academia"
-                className="w-full px-4 py-3 border border-[#e5e5e5] rounded-[8px] text-[15px] text-[#0d0d0d] placeholder:text-[#9b9b9b] focus:outline-none focus:border-[#e8001c] transition-colors"
-              />
-            </div>
+        <h2 className="text-[36px] lg:text-[48px] font-bold text-white leading-tight max-w-3xl">
+          Sua academia também precisa do Vitalitas
+        </h2>
 
-            <button
-              type="submit"
-              className="w-full bg-[#e8001c] px-8 py-4 rounded-[10px] text-[16px] font-semibold text-white hover:bg-[#c50017] transition-colors mt-6"
-            >
-              Agendar demonstração gratuita
-            </button>
-          </form>
+        <p className="text-[18px] text-[#9b9b9b] max-w-xl leading-relaxed">
+          Fale com nosso time e descubra o plano ideal para o tamanho da sua academia.
+        </p>
 
-          <p className="text-[12px] text-[#9b9b9b] mt-6">
-            Ao enviar, você concorda com nossa política de privacidade.
-          </p>
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
+          <button className="bg-[#e8001c] hover:bg-[#c50017] transition-colors cursor-pointer px-8 py-4 rounded-[10px] text-[17px] font-semibold text-white flex items-center gap-2">
+            Contratar o Vitalitas
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4.16667 10H15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d={svgPaths.p1ae0b780} stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+
+          <button className="border border-white hover:bg-white/10 transition-colors cursor-pointer px-8 py-4 rounded-[10px] text-[17px] font-semibold text-white">
+            Fale com nosso suporte
+          </button>
         </div>
+
+        <p className="text-[13px] text-[#6b6b6b] mt-2">
+          Sem fidelidade · Suporte incluso · Configuração assistida
+        </p>
+
       </div>
     </section>
   );

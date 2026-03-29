@@ -31,22 +31,22 @@ export function HeroSection() {
             <div className="flex flex-wrap gap-6 py-4 border-b border-[#e5e5e5]">
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-[14px] font-medium text-[#6b6b6b]">Suporte incluso</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-[14px] font-medium text-[#6b6b6b]">Onboarding assistido</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-[14px] font-medium text-[#6b6b6b]">Cancelamento a qualquer hora</span>
               </div>
@@ -54,14 +54,17 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <button className="bg-[#e8001c] px-8 py-3 rounded-[10px] text-[16px] font-semibold text-white hover:bg-[#c50017] transition-colors flex items-center gap-2">
+              <button className="bg-[#e8001c] px-8 py-3 rounded-[10px] text-[16px] font-semibold text-white hover:bg-[#c50017] transition-colors flex items-center gap-2 cursor-pointer">
                 Contratar o Vitalitas
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4.16667 10H15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d={svgPaths.p1ae0b780} stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.16667 10H15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d={svgPaths.p1ae0b780} stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <button className="text-[16px] font-medium text-[#0d0d0d] hover:text-[#e8001c] transition-colors">
+              <button
+                onClick={() => document.getElementById("produto")?.scrollIntoView({ behavior: "smooth" })}
+                className="text-[16px] font-medium text-[#0d0d0d] hover:text-[#e8001c] transition-colors cursor-pointer"
+              >
                 Ver como funciona
               </button>
             </div>
