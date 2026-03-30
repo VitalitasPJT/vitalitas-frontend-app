@@ -9,7 +9,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <img src={imgLogoVitalitas} alt="Vitalitas" className="w-8 h-8" />
-              <span className="text-[20px] font-bold text-[#e8001c]">VITALITAS</span>
+              <span className="text-[20px] font-bold text-[#E8001C]">VITALITAS</span>
             </div>
             <p className="text-[14px] text-[#9b9b9b] leading-relaxed">
               Sua academia também precisa do Vitalitas
@@ -32,11 +32,6 @@ export function Footer() {
               </li>
               <li>
                 <a href="#" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
-                  Integrações
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
                   Atualizações
                 </a>
               </li>
@@ -50,16 +45,6 @@ export function Footer() {
               <li>
                 <a href="#sobre" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
                   Sobre nós
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
-                  Carreiras
                 </a>
               </li>
               <li>

@@ -1,6 +1,6 @@
 export function AboutSection() {
     return (
-        <section id="sobre" className="bg-[#e5e5e5] w-full py-20">
+        <section id="sobre" className="bg-white w-full py-20">
             <div className="max-w-[1400px] mx-auto px-8 lg:px-24">
                 {/* Header */}
                 <div className="text-center mb-16">
@@ -27,13 +27,13 @@ export function AboutSection() {
                             — Fundadores, Vitalitas
                         </p>
                         <div className="flex items-center gap-3">
-                            <span className="bg-[#ffffff] px-4 py-2 rounded-full text-sm font-medium text-[#0d0d0d]">
+                            <span className="bg-[#e5e5e5] px-4 py-2 rounded-full text-sm font-medium text-[#0d0d0d]">
                                 Tecnologia acessível
                             </span>
-                            <span className="bg-[#ffffff] px-4 py-2 rounded-full text-sm font-medium text-[#0d0d0d]">
+                            <span className="bg-[#e5e5e5] px-4 py-2 rounded-full text-sm font-medium text-[#0d0d0d]">
                                 Foco no gestor
                             </span>
-                            <span className="bg-[#ffffff] px-4 py-2 rounded-full text-sm font-medium text-[#0d0d0d]">
+                            <span className="bg-[#e5e5e5] px-4 py-2 rounded-full text-sm font-medium text-[#0d0d0d]">
                                 Resultado real
                             </span>
                         </div>
@@ -100,7 +100,7 @@ function TeamCard({ initials, name, role, tags }: TeamCardProps) {
                 </span>
             </div>
             <div className="flex flex-col gap-1 min-w-0">
-                <p className="text-[15px] font-semibold text-[#0d0d0d] truncate">
+                <p className="text-[15px] font-semibold text-[#0d0d0d] leading-snug">
                     {name}
                 </p>
                 <p className="text-[13px] text-[#6b6b6b]">{role}</p>

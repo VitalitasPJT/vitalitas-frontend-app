@@ -32,7 +32,7 @@ export function GetStartedSection() {
         </div>
 
         <p className="text-[13px] text-[#6b6b6b] mt-2">
-          Sem fidelidade · Suporte incluso · Configuração assistida
+          Suporte incluso · Configuração assistida
         </p>
 
       </div>

@@ -49,7 +49,7 @@ export function WhyChooseSection() {
   ];
 
   return (
-    <section id="planos" className="bg-white py-16 lg:py-24">
+    <section id="planos" className="bg-[#e5e5e5] py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
         {/* Header */}
         <div className="text-center mb-16">
@@ -108,7 +108,7 @@ export function WhyChooseSection() {
         {/* CTA */}
         <div className="text-center mt-12">
           <button className="bg-[#e8001c] px-10 py-4 rounded-[10px] text-[16px] font-semibold text-white hover:bg-[#c50017] transition-colors cursor-pointer">
-            Agendar demonstração
+            Contrate agora!
           </button>
         </div>
       </div>

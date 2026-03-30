@@ -11,10 +11,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <a href="#" className="flex items-center gap-3">
             <img src={imgLogoVitalitas} alt="Vitalitas" className="w-10 h-10" />
             <span className="text-[24px] font-bold text-[#EE2B47]">VITALITAS</span>
-          </div>
+          </a>
 
           {/* Navigation desktop */}
           <nav className="hidden lg:flex items-center gap-8">

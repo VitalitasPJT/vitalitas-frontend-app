@@ -113,7 +113,7 @@ export function HeroSection() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-full bg-[#e8001c] flex items-center justify-center">
-                        <span className="text-[10px] font-semibold text-white">A</span>
+                        <span className="text-[10px] font-semibold text-white">IG</span>
                       </div>
                       <span className="text-[11px] font-medium text-[#0a0a0a] flex-1">Iuri Guimarães</span>
                       <span className="text-[10px] text-[#1a9e5a] bg-[#d4edda] px-2 py-1 rounded">Ativo</span>
