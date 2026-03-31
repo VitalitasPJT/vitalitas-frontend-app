@@ -1,36 +1,13 @@
-import LoginForm from "../../components/LoginForm";
-import bgImage from "../../assets/imgs/img_gym_login.png";
-import logo from "../../assets/imgs/logo_loginPage.png";
+import LeftPanel from '../../components/login/LeftPanel';
+import RightPanel from '../../components/login/RightPanel';
 
 export default function LoginPage() {
     return (
-        <div className="d-flex vh-100">
-            {/* Esquerda - Imagem */}
-            <div
-                className="col-0 col-md-6 col-xxl-7 d-none d-sm-block bg-login-image"
-                style={{
-                    backgroundImage: `url(${bgImage})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                }}
-            ></div>
-
-            {/* Direita - Formulário */}
-            <div className="col-12 col-md-6 col-xxl-5 align-content-center p-4">
-                <div className="d-flex flex-column">
-                    <div className="text-center m-2">
-                        <img src={logo} alt="Logo" width={150} />
-                        <h2 className="fw-bold fs-1 font-title">
-                            Conecte-se agora
-                        </h2>
-                        <p className="m-0 fs-5 font-text fw-bold">
-                            e seja Bem Vindo de volta !
-                        </p>
-                    </div>
-                    <LoginForm />
-                </div>
-            </div>
-        </div>
+        <div className="bg-white content-stretch flex flex-col items-start relative size-full" data-name="Login Screen 2.0">
+      <div className="bg-[#fafafa] h-[1080px] relative shrink-0 w-full" data-name="div">
+        <LeftPanel />
+        <RightPanel />
+      </div>
+    </div>
     );
 }
