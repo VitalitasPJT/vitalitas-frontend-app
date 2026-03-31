@@ -8,7 +8,7 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/32288d1f-2bbb-4b78-ae82-979211cb706a" />
+<img width="1558" height="932" alt="aaa1" src="https://github.com/user-attachments/assets/a602fbee-8f82-4de3-aa51-ed407ede212e" />
 
 <br>
 <br>
