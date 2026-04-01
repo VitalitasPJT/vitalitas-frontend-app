@@ -5,9 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 export function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, loading } = useAuth();
 
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
+  if (loading) return <div>Carregando...</div>;
 
   if (!isAuthenticated) {
     return <Navigate to="/vitalitas/user/login" replace />;

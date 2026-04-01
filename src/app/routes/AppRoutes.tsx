@@ -7,15 +7,16 @@ import LoginPage from "../../pages/public/LoginPage";
 // Dashboards
 import AlunoDashboard from "../../pages/private/AlunoDashboard";
 import ProfessorDashboard from "../../pages/private/ProfessorDashboard";
-import AdminDashboard from "../../pages/private/AdminDashboard";
+import GestorDashboard from "../../pages/private/DashboardGestor";
 
 // Outras páginas
 import FirstAcess from "../../pages/private/PasswordResetPage";
-import ErrorPage from "../../pages/public/ErrorPage";
+{/*import ErrorPage from "../../pages/public/ErrorPage"; */}
 
 // Guards
 import { PrivateRoute } from "./PrivateRoute";
 import { RoleRoute } from "./RoleRoute";
+import LogsPageGestor from "../../pages/private/LogsPageGestor";
 
 export default function AppRoutes() {
   return (
@@ -45,7 +46,7 @@ export default function AppRoutes() {
       <Route
         path="/user/aluno"
         element={
-          <RoleRoute allowedRoles={["Aluno"]}>
+          <RoleRoute allowedRoles={[2]}>
             <AlunoDashboard />
           </RoleRoute>
         }
@@ -54,26 +55,31 @@ export default function AppRoutes() {
       <Route
         path="/user/professor"
         element={
-          <RoleRoute allowedRoles={["Professor"]}>
+          <RoleRoute allowedRoles={[1]}>
             <ProfessorDashboard />
           </RoleRoute>
         }
       />
 
       <Route
-        path="/user/admin"
+        path="/user/gestor"
         element={
-          <RoleRoute allowedRoles={["Administrador"]}>
-            <AdminDashboard />
+          <RoleRoute allowedRoles={[3]}>
+            <GestorDashboard />
           </RoleRoute>
         }
       />
 
+      <Route
+        path="/user/gestor/logs"
+        element={<LogsPageGestor />}
+      />
+
       {/* ======================
          ERROS
-      ====================== */}
+      ====================== 
       <Route path="/erro/:code" element={<ErrorPage />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="*" element={<ErrorPage />} /> */}
 
     </Routes>
   );

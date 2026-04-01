@@ -13,17 +13,15 @@ export function PasswordResetRoute({ children }: Props) {
     return <Navigate to="/vitalitas/user/login" replace />;
   }
 
-  if (!user.SenhaFlag) {
-    switch (user.Tipo) {
-      case "Aluno":
-        return <Navigate to="/user/aluno" replace />;
-      case "Professor":
-        return <Navigate to="/user/professor" replace />;
-      case "Administrador":
-        return <Navigate to="/user/admin" replace />;
-      default:
-        return <Navigate to="/" replace />;
-    }
+  if (!user.Flag) {
+    const roleRoutes: Record<number, string> = {
+      1: "/user/instrutor",
+      2: "/user/aluno",
+      3: "/user/gestor",
+      4: "/user/admin",
+    };
+
+    return <Navigate to={roleRoutes[user.Tipo] ?? "/"} replace />;
   }
 
   return <>{children}</>;
