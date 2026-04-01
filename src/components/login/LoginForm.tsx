@@ -2,7 +2,7 @@ import "./LoginForm.css";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import ModalRecuperarSenha from "../ModalRecuperarSenha";
+import ModalRecuperarSenha from "./ModalRecuperarSenha";
 
 
 export default function LoginForm() {
