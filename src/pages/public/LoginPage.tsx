@@ -1,4 +1,4 @@
-import "./LoginPage.css";
+import "../../components/login/LoginPage.css";
 import LeftPanel from "../../components/login/LeftPanel";
 import RightPanel from "../../components/login/RightPanel";
 

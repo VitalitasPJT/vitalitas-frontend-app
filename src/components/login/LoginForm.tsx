@@ -169,14 +169,6 @@ export default function LoginForm() {
             LOGIN
           </button>
         </form>
-
-        {/* signup-4k: texto maior em 4K */}
-        <p className="signup-4k w-full text-center text-sm text-[#71717b]">
-          Ainda não tem uma conta?{" "}
-          <span className="cursor-pointer font-semibold text-[#18181b] transition-opacity hover:opacity-70">
-            Cadastre-se
-          </span>
-        </p>
       </div>
 
       {showModal && (
