@@ -3,8 +3,8 @@
    Contém APENAS o que o Tailwind não suporta nativamente:
    1. Reset de html/body/root
    2. Breakpoint ≤425px (ocultar LeftPanel em mobile)
-   3. Proporções e escalonamento 4K (≥2560px)
-   4. font-size com clamp() para tipografia fluida em todos os tamanhos
+   3. Proporções e escalonamento 4K (≥2560px) — página + modal
+   4. font-size com clamp() para tipografia fluida
    ========================================================================== */
 
 html, body, #root {
@@ -21,147 +21,61 @@ html, body, #root {
   }
 }
 
-/* ≥ 2560px (4K) — LeftPanel 60%, RightPanel 40% + tudo maior */
+/* ==========================================================================
+   >= 2560px (4K) — página + modal
+   ========================================================================== */
 @media (min-width: 2560px) {
 
-  /* Proporções dos painéis */
-  .left-panel-visible {
-    flex: 0 0 60% !important;
-  }
-  .right-panel-4k {
-    flex: 0 0 40% !important;
-  }
+  /* PROPORÇÕES DOS PAINÉIS */
+  .left-panel-visible { flex: 0 0 60% !important; }
+  .right-panel-4k     { flex: 0 0 40% !important; }
 
-  /* ---- PAINEL ESQUERDO ---- */
-
-  /* Padding do conteúdo (WelcomeSection + SocialLinks) */
+  /* PAINEL ESQUERDO */
   .left-content-4k {
     padding-left: 5rem !important;
     padding-right: 5rem !important;
     padding-bottom: 5rem !important;
     gap: 2.5rem !important;
   }
+  .welcome-title       { font-size: 72px !important; letter-spacing: -2px !important; }
+  .welcome-description { font-size: 26px !important; max-width: 620px !important; line-height: 1.7 !important; }
+  .social-circle-4k    { width: 88px !important; height: 88px !important; }
+  .social-svg-4k       { width: 40px !important; height: 40px !important; }
+  .social-row-4k       { gap: 1.5rem !important; }
 
-  /* Título "Vitalitas" */
-  .welcome-title {
-    font-size: 72px !important;
-    letter-spacing: -2px !important;
-  }
+  /* FORMULÁRIO DE LOGIN */
+  .form-wrapper-4k   { max-width: 820px !important; gap: 4rem !important; padding-left: 5rem !important; padding-right: 5rem !important; }
+  .login-subtitle-4k { font-size: 26px !important; }
+  .field-4k          { height: 96px !important; border-radius: 22px !important; }
+  .field-input-4k    { font-size: 22px !important; padding-top: 28px !important; padding-bottom: 16px !important; padding-left: 72px !important; }
+  .field-icon-4k     { font-size: 26px !important; left: 22px !important; }
+  .field-label-4k    { font-size: 22px !important; left: 72px !important; }
+  .field-eye-4k      { font-size: 26px !important; right: 20px !important; }
+  .field-options-4k  { font-size: 20px !important; }
+  .checkbox-4k       { width: 30px !important; height: 30px !important; }
+  .login-btn-4k      { height: 96px !important; font-size: 26px !important; border-radius: 22px !important; letter-spacing: 2px !important; }
+  .signup-4k         { font-size: 20px !important; }
 
-  /* Descrição */
-  .welcome-description {
-    font-size: 26px !important;
-    max-width: 620px !important;
-    line-height: 1.7 !important;
-  }
-
-  /* Círculos das redes sociais */
-  .social-circle-4k {
-    width: 88px !important;
-    height: 88px !important;
-  }
-
-  /* SVG dentro do círculo */
-  .social-svg-4k {
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  /* Gap entre os círculos */
-  .social-row-4k {
-    gap: 1.5rem !important;
-  }
-
-  /* ---- PAINEL DIREITO (FORMULÁRIO) ---- */
-
-  /* Wrapper geral do form */
-  .form-wrapper-4k {
-    max-width: 820px !important;
-    gap: 4rem !important;
-    padding-left: 5rem !important;
-    padding-right: 5rem !important;
-  }
-
-  /* Subtítulo "Faça login com..." */
-  .login-subtitle-4k {
-    font-size: 26px !important;
-  }
-
-  /* Campos email e senha */
-  .field-4k {
-    height: 96px !important;
-    border-radius: 22px !important;
-  }
-
-  /* Input text dentro do campo */
-  .field-input-4k {
-    font-size: 22px !important;
-    padding-top: 28px !important;
-    padding-bottom: 16px !important;
-    padding-left: 72px !important;
-  }
-
-  /* Ícone esquerdo do campo */
-  .field-icon-4k {
-    font-size: 26px !important;
-    left: 22px !important;
-  }
-
-  /* Label flutuante */
-  .field-label-4k {
-    font-size: 22px !important;
-    left: 72px !important;
-  }
-
-  /* Label quando sobe (foco / preenchido) */
-  .field-label-4k.label-up,
-  .peer:focus ~ .field-label-4k,
-  .peer:not(:placeholder-shown) ~ .field-label-4k {
-    font-size: 15px !important;
-  }
-
-  /* Botão olho da senha */
-  .field-eye-4k {
-    font-size: 26px !important;
-    right: 20px !important;
-  }
-
-  /* Linha lembrar-me + esqueceu senha */
-  .field-options-4k {
-    font-size: 20px !important;
-  }
-  .checkbox-4k {
-    width: 30px !important;
-    height: 30px !important;
-  }
-
-  /* Botão LOGIN */
-  .login-btn-4k {
-    height: 96px !important;
-    font-size: 26px !important;
-    border-radius: 22px !important;
-    letter-spacing: 2px !important;
-  }
-
-  /* Texto "Ainda não tem conta?" */
-  .signup-4k {
-    font-size: 20px !important;
-  }
+  /* MODAL */
+  .modal-card-4k         { max-width: 960px !important; border-radius: 32px !important; }
+  .modal-inner-4k        { padding: 4rem !important; gap: 3rem !important; }
+  .modal-icon-4k         { width: 96px !important; height: 96px !important; }
+  .modal-title-4k        { font-size: 44px !important; line-height: 1.15 !important; }
+  .modal-subtitle-4k     { font-size: 20px !important; margin-top: 12px !important; }
+  .modal-req-4k          { border-radius: 20px !important; }
+  .modal-req-4k > div    { padding: 2rem !important; gap: 1.5rem !important; }
+  .modal-req-title-4k    { font-size: 18px !important; }
+  .modal-req-text-4k     { font-size: 17px !important; line-height: 1.6 !important; }
+  .modal-label-4k        { font-size: 18px !important; }
+  .modal-field-4k        { height: 72px !important; }
+  .modal-input-4k        { font-size: 20px !important; }
+  .modal-btn-4k          { height: 80px !important; font-size: 22px !important; border-radius: 18px !important; }
+  .modal-strength-text-4k{ font-size: 15px !important; }
 }
 
 /* ==========================================================================
-   Tipografia fluida via clamp() — vale para TODOS os tamanhos de tela
+   Tipografia fluida via clamp()
    ========================================================================== */
-.login-title {
-  font-size: clamp(28px, 4vw, 64px);
-}
-
-.welcome-title {
-  font-size: clamp(24px, 3vw, 48px);
-  letter-spacing: -0.9px;
-  line-height: 1.1;
-}
-
-.welcome-description {
-  font-size: clamp(13px, 1.4vw, 20px);
-}
+.login-title         { font-size: clamp(28px, 4vw, 64px); }
+.welcome-title       { font-size: clamp(24px, 3vw, 48px); letter-spacing: -0.9px; line-height: 1.1; }
+.welcome-description { font-size: clamp(13px, 1.4vw, 20px); }

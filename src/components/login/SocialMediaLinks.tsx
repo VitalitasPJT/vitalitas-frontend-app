@@ -1,5 +1,4 @@
 import svgPaths from "../../imports/svg-59b1zfc4li";
-import { imgGroup } from "../../imports/svg-bn8zi";
 
 function SocialIcon({ children, label }: { children: React.ReactNode; label: string }) {
   return (
