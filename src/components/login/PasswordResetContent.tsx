@@ -52,7 +52,7 @@ export function PasswordResetContent({ onClose }: PasswordResetContentProps) {
       w-full + max-w: ocupa toda a largura disponível até o limite de 672px
       padding responsivo: p-6 em mobile, sm:p-10 em telas médias, modal-padding-4k em 4K
     */
-    <div className="modal-card-4k w-full max-w-[672px] bg-white rounded-2xl sm:rounded-[24px] shadow-[0px_25px_50px_0px_rgba(0,0,0,0.25)] overflow-hidden">
+    <div className="modal-card-4k w-full max-w-[672px] bg-white rounded-2xl sm:rounded-[24px] shadow-[0px_25px_50px_0px_rgba(0,0,0,0.25)]">
       <div className="modal-inner-4k flex flex-col gap-6 sm:gap-8 p-6 sm:p-10">
 
         {/* Header */}
