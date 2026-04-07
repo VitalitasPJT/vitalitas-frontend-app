@@ -197,6 +197,7 @@ export default function LoginForm() {
               <span className="font-medium text-[#52525c]">Lembrar-me</span>
             </div>
 
+            {/*
             <button
               type="button"
               onClick={() => setShowModal(true)}
@@ -204,9 +205,10 @@ export default function LoginForm() {
             >
               Esqueceu sua senha?
             </button>
+            */}
           </div>
-
           {/* Botão Login */}
+
           <button
             type="submit"
             className="login-btn-4k h-[60px] w-full rounded-[14px] bg-[#ee2b47] text-lg font-bold tracking-wide text-white

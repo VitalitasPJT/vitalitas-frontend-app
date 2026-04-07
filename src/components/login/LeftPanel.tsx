@@ -1,6 +1,5 @@
 import imgImg from "../../assets/imgs/academia.png";
 import WelcomeSection from "./WelcomeSection";
-import SocialMediaLinks from "./SocialMediaLinks";
 
 function BackgroundImage() {
   return (
@@ -25,7 +24,6 @@ function ContentContainer() {
     // left-content-4k: padding e gap maiores em 4K via LoginPage.css
     <div className="left-content-4k absolute inset-0 flex flex-col justify-end gap-8 px-12 pb-12">
       <WelcomeSection />
-      <SocialMediaLinks />
     </div>
   );
 }

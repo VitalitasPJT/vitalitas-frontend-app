@@ -23,7 +23,7 @@ html, body {
 }
 
 /* ≤ 425px — esconde o painel da imagem, login ocupa 100% */
-@media (max-width: 425px) {
+@media (max-width: 482px) {
   .left-panel-visible {
     display: none !important;
   }
