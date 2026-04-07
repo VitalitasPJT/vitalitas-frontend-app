@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import { loginRequest } from "../services/authService";
 
 /* =======================
@@ -7,23 +6,20 @@ import { loginRequest } from "../services/authService";
 ======================= */
 
 export interface User {
-  Id: number;
-  Tipo: "Aluno" | "Administrador" | "Professor";
-  SenhaFlag: boolean;
+  Id: string;
+  Tipo: number;
+  Flag: boolean;
 }
 
 interface LoginApiResponse {
-  response: User;
-  token: string;
-}
-
-interface JwtPayload {
-  exp: number;
+  IdUsuario: string;
+  TipoUsuario: number;
+  Flag: boolean;
+  Status: { Message: string; Code: number; Sucess: boolean };
 }
 
 export interface AuthContextType {
   user: User | null;
-  token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
   login: (email: string, password: string) => Promise<User>;
@@ -43,60 +39,38 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const isAuthenticated = !!user && !!token;
+  const isAuthenticated = !!user;
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
 
-    if (!storedUser || !storedToken) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const decoded = jwtDecode<JwtPayload>(storedToken);
-
-      if (decoded.exp * 1000 < Date.now()) {
-        logout();
-        setLoading(false);
-        return;
-      }
-
+    if (storedUser) {
       setUser(JSON.parse(storedUser));
-      setToken(storedToken);
-    } catch {
-      logout();
-    } finally {
-      setLoading(false);
     }
-  }, []);
 
+    setLoading(false);
+  }, []);
 
   async function login(email: string, password: string): Promise<User> {
     const data: LoginApiResponse = await loginRequest(email, password);
 
-    const { response: user, token } = data;
-
-    console.log("LOGIN RESPONSE:", data.response);
+    const user: User = {
+      Id: data.IdUsuario,
+      Tipo: data.TipoUsuario,
+      Flag: data.Flag,
+    };
 
     setUser(user);
-    setToken(token);
-
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
 
     return user;
   }
 
   function logout() {
     setUser(null);
-    setToken(null);
     localStorage.removeItem("user");
-    localStorage.removeItem("token");
   }
 
   function updateUser(updatedUser: User) {
@@ -106,15 +80,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{
-        user,
-        token,
-        isAuthenticated,
-        loading,
-        login,
-        logout,
-        updateUser,
-      }}
+      value={{ user, isAuthenticated, loading, login, logout, updateUser }}
     >
       {children}
     </AuthContext.Provider>
