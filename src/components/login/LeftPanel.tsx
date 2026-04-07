@@ -1,31 +1,36 @@
 import imgImg from "../../assets/imgs/academia.png";
 import WelcomeSection from "./WelcomeSection";
-import SocialMediaLinks from "./SocialMediaLinks";
 
 function BackgroundImage() {
   return (
-    <div className="absolute h-[1080px] left-0 opacity-60 top-0 w-[960px]" data-name="img">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImg} />
+    <div className="absolute inset-0 opacity-60">
+      <img
+        alt=""
+        src={imgImg}
+        className="h-full w-full object-cover pointer-events-none"
+      />
     </div>
   );
 }
 
 function GradientOverlay() {
-  return <div className="absolute bg-gradient-to-t from-[#18181b] h-[1080px] left-0 to-[rgba(0,0,0,0)] top-0 via-1/2 via-[rgba(0,0,0,0)] w-[960px]" data-name="Container" />;
+  return (
+    <div className="absolute inset-0 bg-gradient-to-t from-[#18181b] via-transparent to-transparent" />
+  );
 }
 
 function ContentContainer() {
   return (
-    <div className="absolute h-[1080px] left-0 top-0 w-[960px]" data-name="Container">
+    // left-content-4k: padding e gap maiores em 4K via LoginPage.css
+    <div className="left-content-4k absolute inset-0 flex flex-col justify-end gap-8 px-12 pb-12">
       <WelcomeSection />
-      <SocialMediaLinks />
     </div>
   );
 }
 
 export default function LeftPanel() {
   return (
-    <div className="absolute bg-[#18181b] h-[1080px] left-0 overflow-clip top-0 w-[960px]" data-name="Container">
+    <div className="left-panel-visible relative h-full flex-1 overflow-hidden bg-[#18181b]">
       <BackgroundImage />
       <GradientOverlay />
       <ContentContainer />

@@ -1,13 +1,14 @@
-import LeftPanel from '../../components/login/LeftPanel';
-import RightPanel from '../../components/login/RightPanel';
+import "../../components/login/LoginPage.css";
+import LeftPanel from "../../components/login/LeftPanel";
+import RightPanel from "../../components/login/RightPanel";
 
 export default function LoginPage() {
-    return (
-        <div className="bg-white content-stretch flex flex-col items-start relative size-full" data-name="Login Screen 2.0">
-      <div className="bg-[#fafafa] h-[1080px] relative shrink-0 w-full" data-name="div">
-        <LeftPanel />
-        <RightPanel />
-      </div>
+  return (
+    // h-screen + overflow-hidden no pai: altura exata da tela, sem scroll
+    // flex: os dois painéis ficam lado a lado e dividem o espaço
+    <div className="flex h-screen w-full overflow-hidden bg-[#fafafa]">
+      <LeftPanel />
+      <RightPanel />
     </div>
-    );
+  );
 }

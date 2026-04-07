@@ -1,321 +1,47 @@
 /* ==========================================================================
-   LOGIN FORM — Estilos adaptados para o visual do Figma (Vitalitas)
+   LoginPage.css — Apenas o que o Tailwind não suporta nativamente:
+   1. Breakpoint ≤425px (Tailwind não tem max-width breakpoints no padrão)
+   2. Proporções 4K: LeftPanel 60%, RightPanel 40%
+   3. font-size com clamp() para tipografia fluida
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   Wrapper principal — posicionado no centro do RightPanel
-   -------------------------------------------------------------------------- */
-.login-form-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 448px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-/* --------------------------------------------------------------------------
-   Header
-   -------------------------------------------------------------------------- */
-.login-form-header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-.login-title {
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 48px;
-  letter-spacing: -1.2px;
-  color: #18181b;
-  text-align: center;
-  width: 100%;
-  margin: 0;
-}
-
-.login-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 28px;
-  color: #71717b;
-  text-align: center;
-  width: 100%;
-  margin: 0;
-  white-space: nowrap;
-}
-
-/* --------------------------------------------------------------------------
-   Campos do formulário
-   -------------------------------------------------------------------------- */
-.login-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-}
-
-.field-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 100%;
-}
-
-/* Input group — campo com ícone e floating label */
-.field-input-group {
-  position: relative;
-  height: 60px;
-  width: 100%;
-  background: white;
-  border-radius: 14px;
-  border: 2px solid #e4e4e7;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1), 0px 1px 2px -1px rgba(0,0,0,0.1);
-  transition: border-color 0.2s ease;
-  display: flex;
-  align-items: center;
-}
-
-.field-input-group:focus-within {
-  border-color: #18181b;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1), 0px 1px 2px -1px rgba(0,0,0,0.1);
-}
-
-.field-input-group.field-error {
-  border-color: #ee2b47;
-}
-
-/* Ícone esquerdo */
-.field-icon {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #18181b;
-  opacity: 0.4;
-  font-size: 16px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Input */
-.field-input {
-  width: 100%;
+html, body, #root {
   height: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 20px 48px 12px 48px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #18181b;
-  border-radius: 14px;
-}
-
-.field-input::placeholder {
-  color: transparent;
-}
-
-/* Floating label */
-.field-label {
-  position: absolute;
-  left: 48px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: rgba(24, 24, 27, 0.5);
-  pointer-events: none;
-  transition: all 0.15s ease;
-  background: white;
-  padding: 0 4px;
-}
-
-/* Label flutua para cima quando o input está preenchido ou em foco */
-.field-input:focus + .field-label,
-.field-input:not(:placeholder-shown) + .field-label {
-  top: 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: #71717b;
-}
-
-/* Botão olho (senha) */
-.field-eye-btn {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: #18181b;
-  opacity: 0.7;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  border-radius: 4px;
-  transition: opacity 0.2s;
-}
-
-.field-eye-btn:hover {
-  opacity: 1;
-}
-
-/* --------------------------------------------------------------------------
-   Opções (lembrar-me + esqueceu a senha)
-   -------------------------------------------------------------------------- */
-.login-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 20px;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.remember-checkbox {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  border: 1px solid #d4d4d8;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s, border-color 0.15s;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.remember-checkbox.checked {
-  background: #18181b;
-  border-color: #18181b;
-}
-
-.remember-me span {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: #52525c;
-  line-height: 20px;
-}
-
-.forgot-password-btn {
-  background: none;
-  border: none;
-  outline: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: #52525c;
-  cursor: pointer;
+  margin: 0;
   padding: 0;
-  line-height: 20px;
-  transition: color 0.15s;
 }
 
-.forgot-password-btn:hover {
-  color: #18181b;
+/* --- ≤ 425px: esconde o painel da imagem --- */
+@media (max-width: 425px) {
+  .left-panel-visible {
+    display: none;
+  }
 }
 
-/* --------------------------------------------------------------------------
-   Botão de login
-   -------------------------------------------------------------------------- */
-.login-btn {
-  width: 100%;
-  height: 60px;
-  background: #ee2b47;
-  border: none;
-  border-radius: 14px;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  box-shadow:
-    0px 10px 15px 0px rgba(238, 43, 71, 0.3),
-    0px 4px 6px 0px rgba(238, 43, 71, 0.3);
-  transition: opacity 0.2s, transform 0.15s;
+/* --- ≥ 2560px (4K): LeftPanel 60%, RightPanel 40% --- */
+@media (min-width: 2560px) {
+  .left-panel-visible {
+    flex: 0 0 60% !important;
+    min-width: unset !important;
+  }
+  .right-panel-4k {
+    flex: 0 0 40% !important;
+    min-width: unset !important;
+  }
 }
 
-.login-btn:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
+/* --- Tipografia fluida com clamp() --- */
+.login-title {
+  font-size: clamp(32px, 4vw, 48px);
 }
 
-.login-btn:active {
-  transform: translateY(0);
-  opacity: 1;
+.welcome-title {
+  font-size: clamp(26px, 3vw, 40px);
+  letter-spacing: -0.9px;
+  line-height: 1.1;
 }
 
-/* --------------------------------------------------------------------------
-   Prompt de cadastro
-   -------------------------------------------------------------------------- */
-.signup-prompt {
-  width: 100%;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #71717b;
-  line-height: 20px;
-  margin: 0;
-}
-
-.signup-link {
-  font-weight: 600;
-  color: #18181b;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-
-.signup-link:hover {
-  opacity: 0.7;
-}
-
-/* --------------------------------------------------------------------------
-   Mensagem de erro
-   -------------------------------------------------------------------------- */
-.errorMessage {
-  font-family: 'Inter', sans-serif;
-  color: #ee2b47;
-  font-size: 13px;
-  margin: 0;
-  padding-left: 4px;
-}
-
-/* --------------------------------------------------------------------------
-   Reset de foco global
-   -------------------------------------------------------------------------- */
-input:focus,
-button:focus,
-textarea:focus {
-  outline: none !important;
-  box-shadow: none !important;
+.welcome-description {
+  font-size: clamp(14px, 1.4vw, 18px);
+  max-width: 420px;
 }
