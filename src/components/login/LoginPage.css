@@ -7,11 +7,19 @@
    4. font-size com clamp() para tipografia fluida
    ========================================================================== */
 
-html, body, #root {
+/*
+  overflow: hidden APENAS no html/body para evitar scroll global da página de login.
+  O #root precisa de h-100% para o h-screen do LoginPage funcionar.
+  NÃO colocar overflow:hidden no #root — o modal (fixed) precisa escapar dele.
+*/
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+}
+
+#root {
+  height: 100%;
 }
 
 /* ≤ 425px — esconde o painel da imagem, login ocupa 100% */
