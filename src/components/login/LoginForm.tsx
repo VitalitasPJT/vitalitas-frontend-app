@@ -79,15 +79,16 @@ export default function LoginForm() {
     try {
       const user = await login(email, password);
 
-      if (user.SenhaFlag === false) {
+      if (user.Flag === true) {
         navigate("/vitalitas/user/resetpassword");
         return;
       }
 
-      const roleRoutes: Record<string, string> = {
-        Aluno: "/user/aluno",
-        Administrador: "/user/admin",
-        Professor: "/user/professor",
+      const roleRoutes: Record<number, string> = {
+        1: "/user/instrutor",
+        2: "/user/aluno",
+        3: "/user/gestor",
+        4: "/user/admin",
       };
 
       navigate(roleRoutes[user.Tipo]);

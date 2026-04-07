@@ -4,21 +4,19 @@ import { useAuth } from "../../hooks/useAuth";
 
 interface RoleRouteProps {
   children: React.ReactNode;
-  allowedRoles: string[];
+  allowedRoles: number[];
 }
 
 export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
   const { user, isAuthenticated, loading } = useAuth();
 
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
+  if (loading) return <div>Carregando...</div>;
 
   if (!isAuthenticated || !user) {
     return <Navigate to="/vitalitas/user/login" replace />;
   }
 
-  if (user.SenhaFlag === false) {
+  if (user.Flag === true) {
     return <Navigate to="/vitalitas/user/resetpassword" replace />;
   }
 
