@@ -2,11 +2,15 @@
   "name": "vitalitas",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "apps/web",
     "packages/*"
   ],
   "scripts": {
     "web": "npm run dev --workspace=apps/web",
     "mobile": "npm run start --workspace=apps/mobile"
+  },
+  "overrides": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   }
 }
