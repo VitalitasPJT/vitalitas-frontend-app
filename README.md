@@ -1,11 +1,12 @@
-# Vitalitas - Frontend Web
+# Vitalitas - Frontend
 
-> **Interface web moderna para gestão integrada de academias.**
+> **Interface moderna para gestão integrada de academias — Web e Mobile.**
 
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-green?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 <img width="1558" height="932" alt="aaa1" src="https://github.com/user-attachments/assets/a602fbee-8f82-4de3-aa51-ed407ede212e" />
@@ -15,81 +16,89 @@
 
 > ℹ️ **Visão Geral:** Para entender o contexto acadêmico, a proposta de valor e o escopo do produto (MVP), acesse o **[README da Organização Vitalitas](https://github.com/VitalitasPJT)**.
 >
-> 
-> [Link do Protótipo Figma - Clique aqui!](https://www.figma.com/proto/0NrgmDD9v0esjj0oIQD4KC/Website---Vitalitas?node-id=1118-62&t=8dMGgIXzAR59QADD-1&scaling=min-zoom&content-scaling=fixed&page-id=939%3A3&starting-point-node-id=1118%3A62)
+> [Link do Protótipo Figma - Clique aqui!](https://www.figma.com/proto/0NrgmDD9v0esjj0oIQD4KC/Website---Vitalitas?node-id=1796-118&t=BS6Y6p6UtcrFUDcx-1&scaling=min-zoom&content-scaling=fixed&page-id=939%3A3&starting-point-node-id=1796%3A118&show-proto-sidebar=1)
 
 ---
 
-## Tecnologias e ferramentas utilizadas
+## Estrutura do Repositório
 
-  - **Figma**: prototipação das telas antes da implementação em código.
+Este repositório é um **monorepo** que contém os dois frontends do sistema:
 
-  [![Figma](https://skillicons.dev/icons?i=figma)](https://skillicons.dev)
-  
-  - **React + TypeScript + Bootstrap**: base tecnológica para o desenvolvimento frontend.
+```
+vitalitas-frontend-app/     ← Raiz do monorepo
+├── apps/
+│   ├── web/                ← React + Tailwind  (Administrador, Gestor, Instrutor)
+│   └── mobile/             ← React Native + Expo  (Aluno)
+├── packages/
+│   └── shared/             ← Tipos e utilitários compartilhados  (*por enquanto não implementado*)
+└── package.json    
+```
 
-  [![Figma](https://skillicons.dev/icons?i=react,bootstrap,typescript)](https://skillicons.dev)
+| App | Perfis atendidos | Tecnologia |
+|-----|-----------------|------------|
+| `apps/web` | Administrador, Gestor, Instrutor | React + TypeScript + Tailwind |
+| `apps/mobile` | Aluno | React Native + Expo |
 
-  Essa combinação de tecnologias foi escolhida por oferecer:
+---
 
-  > 1. Escalabilidade → TypeScript com tipagem estática
-  >
-  > 2. Produtividade → Componentização do React
-  >
-  > 3. Padronização visual → Bootstrap + React-Bootstrap
-  >
-  > 4. Performance → Build otimizado com Vite
-  >
-  > 5. Segurança → Autenticação baseada em JWT
+## 🌐 Web
 
-## Arquitetura
+### Tecnologias
 
-A pasta `./src` possui a seguinte estrutura:
+[![Figma](https://skillicons.dev/icons?i=react,typescript,tailwind,vite)](https://skillicons.dev)
 
-1. `./assets` → imagens e logos utilizadas
+- **React + TypeScript**: base para construção da interface
+- **Tailwind CSS**: estilização utilitária e padronização visual
+- **Vite**: build otimizado para desenvolvimento
+- **Axios**: comunicação com o backend via HTTP
+- **React Router DOM**: gerenciamento de rotas e navegação
+- **JWT Decode**: decodificação de tokens para autenticação
+
+### Arquitetura
+
+A pasta `apps/web/src` possui a seguinte estrutura:
+
+1. `./assets` → imagens e logos
 2. `./components` → componentes reutilizáveis e formulários
-3. `./contexts` → gerenciamento de sessão, usuário logado e permissões
+3. `./contexts` → gerenciamento de sessão e permissões
 4. `./hooks` → reutilização de contexts e lógica compartilhada
 5. `./pages` → páginas principais do sistema
-6. `./routes` → rotas públicas e privadas
-7. `./services` → comunicação com o backend e APIs externas
-8. `./utils` → funções auxiliares
+6. `./services` → comunicação com o backend
+7. `./utils` → funções auxiliares
 
-### Bibliotecas utilizadas
+### Instalação e execução
 
-- **axios**: comunicação com o backend via requisições HTTP
-- **bootstrap**: estilização e padronização visual das páginas
-- **bootstrap-icons**: conjunto de ícones prontos para uso
-- **jwt-decode**: decodificação de tokens JWT para autenticação
-- **react**: biblioteca principal para construção da interface
-- **react-bootstrap**: integração de componentes React com Bootstrap
-- **react-dom**: renderização dos componentes React no DOM
-- **react-router-dom**: gerenciamento de rotas e navegação
+```bash
+# Na raiz do repositório, instale as dependências do monorepo
+npm install
 
-## Pré-requisitos
+# Rode o projeto web
+cd apps/web
+npm run dev -- --port 3000     (deve ser na porta 3000 devido a configuração do CORS)
+```
 
-Antes de rodar o projeto, você precisa ter instalado:
+---
 
-- **Node.js** (versão recomendada: 18+ ou 20+)  
-  https://nodejs.org/
+## 📱 Mobile
 
-- **npm** (vem junto com o Node)
+O app mobile foi desenvolvido para o perfil **Aluno**, oferecendo uma experiência mais prática para acompanhar treinos, evolução e comunicados diretamente pelo celular — sem precisar acessar o navegador.
 
-Verifique se está instalado:
+### Tecnologias
 
-`node -v`
-ou
-`npm -v`
+[![Figma](https://skillicons.dev/icons?i=react,typescript,androidstudio)](https://skillicons.dev)
 
-## Instalação das dependências
+- **React Native + Expo**: desenvolvimento mobile multiplataforma
+- **Expo Router**: navegação baseada em arquivos (similar ao Next.js)
+- **AsyncStorage**: persistência de dados no dispositivo
+- **Axios**: comunicação com a mesma API do web
 
-Na pasta do projeto, rode:
+### Configuração do ambiente
 
-`npm install` - Baixa todas as bibliotecas necessárias
+A configuração do ambiente mobile envolve a instalação do Android Studio, criação do emulador e configuração das variáveis de ambiente `ANDROID_HOME` e `JAVA_HOME`.
 
-## Rodando o projeto em modo desenvolvimento
+👉 **[Acesse o Guia Completo de Setup Mobile](./docs/MOBILE_SETUP.md)**
 
-`npm run dev -- --port 3000` - Inicia o servidor front de desenvolvimento do Vite na porta 3000
+---
 
 ## Fluxo de Branches
 
@@ -101,19 +110,20 @@ O repositório segue um fluxo simples e direto, com duas branches principais:
 | `des`  | Ambiente de **desenvolvimento/testes** — integração contínua da equipe |
 
 ### Como funciona
+
 ```
-feature/login_feature ──► des ──► [QA / Testes] ──► prd
+feature/nome_da_feature ──► des ──► [QA / Testes] ──► prd
 ```
 
-1. **Crie uma branch de feature** a partir de `des`, com nome descritivo:
+1. **Crie uma branch de feature** a partir de `des`:
 ```bash
-   git checkout des
-   git checkout -b feature/nome_da_feature
+git checkout des
+git checkout -b feature/nome_da_feature
 ```
 
 2. **Desenvolva e faça commits** na sua branch normalmente.
 
-3. **Abra um Pull Request para `des`** ao finalizar. A feature entra no ambiente de testes.
+3. **Abra um Pull Request para `des`** ao finalizar.
 
 4. **A equipe de QA valida** o comportamento na branch `des`.
 
@@ -123,8 +133,6 @@ feature/login_feature ──► des ──► [QA / Testes] ──► prd
 
 ### Nomenclatura de branches
 
-Use prefixos para deixar claro o tipo de trabalho:
-
 | Prefixo | Uso |
 |---------|-----|
 | `feature/` | Nova funcionalidade |
@@ -132,9 +140,11 @@ Use prefixos para deixar claro o tipo de trabalho:
 | `hotfix/` | Correção urgente em produção |
 | `chore/` | Ajustes técnicos, configs, refatorações |
 
-**Exemplos:** `feature/login_feature`, `fix/corrige_cadastro`, `hotfix/token_expirado`
+**Exemplos:** `feature/tela_treinos`, `fix/corrige_login`, `hotfix/token_expirado`
 
-## Equipe de Desenvolvimento – Frontend
+---
+
+## Equipe de Desenvolvimento — Frontend
 
 | Nome | LinkedIn | GitHub |
 |------|----------|--------|
