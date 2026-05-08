@@ -12,6 +12,7 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "./../../store/useAuth";
 import { trocarSenhaRequest } from "./../../services/authService";
+import Button from "../../components/Button";
 
 export default function ResetPasswordScreen() {
   const router = useRouter();
@@ -161,21 +162,19 @@ export default function ResetPasswordScreen() {
       {erro ? <Text style={styles.errorText}>{erro}</Text> : null}
 
       {/* Botões */}
-      <TouchableOpacity
-        style={[styles.button, !tudo_valido && styles.buttonDisabled]}
+      <Button
+        label="SALVAR"
+        loading={loading}
         onPress={handleSalvar}
         disabled={loading || !tudo_valido}
-      >
-        {loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={styles.buttonText}>SALVAR</Text>
-        )}
-      </TouchableOpacity>
+        style={!tudo_valido ? { backgroundColor: "#F9A8B0", elevation: 0 } : undefined}
+      />
 
-      <TouchableOpacity style={styles.buttonCancel} onPress={handleCancelar}>
-        <Text style={styles.buttonCancelText}>CANCELAR</Text>
-      </TouchableOpacity>
+      <Button
+        label="CANCELAR"
+        variant="secondary"
+        onPress={handleCancelar}
+      />
     </ScrollView>
   );
 }
@@ -277,42 +276,5 @@ const styles = StyleSheet.create({
     color: "#EE2B47",
     fontSize: 13,
     alignSelf: "flex-start",
-  },
-  button: {
-    width: "100%",
-    height: 60,
-    backgroundColor: "#EE2B47",
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#EE2B47",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 15,
-    elevation: 8,
-  },
-  buttonDisabled: {
-    backgroundColor: "#F9A8B0",
-    elevation: 0,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "700",
-    letterSpacing: 1,
-  },
-  buttonCancel: {
-    width: "100%",
-    height: 60,
-    backgroundColor: "#D1D5DC",
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonCancelText: {
-    color: "#000",
-    fontSize: 18,
-    fontWeight: "700",
-    letterSpacing: 1,
   },
 });

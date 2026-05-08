@@ -10,6 +10,8 @@ import {
 import { useRouter } from "expo-router";
 import { useAuth } from "./../../store/useAuth";
 import { Ionicons } from "@expo/vector-icons";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 export default function LoginScreen() {
   const { login } = useAuth();
@@ -65,52 +67,42 @@ export default function LoginScreen() {
 
       {/* Campo Email */}
       <View style={styles.inputWrapper}>
-        <View style={[styles.inputContainer, emailError ? styles.inputError : null]}>
-          <Ionicons name="mail-outline" size={20} color="#18181b" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="E-mail"
-            placeholderTextColor="#71717b"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-        </View>
+        <Input
+          icon="mail-outline"
+          hasError={!!emailError}
+          placeholder="E-mail"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
         {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
       </View>
 
       {/* Campo Senha */}
       <View style={styles.inputWrapper}>
-        <View style={[styles.inputContainer, passwordError ? styles.inputError : null]}>
-          <Ionicons name="lock-closed-outline" size={20} color="#18181b" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Senha"
-            placeholderTextColor="#71717b"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-          />
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            <Ionicons
-              name={showPassword ? "eye-off-outline" : "eye-outline"}
-              size={20}
-              color="#18181b"
-            />
-          </TouchableOpacity>
-        </View>
+        <Input
+          icon="lock-closed-outline"
+          hasError={!!passwordError}
+          placeholder="Senha"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={!showPassword}
+          rightElement={
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <Ionicons
+                name={showPassword ? "eye-off-outline" : "eye-outline"}
+                size={20}
+                color="#18181b"
+              />
+            </TouchableOpacity>
+          }
+        />
         {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
       </View>
 
       {/* Botão Login */}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={loading}>
-        {loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={styles.buttonText}>LOGIN</Text>
-        )}
-      </TouchableOpacity>
+      <Button label="LOGIN" loading={loading} onPress={handleSubmit} />
     </View>
   );
 }
@@ -143,50 +135,9 @@ const styles = StyleSheet.create({
   inputWrapper: {
     gap: 4,
   },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    height: 60,
-    borderWidth: 2,
-    borderColor: "#e4e4e7",
-    borderRadius: 14,
-    paddingHorizontal: 16,
-    backgroundColor: "#fff",
-    gap: 8,
-  },
-  inputError: {
-    borderColor: "#ee2b47",
-  },
-  icon: {
-    opacity: 0.4,
-  },
-  input: {
-    flex: 1,
-    fontSize: 16,
-    color: "#18181b",
-  },
   errorText: {
     fontSize: 13,
     color: "#ee2b47",
     paddingLeft: 4,
-  },
-  button: {
-    height: 60,
-    backgroundColor: "#ee2b47",
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 8,
-    shadowColor: "#ee2b47",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 15,
-    elevation: 8,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "700",
-    letterSpacing: 1,
   },
 });
