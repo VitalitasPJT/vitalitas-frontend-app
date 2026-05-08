@@ -11,7 +11,9 @@ import GestorDashboard from "../../pages/private/DashboardGestor";
 
 // Outras páginas
 import FirstAcess from "../../pages/private/PasswordResetPage";
-{/*import ErrorPage from "../../pages/public/ErrorPage"; */}
+import ErrorPage from "../../pages/public/ErrorPage";
+
+import { PasswordResetRoute } from "./PasswordResetRoute";
 
 // Guards
 import { PrivateRoute } from "./PrivateRoute";
@@ -34,9 +36,9 @@ export default function AppRoutes() {
       <Route
         path="/vitalitas/user/resetpassword"
         element={
-          <PrivateRoute>
+          <PasswordResetRoute>
             <FirstAcess />
-          </PrivateRoute>
+          </PasswordResetRoute>
         }
       />
 
@@ -46,27 +48,33 @@ export default function AppRoutes() {
       <Route
         path="/user/aluno"
         element={
-          <RoleRoute allowedRoles={[2]}>
-            <AlunoDashboard />
-          </RoleRoute>
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[2]}>
+              <AlunoDashboard />
+            </RoleRoute>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/user/professor"
         element={
-          <RoleRoute allowedRoles={[1]}>
-            <ProfessorDashboard />
-          </RoleRoute>
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[1]}>
+              <ProfessorDashboard />
+            </RoleRoute>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/user/gestor"
         element={
-          <RoleRoute allowedRoles={[3]}>
-            <GestorDashboard />
-          </RoleRoute>
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[3]}>
+              <GestorDashboard />
+            </RoleRoute>
+          </PrivateRoute>
         }
       />
 
@@ -78,8 +86,9 @@ export default function AppRoutes() {
       {/* ======================
          ERROS
       ====================== 
-      <Route path="/erro/:code" element={<ErrorPage />} />
-      <Route path="*" element={<ErrorPage />} /> */}
+      <Route path="/erro/:code" element={<ErrorPage />} />*/}
+      <Route path="*" element={<ErrorPage />} />
+      
 
     </Routes>
   );
