@@ -81,7 +81,7 @@ npm run dev -- --port 3000     (deve ser na porta 3000 devido a configuração d
 
 ## 📱 Mobile
 
-O app mobile foi desenvolvido para o perfil **Aluno**, oferecendo uma experiência mais prática para acompanhar treinos, evolução e comunicados diretamente pelo celular — sem precisar acessar o navegador.
+O app mobile foi desenvolvido para o perfil **Aluno**, oferecendo uma experiência prática para acompanhar treinos, evolução e comunicados diretamente pelo celular — sem precisar acessar o navegador.
 
 ### Tecnologias
 
@@ -92,12 +92,52 @@ O app mobile foi desenvolvido para o perfil **Aluno**, oferecendo uma experiênc
 - **AsyncStorage**: persistência de dados no dispositivo
 - **Axios**: comunicação com a mesma API do web
 
+### Arquitetura
+
+O app segue uma separação clara de responsabilidades, mantendo a pasta `app/` exclusivamente para roteamento (Expo Router) e concentrando toda a lógica em `src/`:
+
+```
+apps/mobile/
+├── app/                        ← Roteamento (Expo Router — não alterar)
+│   ├── _layout.tsx             ← Layout raiz e provider de autenticação
+│   ├── index.tsx               ← Re-export da scene Auth
+│   ├── aluno.tsx               ← Re-export da scene Aluno
+│   └── resetpassword.tsx       ← Re-export da scene ResetPassword
+└── src/
+    ├── components/             ← Componentes base reutilizáveis
+    │   ├── Button/
+    │   └── Input/
+    ├── scenes/                 ← Telas completas (lógica + layout)
+    │   ├── Auth/
+    │   ├── Aluno/
+    │   └── ResetPassword/
+    ├── services/               ← Comunicação com a API
+    │   ├── api.ts              ← Instância e config do Axios
+    │   └── authService.tsx     ← Funções de autenticação
+    └── store/                  ← Estado global e hooks
+        ├── AuthContext.tsx     ← Context de autenticação
+        └── useAuth.tsx         ← Hook de acesso ao contexto
+```
+
+> **Obs.:** cada tela em `app/` é um re-export simples da sua respectiva scene em `src/scenes/`. Toda lógica, estilo e subcomponentes locais vivem dentro da pasta da scene.
+
 ### Configuração do ambiente
 
 A configuração do ambiente mobile envolve a instalação do Android Studio, criação do emulador e configuração das variáveis de ambiente `ANDROID_HOME` e `JAVA_HOME`.
 
 👉 **[Acesse o Guia Completo de Setup Mobile](./docs/MOBILE_SETUP.md)**
 
+### Instalação e execução
+
+```bash
+
+# Rode o projeto mobile
+cd apps/mobile
+npm install
+npx expo start
+```
+
+> ⚠️ O emulador Android deve estar rodando antes de executar `npx expo start`. Acesse o **Device Manager** no Android Studio e inicie o AVD desejado.
 ---
 
 ## Fluxo de Branches
