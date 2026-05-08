@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../../services/userService";
 import { useAuth } from "../../hooks/useAuth";
 
+import { InputField } from "../../components/inputs/CampoInput.tsx";
+
 interface Requirement {
     met: boolean;
     text: string;
@@ -159,20 +161,29 @@ export default function PasswordResetPage() {
 
             {/* Nova senha */}
             <div className="mb-5">
-                <label className="block text-sm font-semibold text-gray-600 mb-2">Nova senha</label>
-                <div className="relative">
-                    <input
-                        type={showPass1 ? "text" : "password"}
-                        value={newPass}
-                        onChange={(e) => handleNewPass(e.target.value)}
-                        placeholder="Digite sua nova senha"
-                        className="w-full h-13 px-4 pr-12 py-3 rounded-2xl border-2 border-gray-200 focus:border-red-300 focus:outline-none text-sm transition-colors"
-                    />
-                    <button type="button" onClick={() => setShowPass1(!showPass1)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
-                        <EyeIcon open={showPass1} />
-                    </button>
-                </div>
+                <InputField
+                    id="newPassword"
+                    label="Nova senha"
+                    type="password"
+                    value={newPass}
+                    onChange={(e) => handleNewPass(e.target.value)}
+                    icon={
+                        <svg
+                            width="20"
+                            height="20"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    }
+                    isPassword
+                />
 
                 {/* Barra de força */}
                 {newPass.length > 0 && (
@@ -190,29 +201,30 @@ export default function PasswordResetPage() {
 
             {/* Confirmar senha */}
             <div className="mb-2">
-                <label className="block text-sm font-semibold text-gray-600 mb-2">Confirme a nova senha</label>
-                <div className="relative">
-                    <input
-                        type={showPass2 ? "text" : "password"}
-                        value={confirmPass}
-                        onChange={(e) => setConfirmPass(e.target.value)}
-                        placeholder="Repita a nova senha"
-                        className={`w-full h-13 px-4 pr-12 py-3 rounded-2xl border-2 focus:outline-none text-sm transition-colors
-              ${mismatch ? "border-red-400 focus:border-red-400" : "border-gray-200 focus:border-red-300"}`}
-                    />
-                    <button type="button" onClick={() => setShowPass2(!showPass2)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
-                        <EyeIcon open={showPass2} />
-                    </button>
-                </div>
-                {mismatch && (
-                    <p className="text-xs text-red-500 mt-2 flex items-center gap-1.5">
-                        <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
-                            <path d="M9 3L3 9M3 3l6 6" stroke="#EF4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                <InputField
+                    id="confirmPassword"
+                    label="Confirme a nova senha"
+                    type="password"
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
+                    icon={
+                        <svg
+                            width="20"
+                            height="20"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
-                        As senhas não coincidem
-                    </p>
-                )}
+                    }
+                    isPassword
+                    error={mismatch ? "As senhas não coincidem" : ""}
+                />
             </div>
 
             {/* Erro geral */}
