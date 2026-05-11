@@ -14,7 +14,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 export default function LoginScreen() {
-  const { login } = useAuth();
+  const { signIn } = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export default function LoginScreen() {
 
     try {
       setLoading(true);
-      const user = await login(email, password);
+      const user = await signIn(email, password);
 
       if (user.Flag === true) {
         router.replace("/resetpassword");
@@ -47,14 +47,13 @@ export default function LoginScreen() {
         1: "/aluno",
       };
 
-      router.replace(roleRoutes[user.Tipo] ?? "/");
+      router.replace(roleRoutes[user.TipoUsuario] ?? "/");
     } catch (err) {
       setPasswordError("Email ou senha inválidos.");
     } finally {
       setLoading(false);
     }
   }
-
   return (
     <View style={styles.container}>
       {/* Header */}
