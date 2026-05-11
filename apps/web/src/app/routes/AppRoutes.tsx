@@ -6,7 +6,7 @@ import LoginPage from "../../pages/public/LoginPage";
 
 // Dashboards
 import AlunoDashboard from "../../pages/private/AlunoDashboard";
-import ProfessorDashboard from "../../pages/private/ProfessorDashboard";
+import InstrutorDashboard from "../../pages/private/InstrutorDashboard";
 import GestorDashboard from "../../pages/private/DashboardGestor";
 
 // Outras páginas
@@ -57,11 +57,11 @@ export default function AppRoutes() {
       />
 
       <Route
-        path="/user/professor"
+        path="/user/instrutor"
         element={
           <PrivateRoute>
             <RoleRoute allowedRoles={[1]}>
-              <ProfessorDashboard />
+              <InstrutorDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
