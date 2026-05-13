@@ -35,9 +35,6 @@ cd vitalitas-frontend-app
 O monorepo possui **duas instalações separadas** — uma para o web e outra para o mobile. Isso é intencional para evitar conflitos de versão do React entre os dois projetos.
 
 ```bash
-# Dependências do monorepo (web)
-npm install
-
 # Dependências do mobile (isoladas)
 cd apps/mobile
 npm install
@@ -144,22 +141,32 @@ java -version
 
 ### 4.2 — Iniciar o Servidor Expo
 
-```bash
-cd apps/mobile
-npx expo start
-```
+O projeto utiliza build nativo para suportar o **Hermes engine** e o **React Native DevTools**. Por isso, o comando padrão de execução é:
 
-O terminal exibirá um menu interativo. Pressione **`a`** para abrir no emulador Android:
+```bash
+npx expo run:android
+```
+> Na primeira execução, o Expo compila o app nativo e instala no emulador. Isso pode levar de 5 a 10 minutos. As execuções seguintes são mais rápidas.
+Após a compilação, o Metro bundler iniciará automaticamente exibindo um menu interativo no terminal:
+
 
 ```
 › Press a │ open Android
 › Press r │ reload app
+› Press j │ open React Native DevTools (debugger)
 › Press ? │ show all commands
 ```
 
-> ⏱️ Na primeira execução, o Expo compila o app nativo e instala no emulador. Isso pode levar de 3 a 5 minutos. As execuções seguintes são muito mais rápidas, portanto, seja paciente.
+> Use `npx expo run:android` sempre que instalar novos pacotes nativos ou após limpar o projeto. Para recarregar o app sem recompilar, pressione `r` no terminal. E para começar a rodar o aplicativo android, pressione `a`.
 
-### 4.3 — Rodar o Backend
+
+### 4.3 — (Opcional) Acessar o Debugger (React Native DevTools)
+
+Com o app rodando via `npx expo run:android`, pressione `j` no terminal para abrir o React Native DevTools no navegador. Na aba Console você verá todos os `console.log` do app em tempo real.
+
+> O debugger **não funciona** com `npx expo start` padrão. É necessário usar `npx expo run:android` para que o Hermes engine esteja ativo. Caso não vá utilizar o debbuger, apenas digite ```npx expo start```
+
+### 4.4 — Rodar o Backend
 
 O mobile consome a mesma API do web. O backend precisa estar rodando na porta `5156`.
 
@@ -171,33 +178,38 @@ O mobile consome a mesma API do web. O backend precisa estar rodando na porta `5
 
 ```
 apps/mobile/
-├── android/              ← Código nativo gerado automaticamente
-├── assets/               ← Imagens, ícones e splash screen
-├── app/                  ← Rotas do Expo Router (baseadas em arquivo)
-│   ├── _layout.tsx       ← Layout raiz (AuthProvider)
-│   ├── index.tsx         ← Tela de Login (rota /)
-│   └── aluno.tsx         ← Dashboard do Aluno (rota /aluno)
-├── src/
-│   ├── contexts/
-│   │   └── AuthContext.tsx   ← Contexto de autenticação
-│   ├── hooks/
-│   │   └── useAuth.ts        ← Hook para acessar o AuthContext
-│   └── services/
-│       └── authService.ts    ← Chamadas à API de autenticação
-├── app.json              ← Configuração do Expo
-├── package.json          ← Dependências do mobile (isoladas)
-└── tsconfig.json
+├── android/                    ← Código nativo gerado automaticamente
+├── assets/                     ← Imagens, ícones e splash screen
+├── app/                        ← Rotas do Expo Router (baseadas em arquivo)
+│   ├── _layout.tsx             ← Layout raiz (AuthProvider)
+│   ├── index.tsx               ← Re-export da scene Auth (rota /)
+│   ├── aluno.tsx               ← Re-export da scene Aluno (rota /aluno)
+│   └── resetpassword.tsx       ← Re-export da scene ResetPassword
+└── src/
+    ├── components/             ← Componentes base reutilizáveis
+    │   ├── Button/
+    │   └── Input/
+    ├── scenes/                 ← Telas completas (lógica + layout)
+    │   ├── Auth/
+    │   ├── Aluno/
+    │   └── ResetPassword/
+    ├── services/               ← Comunicação com a API
+    │   ├── api.ts              ← Instância e configuração do Axios
+    │   └── authService.ts      ← Funções de autenticação
+    └── store/                  ← Estado global e hooks
+        ├── AuthContext.tsx     ← Context de autenticação com JWT
+        └── useAuth.ts          ← Hook de acesso ao contexto
 ```
 
 ### Roteamento com Expo Router
 
 O Expo Router funciona como o Next.js — o nome do arquivo dentro de `app/` define a rota automaticamente, sem configuração adicional.
 
-| Arquivo | Rota |
-|---------|------|
-| `app/index.tsx` | `/` → Tela de Login |
-| `app/aluno.tsx` | `/aluno` → Dashboard do Aluno |
-| `app/resetpassword.tsx` | `/resetpassword` → Redefinição de senha |
+| Arquivo | Rota | Scene |
+|---------|------| ------ |
+| `app/index.tsx` | `/` → Tela de Login |`src/scenes/Auth`|
+| `app/aluno.tsx` | `/aluno` → Dashboard do Aluno | `src/scenes/Aluno` |
+| `app/resetpassword.tsx` | `/resetpassword` → Redefinição de senha | `src/scenes/ResetPassword` |
 
 ---
 

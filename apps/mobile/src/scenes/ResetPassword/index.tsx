@@ -16,7 +16,7 @@ import Button from "../../components/Button";
 
 export default function ResetPasswordScreen() {
   const router = useRouter();
-  const { user, logout } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
@@ -49,9 +49,10 @@ export default function ResetPasswordScreen() {
 
     try {
       setLoading(true);
-      await trocarSenhaRequest(user!.Id, novaSenha);
+      console.log("🔵 Trocando senha para usuário:", user?.IdUsuario);
+      await trocarSenhaRequest(user!.IdUsuario, novaSenha);
       router.replace("/aluno");
-    } catch (err) {
+    } catch (err: any) {
       setErro("Erro ao salvar senha. Tente novamente.");
     } finally {
       setLoading(false);
@@ -59,7 +60,7 @@ export default function ResetPasswordScreen() {
   }
 
   function handleCancelar() {
-    logout();
+    signOut();
     router.replace("/");
   }
 
