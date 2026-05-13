@@ -51,12 +51,8 @@ export default function ResetPasswordScreen() {
       setLoading(true);
       console.log("🔵 Trocando senha para usuário:", user?.IdUsuario);
       await trocarSenhaRequest(user!.IdUsuario, novaSenha);
-      console.log("🟢 Senha trocada com sucesso!");
       router.replace("/aluno");
     } catch (err: any) {
-      console.log("🔴 Erro:", err?.message);
-      console.log("🔴 Response:", JSON.stringify(err?.response?.data));
-      console.log("🔴 Status:", err?.response?.status);
       setErro("Erro ao salvar senha. Tente novamente.");
     } finally {
       setLoading(false);
