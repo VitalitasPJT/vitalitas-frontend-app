@@ -193,6 +193,20 @@ git checkout -b feature/nome_da_feature
 
 ---
 
+## Ferramentas de IA utilizadas no desenvolvimento
+
+O desenvolvimento deste projeto contou com o apoio de ferramentas de inteligência artificial em diferentes etapas do processo criativo e técnico:
+
+| Ferramenta | Uso |
+|------------|-----|
+| **IA do Figma** | Geração de ideias e sugestões visuais durante a prototipação das telas |
+| **Figma Dev Mode** | Extração automática de código CSS e especificações de design para implementação |
+| **Claude (Anthropic)** | Auxílio na escrita, revisão e formatação de código React/TypeScript durante o desenvolvimento |
+
+> O uso dessas ferramentas reduziu significativamente o tempo de desenvolvimento das telas — o que antes levava cerca de 3 dias passou a ser concluído em poucas horas — permitindo maior foco na qualidade da implementação, na integração com o backend e na organização da arquitetura do projeto.
+
+---
+
 ## Licença
 
 Este projeto foi desenvolvido exclusivamente para fins acadêmicos na disciplina de **Projeto Integrador** do **Centro Universitário de Brasília (UniCEUB)**.
