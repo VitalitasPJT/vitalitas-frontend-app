@@ -5,8 +5,7 @@ import LandingPage from "../../pages/public/LandingPage";
 import LoginPage from "../../pages/public/LoginPage";
 
 // Dashboards
-import AlunoDashboard from "../../pages/private/AlunoDashboard";
-import InstrutorDashboard from "../../pages/private/InstrutorDashboard";
+import InstrutorDashboard from "../../pages/private/DashboardInstrutor";
 
 // Páginas Gestor
 import GestorDashboard from "../../pages/private/DashboardGestor";
@@ -48,16 +47,6 @@ export default function AppRoutes() {
       {/* ======================
          DASHBOARDS POR ROLE
       ====================== */}
-      <Route
-        path="/user/aluno"
-        element={
-          <PrivateRoute>
-            <RoleRoute allowedRoles={[2]}>
-              <AlunoDashboard />
-            </RoleRoute>
-          </PrivateRoute>
-        }
-      />
 
       <Route
         path="/user/instrutor"
@@ -65,6 +54,26 @@ export default function AppRoutes() {
           <PrivateRoute>
             <RoleRoute allowedRoles={[1]}>
               <InstrutorDashboard />
+            </RoleRoute>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/user/instrutor/alunos"
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[1]}>
+              /* Página de alunos do instrutor* /
+            </RoleRoute>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/user/instrutor/avaliacoes"
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[1]}>
+              /* Página de avaliações do instrutor* /
             </RoleRoute>
           </PrivateRoute>
         }
@@ -83,12 +92,24 @@ export default function AppRoutes() {
 
       <Route
         path="/user/gestor/logs"
-        element={<LogsPageGestor />}
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[3]}>
+              /* precisa melhorar página LogsPageGestor  */
+            </RoleRoute>
+          </PrivateRoute>
+        }
       />
 
       <Route
         path="/criar-usuario"
-        element={<CriarUsuario />}
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={[3]}>
+              <CriarUsuario />
+            </RoleRoute>
+          </PrivateRoute>
+        }
       />
 
       {/* ======================
