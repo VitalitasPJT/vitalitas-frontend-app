@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Sidebar } from '../../components/gestor/dashboard/SideBar';
-import { Header } from '../../components/gestor/dashboard/Header';
 import { StepIndicator } from '../../components/gestor/criarusuario/StepIndicator';
 import { UserForm } from '../../components/gestor/criarusuario/UserForm';
 
@@ -97,8 +95,6 @@ export default function CriarUsuario() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Sidebar />
-      <Header />
       <main className="ml-[88px] pt-[109px] p-8">
         <div className="max-w-4xl mx-auto">
           <StepIndicator steps={steps} />

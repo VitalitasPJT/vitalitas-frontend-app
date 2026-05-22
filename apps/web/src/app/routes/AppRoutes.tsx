@@ -6,22 +6,21 @@ import LoginPage from "../../pages/public/LoginPage";
 
 // Dashboards
 import AlunoDashboard from "../../pages/private/AlunoDashboard";
-import InstrutorDashboard from "../../pages/private/InstrutorDashboard";
+import InstrutorDashboard from "../../pages/private/DashboardInstrutor";
 
 // Páginas Gestor
 import GestorDashboard from "../../pages/private/DashboardGestor";
 import CriarUsuario from "../../pages/private/CriarUsuario";
+import LogsPageGestor from "../../pages/private/LogsPageGestor";
 
 // Outras páginas
 import FirstAcess from "../../pages/private/PasswordResetPage";
 import ErrorPage from "../../pages/public/ErrorPage";
 
-import { PasswordResetRoute } from "./PasswordResetRoute";
-
 // Guards
+import { PasswordResetRoute } from "./PasswordResetRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { RoleRoute } from "./RoleRoute";
-import LogsPageGestor from "../../pages/private/LogsPageGestor";
 
 export default function AppRoutes() {
   return (
@@ -34,7 +33,7 @@ export default function AppRoutes() {
       <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
       {/* ======================
-         ROTAS PRIVADAS (JWT)
+         RESET DE SENHA
       ====================== */}
       <Route
         path="/vitalitas/user/resetpassword"
@@ -46,57 +45,92 @@ export default function AppRoutes() {
       />
 
       {/* ======================
-         DASHBOARDS POR ROLE
+         ALUNO — Tipo 2
       ====================== */}
       <Route
         path="/user/aluno"
         element={
           <PrivateRoute>
-            <RoleRoute allowedRoles={[2]}>
+            <RoleRoute allowedRoles={["Aluno"]}>
               <AlunoDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
       />
 
+      {/* ======================
+         INSTRUTOR — Tipo 1
+      ====================== */}
       <Route
         path="/user/instrutor"
         element={
           <PrivateRoute>
-            <RoleRoute allowedRoles={[1]}>
+            <RoleRoute allowedRoles={["Instrutor"]}>
+              <InstrutorDashboard />
+            </RoleRoute>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/user/instrutor/alunos"
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={["Instrutor"]}>
+              <InstrutorDashboard />
+            </RoleRoute>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/user/instrutor/avaliacoes"
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={["Instrutor"]}>
               <InstrutorDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
       />
 
+      {/* ======================
+         GESTOR — Tipo 3
+      ====================== */}
       <Route
         path="/user/gestor"
         element={
           <PrivateRoute>
-            <RoleRoute allowedRoles={[3]}>
+            <RoleRoute allowedRoles={["Gestor"]}>
               <GestorDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
       />
-
       <Route
         path="/user/gestor/logs"
-        element={<LogsPageGestor />}
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={["Gestor"]}>
+              <LogsPageGestor />
+            </RoleRoute>
+          </PrivateRoute>
+        }
       />
-
       <Route
         path="/criar-usuario"
-        element={<CriarUsuario />}
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={["Gestor"]}>
+              <CriarUsuario />
+            </RoleRoute>
+          </PrivateRoute>
+        }
       />
 
       {/* ======================
          ERROS
-      ====================== 
-      <Route path="/erro/:code" element={<ErrorPage />} />*/}
+      ====================== */}
+      <Route path="/erro/:code" element={<ErrorPage />} />
       <Route path="*" element={<ErrorPage />} />
-      
 
     </Routes>
   );

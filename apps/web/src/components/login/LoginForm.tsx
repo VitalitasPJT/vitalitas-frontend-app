@@ -29,6 +29,13 @@ function CheckIcon() {
   );
 }
 
+const roleRoutes: Record<string, string> = {
+  Instrutor:     "/user/instrutor",
+  Aluno:         "/user/aluno",
+  Gestor:        "/user/gestor",
+  Administrador: "/user/admin",
+};
+
 export default function LoginForm() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -53,19 +60,22 @@ export default function LoginForm() {
     try {
       const user = await login(email, password);
 
+      // Primeiro acesso: redireciona para troca de senha obrigatória
       if (user.Flag === true) {
         navigate("/vitalitas/user/resetpassword");
         return;
       }
 
-      const roleRoutes: Record<number, string> = {
-        1: "/user/instrutor",
-        2: "/user/aluno",
-        3: "/user/gestor",
-        4: "/user/admin",
-      };
+      // Redireciona para o dashboard do perfil logado
+      const destination = roleRoutes[user.TipoUsuario];
 
-      navigate(roleRoutes[user.Tipo]);
+      if (!destination) {
+        // TipoUsuario veio com valor inesperado
+        setPasswordError(`Perfil "${user.TipoUsuario}" não tem rota configurada.`);
+        return;
+      }
+
+      navigate(destination);
     } catch (err) {
       setPasswordError("Email ou senha inválidos.");
     }
@@ -135,7 +145,6 @@ export default function LoginForm() {
           </button>
         </form>
       </div>
-
     </>
   );
 }

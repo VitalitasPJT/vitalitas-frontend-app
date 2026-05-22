@@ -1,16 +1,40 @@
+@import "tailwindcss";
+
+/* ── Dark mode via classe no <html> ── */
+@variant dark (&:where(.dark, .dark *));
+
 html, body, #root {
   height: 100%;
 }
 
+/* ── Variáveis de cor — claro e escuro ── */
 :root {
   --red-color: #EE2B47;
   --white-color: #FFFFFF;
   --dark-color: #000000;
   --grey-color: #2C2C2C;
   --font-title: 'Montserrat', sans-serif;
-  --font-button:'Roboto', sans-serif;
+  --font-button: 'Roboto', sans-serif;
   --font-nav: 'Poppins', sans-serif;
   --font-text: 'Inter', sans-serif;
+
+  /* Tokens de tema — modo claro */
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-card: #ffffff;
+  --text-primary: #0a0a0a;
+  --text-secondary: #6a7282;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  /* Tokens de tema — modo escuro */
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-card: #1c1c1f;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --border-color: rgba(255, 255, 255, 0.08);
 }
 
 @font-face {
@@ -38,18 +62,7 @@ html, body, #root {
   font-style: normal;
 }
 
-.font-title {
-  font-family: var(--font-title);
-}
-
-.font-button {
-  font-family: var(--font-button);
-}
-
-.font-nav {
-  font-family: var(--font-nav);
-}
-
-.font-text {
-  font-family: var(--font-text);
-}
+.font-title  { font-family: var(--font-title); }
+.font-button { font-family: var(--font-button); }
+.font-nav    { font-family: var(--font-nav); }
+.font-text   { font-family: var(--font-text); }

@@ -14,13 +14,7 @@ function BlueBlurEffect() {
 
 export default function RightPanel() {
   return (
-    /*
-      right-panel-4k: flex 40% em 4K — via LoginPage.css
-      flex-1: divide o espaço igualmente com o LeftPanel por padrão
-      h-full: herda h-screen do pai — sem min-h-screen próprio para não criar scroll
-      overflow-hidden: efeitos de blur não vazam para fora do painel
-    */
-    <div className="right-panel-4k relative flex h-full flex-1 items-center justify-center overflow-hidden bg-[#fafafa]">
+    <div className="right-panel-4k relative flex h-full flex-1 items-center justify-center overflow-hidden bg-[#fafafa] dark:bg-[#09090b] transition-colors duration-300">
       <RedBlurEffect />
       <BlueBlurEffect />
       <LoginForm />

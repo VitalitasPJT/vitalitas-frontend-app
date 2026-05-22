@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 interface RoleRouteProps {
   children: React.ReactNode;
-  allowedRoles: number[];
+  allowedRoles: string[];
 }
 
 export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
@@ -16,11 +16,12 @@ export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
     return <Navigate to="/vitalitas/user/login" replace />;
   }
 
-  if (user.Flag === true) {
+  if (user.Flag) {
     return <Navigate to="/vitalitas/user/resetpassword" replace />;
   }
 
-  if (!allowedRoles.includes(user.Tipo)) {
+  if (!allowedRoles.includes(user.TipoUsuario)) {
+    // Redireciona para a tela de erro 403 com contexto
     return <Navigate to="/erro/403" replace />;
   }
 
