@@ -5,12 +5,13 @@ import LandingPage from "../../pages/public/LandingPage";
 import LoginPage from "../../pages/public/LoginPage";
 
 // Dashboards
+import AlunoDashboard from "../../pages/private/AlunoDashboard";
 import InstrutorDashboard from "../../pages/private/DashboardInstrutor";
 
 // Páginas Gestor
 import GestorDashboard from "../../pages/private/DashboardGestor";
 import CriarUsuario from "../../pages/private/CriarUsuario";
-// import LogsPageGestor from "../../pages/private/LogsPageGestor";
+import LogsPageGestor from "../../pages/private/LogsPageGestor";
 
 // Outras páginas
 import FirstAcess from "../../pages/private/PasswordResetPage";
@@ -44,7 +45,21 @@ export default function AppRoutes() {
       />
 
       {/* ======================
-         INSTRUTOR
+         ALUNO — Tipo 2
+      ====================== */}
+      <Route
+        path="/user/aluno"
+        element={
+          <PrivateRoute>
+            <RoleRoute allowedRoles={["Aluno"]}>
+              <AlunoDashboard />
+            </RoleRoute>
+          </PrivateRoute>
+        }
+      />
+
+      {/* ======================
+         INSTRUTOR — Tipo 1
       ====================== */}
       <Route
         path="/user/instrutor"
@@ -61,7 +76,7 @@ export default function AppRoutes() {
         element={
           <PrivateRoute>
             <RoleRoute allowedRoles={["Instrutor"]}>
-              <InstrutorDashboard /> {/* substituir pela página de Alunos quando criar */}
+              <InstrutorDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
@@ -71,14 +86,14 @@ export default function AppRoutes() {
         element={
           <PrivateRoute>
             <RoleRoute allowedRoles={["Instrutor"]}>
-              <InstrutorDashboard /> {/* substituir pela página de Avaliações quando criar */}
+              <InstrutorDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
       />
 
       {/* ======================
-         GESTOR
+         GESTOR — Tipo 3
       ====================== */}
       <Route
         path="/user/gestor"
@@ -95,7 +110,7 @@ export default function AppRoutes() {
         element={
           <PrivateRoute>
             <RoleRoute allowedRoles={["Gestor"]}>
-              /* precisa melhorar página LogsPageGestor  */
+              <LogsPageGestor />
             </RoleRoute>
           </PrivateRoute>
         }
@@ -114,6 +129,7 @@ export default function AppRoutes() {
       {/* ======================
          ERROS
       ====================== */}
+      <Route path="/erro/:code" element={<ErrorPage />} />
       <Route path="*" element={<ErrorPage />} />
 
     </Routes>

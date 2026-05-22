@@ -1,5 +1,13 @@
-import AppRoutes from './app/routes/AppRoutes'
+import AppRoutes from "./app/routes/AppRoutes";
+import { AuthProvider } from "./contexts/authContext";
+import { ThemeProvider } from "./contexts/themeContext";
 
 export default function App() {
-  return <AppRoutes/>;
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </ThemeProvider>
+  );
 }
