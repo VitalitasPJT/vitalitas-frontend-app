@@ -1,21 +1,24 @@
 import { createContext, useEffect, useState } from "react";
 import { loginRequest } from "../services/authService";
 
-/* =======================
-   TYPES
-======================= */
+// ─── Mapeamento enum numérico do backend → string ────────────────────────────
+// Domain.Enums.TipoUsuario: Instrutor=1, Aluno=2, Gestor=3, Administrador=4
+const tipoUsuarioMap: Record<number, string> = {
+  1: "Instrutor",
+  2: "Aluno",
+  3: "Gestor",
+  4: "Administrador",
+};
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface User {
   Id: string;
-  Tipo: number;
+  TipoUsuario: string;      // "Gestor" | "Instrutor" | "Aluno" | "Administrador"
+  IdAcademia: string | null; // preenchido após atualização do backend
   Flag: boolean;
-}
-
-interface LoginApiResponse {
-  IdUsuario: string;
-  TipoUsuario: number;
-  Flag: boolean;
-  Status: { Message: string; Code: number; Sucess: boolean };
+  Nome: string | null;       // null até endpoint de perfil ser implementado
+  AvatarUrl: string | null;  // null até endpoint de perfil ser implementado
 }
 
 export interface AuthContextType {
@@ -27,15 +30,11 @@ export interface AuthContextType {
   updateUser: (user: User) => void;
 }
 
-/* =======================
-   CONTEXT
-======================= */
+// ─── Context ──────────────────────────────────────────────────────────────────
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-/* =======================
-   PROVIDER
-======================= */
+// ─── Provider ─────────────────────────────────────────────────────────────────
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -45,32 +44,49 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-
     setLoading(false);
   }, []);
 
   async function login(email: string, password: string): Promise<User> {
-    const data: LoginApiResponse = await loginRequest(email, password);
+    const data = await loginRequest(email, password);
+    // loginRequest já salvou Token e RefreshToken no localStorage
 
-    const user: User = {
+    const tipoStr = tipoUsuarioMap[Number(data.TipoUsuario)];
+    if (!tipoStr) {
+      throw new Error(`TipoUsuario desconhecido: ${data.TipoUsuario}`);
+    }
+
+    const newUser: User = {
       Id: data.IdUsuario,
-      Tipo: data.TipoUsuario,
+      TipoUsuario: tipoStr,
+      // IdAcademia vem do backend após atualização do LoginResponse
+      // Para Instrutor/Aluno virá como "00000000-0000-0000-0000-000000000000" ou null
+      IdAcademia: data.IdAcademia ?? null,
       Flag: data.Flag,
+      // ─────────────────────────────────────────────────────────────
+      // TODO: quando GET /usuario/:id/perfil estiver pronto:
+      //   const profile = await fetchUserProfile(data.IdUsuario);
+      //   Nome: profile.Nome,
+      //   AvatarUrl: profile.AvatarUrl,
+      // ─────────────────────────────────────────────────────────────
+      Nome: null,
+      AvatarUrl: null,
     };
 
-    setUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
 
-    return user;
+    return newUser;
   }
 
   function logout() {
     setUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
   }
 
   function updateUser(updatedUser: User) {
@@ -79,9 +95,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider
-      value={{ user, isAuthenticated, loading, login, logout, updateUser }}
-    >
+    <AuthContext.Provider value={{ user, isAuthenticated, loading, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DashboardLayout } from '../../components/gestor/dashboard/DashboardLayout';
 import { Header } from '../../components/gestor/dashboard/Header';
 import { StatsCards } from '../../components/gestor/dashboard/StatsCards';
@@ -5,6 +6,8 @@ import { SearchFilter } from '../../components/gestor/dashboard/SearchFilter';
 import { UsersTable } from '../../components/gestor/dashboard/UsersTable';
 
 export default function DashboardGestor() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   return (
     <DashboardLayout>
       <Header
@@ -16,8 +19,8 @@ export default function DashboardGestor() {
         ]}
       />
       <StatsCards />
-      <SearchFilter />
-      <UsersTable />
+      <SearchFilter onSearch={setSearchTerm} />
+      <UsersTable searchTerm={searchTerm} />
     </DashboardLayout>
   );
 }

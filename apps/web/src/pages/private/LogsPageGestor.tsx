@@ -1,4 +1,4 @@
-import { Sidebar } from '../../components/gestor/dashboard/Sidebar';
+import { Sidebar } from '../../components/gestor/dashboard/SideBarComp';
 import { Header } from '../../components/gestor/logsUserPage/Header';
 import { StatsGrid } from '../../components/gestor/logsUserPage/StatsGrid';
 import { SearchBar } from '../../components/gestor/logsUserPage/SearchBar';

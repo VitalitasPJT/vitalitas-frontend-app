@@ -10,8 +10,10 @@ export function PrivateRoute({ children }: { children: React.ReactNode }) {
   if (!isAuthenticated || !user) {
     return <Navigate to="/vitalitas/user/login" replace />;
   }
+
   if (user.Flag) {
     return <Navigate to="/vitalitas/user/resetpassword" replace />;
   }
+
   return <>{children}</>;
 }

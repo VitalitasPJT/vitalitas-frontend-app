@@ -9,7 +9,7 @@ import {
   ClipboardList,
 } from 'lucide-react';
 
-export type UserRole = 'gestor' | 'instrutor';
+export type UserRole = 'Gestor' | 'Instrutor' | 'Aluno' | 'Administrador';
 
 export interface MenuItem {
   icon: React.ComponentType<{ className?: string }>;
@@ -21,33 +21,28 @@ export interface UserProfile {
   name: string;
   role: UserRole;
   roleLabel: string;
-  avatarUrl: string | null; // null = sem avatar ainda (usa iniciais)
+  avatarUrl: string | null;
 }
 
-// ─── Mapeamento Tipo (number) → UserRole ────────────────────────────
-// Tipo 1 = instrutor | Tipo 3 = gestor
-export const tipoToRole: Record<number, UserRole> = {
-  1: 'instrutor',
-  3: 'gestor',
+// TipoUsuario vem como string do backend ("Gestor", "Instrutor", etc.)
+export const roleLabelMap: Record<UserRole, string> = {
+  Gestor:         'Gestor',
+  Instrutor:      'Instrutor',
+  Aluno:          'Aluno',
+  Administrador:  'Administrador',
 };
 
-// ─── Itens de menu por perfil ────────────────────────────────────────
-export const menuByRole: Record<UserRole, MenuItem[]> = {
-  gestor: [
-    { icon: Users,       label: 'Usuários',              path: '/user/gestor' },
-    { icon: DollarSign,  label: 'Financeiro',             path: '/user/gestor/financeiro' },
-    { icon: FileText,    label: 'Contratos',              path: '/user/gestor/contratos' },
-    { icon: Activity,    label: 'Atividades',             path: '/user/gestor/logs' },
-    { icon: Video,       label: 'Vídeos Institucionais',  path: '/user/gestor/videos' },
+export const menuByRole: Partial<Record<UserRole, MenuItem[]>> = {
+  Gestor: [
+    { icon: Users,       label: 'Usuários',             path: '/user/gestor' },
+    { icon: DollarSign,  label: 'Financeiro',            path: '/user/gestor/financeiro' },
+    { icon: FileText,    label: 'Contratos',             path: '/user/gestor/contratos' },
+    { icon: Activity,    label: 'Atividades',            path: '/user/gestor/logs' },
+    { icon: Video,       label: 'Vídeos Institucionais', path: '/user/gestor/videos' },
   ],
-  instrutor: [
+  Instrutor: [
     { icon: LayoutDashboard, label: 'Dashboard',  path: '/user/instrutor' },
     { icon: UserCheck,       label: 'Alunos',     path: '/user/instrutor/alunos' },
     { icon: ClipboardList,   label: 'Avaliações', path: '/user/instrutor/avaliacoes' },
   ],
-};
-
-export const roleLabelMap: Record<UserRole, string> = {
-  gestor: 'Gestor',
-  instrutor: 'Instrutor',
 };
