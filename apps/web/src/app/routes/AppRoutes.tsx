@@ -6,8 +6,11 @@ import LoginPage from "../../pages/public/LoginPage";
 
 // Dashboards
 import AlunoDashboard from "../../pages/private/AlunoDashboard";
-import ProfessorDashboard from "../../pages/private/ProfessorDashboard";
+import InstrutorDashboard from "../../pages/private/InstrutorDashboard";
+
+// Páginas Gestor
 import GestorDashboard from "../../pages/private/DashboardGestor";
+import CriarUsuario from "../../pages/private/CriarUsuario";
 
 // Outras páginas
 import FirstAcess from "../../pages/private/PasswordResetPage";
@@ -57,11 +60,11 @@ export default function AppRoutes() {
       />
 
       <Route
-        path="/user/professor"
+        path="/user/instrutor"
         element={
           <PrivateRoute>
             <RoleRoute allowedRoles={[1]}>
-              <ProfessorDashboard />
+              <InstrutorDashboard />
             </RoleRoute>
           </PrivateRoute>
         }
@@ -81,6 +84,11 @@ export default function AppRoutes() {
       <Route
         path="/user/gestor/logs"
         element={<LogsPageGestor />}
+      />
+
+      <Route
+        path="/criar-usuario"
+        element={<CriarUsuario />}
       />
 
       {/* ======================

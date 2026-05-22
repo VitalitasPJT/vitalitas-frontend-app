@@ -1,4 +1,5 @@
 import svgPaths from "../../../imports/svg-59b1zfc4li";
+import { Link } from "react-router-dom";
 
 export function Header() {
   return (
@@ -73,7 +74,12 @@ export function Header() {
               strokeWidth="1.33333"
             />
           </svg>
-          <span className="text-sm font-bold text-white">Criar novo usuário</span>
+          <Link
+              to="/criar-usuario"
+              className="text-sm font-bold text-white"
+            >
+              Criar novo usuário
+          </Link>
         </button>
       </div>
     </div>

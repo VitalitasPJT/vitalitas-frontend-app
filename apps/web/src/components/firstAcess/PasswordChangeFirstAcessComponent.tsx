@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../../services/userService";
 import { useAuth } from "../../hooks/useAuth";
 
-import { InputField } from "../../components/inputs/CampoInput.tsx";
+import { InputField } from "../inputs/InputGenericoModerno.tsx";
 
 interface Requirement {
     met: boolean;

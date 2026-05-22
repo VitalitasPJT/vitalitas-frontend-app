@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { InputField } from "../inputs/CampoInput";
+import { InputField } from "../inputs/InputGenericoModerno";
 
 function EnvelopeIcon() {
   return (
