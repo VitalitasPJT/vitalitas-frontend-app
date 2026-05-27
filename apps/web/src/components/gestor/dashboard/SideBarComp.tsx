@@ -2,7 +2,7 @@ import { ChevronRight, Settings, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
-import { ThemeToggle } from '../../UI/ThemeToggle';
+import { ThemeToggle } from '../../UI/TemasToggle';
 import type { MenuItem, UserProfile } from './menuConfig';
 
 interface SidebarProps {

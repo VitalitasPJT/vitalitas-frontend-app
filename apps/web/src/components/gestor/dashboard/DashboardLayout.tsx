@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
-import { Sidebar } from './SideBarComp';
+import { Sidebar } from './SideBar';
 import { MobileHeader } from './MobileHeader';
 import { menuByRole, roleLabelMap } from './menuConfig';
 import type { UserProfile, UserRole } from './menuConfig';
@@ -18,7 +18,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const role = user.TipoUsuario as UserRole;
 
   const userProfile: UserProfile = {
-    // Usa nome real da API quando disponível; enquanto null exibe o roleLabel
     name: user.Nome ?? roleLabelMap[role] ?? role,
     role,
     roleLabel: roleLabelMap[role] ?? role,
@@ -31,7 +30,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pageTitle = activeItem?.label ?? userProfile.roleLabel;
 
   return (
-    <div className="flex min-h-screen bg-[#f5f5f5]">
+    <div className="flex min-h-screen bg-[#f5f5f5] dark:bg-[#141417] transition-colors duration-300">
       <Sidebar menuItems={menuItems} user={userProfile} activePath={activePath} />
 
       <div className="flex-1 flex flex-col min-w-0">

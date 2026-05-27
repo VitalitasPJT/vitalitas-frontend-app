@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* ── Dark mode via classe no <html> ── */
+/* ── Dark mode via classe .dark no <html> — Tailwind v4 ── */
 @variant dark (&:where(.dark, .dark *));
 
 html, body, #root {
   height: 100%;
 }
 
-/* ── Variáveis de cor — claro e escuro ── */
+/* ── Tokens de tema baseados no Figma ── */
 :root {
   --red-color: #EE2B47;
   --white-color: #FFFFFF;
@@ -17,24 +17,35 @@ html, body, #root {
   --font-button: 'Roboto', sans-serif;
   --font-nav: 'Poppins', sans-serif;
   --font-text: 'Inter', sans-serif;
-
-  /* Tokens de tema — modo claro */
-  --bg-primary: #ffffff;
-  --bg-secondary: #fafafa;
-  --bg-card: #ffffff;
-  --text-primary: #0a0a0a;
-  --text-secondary: #6a7282;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --bg-page:       #f5f5f5;
+  --bg-sidebar:    #ffffff;
+  --bg-card:       #ffffff;
+  --bg-input:      #e5e5e5;
+  --text-primary:  #0a0a0a;
+  --text-secondary:#6a7282;
+  --text-muted:    #71717b;
+  --border:        rgba(0, 0, 0, 0.08);
+  --border-card:   rgba(170, 170, 170, 0.67);
+  --active-bg:     #fff1f2;
+  --active-border: #ffe4e6;
+  --active-text:   #c70036;
+  --active-bar:    #ff2056;
 }
 
 .dark {
-  /* Tokens de tema — modo escuro */
-  --bg-primary: #09090b;
-  --bg-secondary: #18181b;
-  --bg-card: #1c1c1f;
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --bg-page:       #141417;
+  --bg-sidebar:    #1c1c1f;
+  --bg-card:       #1c1c1f;
+  --bg-input:      #2c2c30;
+  --text-primary:  #e4e4e7;
+  --text-secondary:#71717a;
+  --text-muted:    #71717a;
+  --border:        rgba(255, 255, 255, 0.06);
+  --border-card:   rgba(255, 255, 255, 0.06);
+  --active-bg:     #2c1f20;
+  --active-border: #3d1f22;
+  --active-text:   #ff6b81;
+  --active-bar:    #ee2b47;
 }
 
 @font-face {
@@ -66,3 +77,18 @@ html, body, #root {
 .font-button { font-family: var(--font-button); }
 .font-nav    { font-family: var(--font-nav); }
 .font-text   { font-family: var(--font-text); }
+
+/* ── Fix autofill do Chrome sobrescrevendo dark mode nos inputs ── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #ee2b47;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #2c2c30 inset !important;
+  -webkit-text-fill-color: #e4e4e7 !important;
+}

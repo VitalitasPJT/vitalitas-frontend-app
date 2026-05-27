@@ -8,7 +8,7 @@ import { GetStartedSection } from "../../components/landing/GetStartedSection";
 import { AboutSection } from "../../components/landing/AboutSection";
 import { ProductShowcaseSection } from "../../components/landing/ProductShowcaseSection";
 import { ContactSection } from "../../components/landing/ContactSection";
-import { ThemeToggle } from "../../components/UI/ThemeToggle";
+import { ThemeToggle } from "../../components/UI/TemasToggle";
 
 export default function LandingPage() {
   return (

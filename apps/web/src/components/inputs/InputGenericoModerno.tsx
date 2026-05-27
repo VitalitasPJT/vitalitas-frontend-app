@@ -38,52 +38,74 @@ export function InputField({
   onChange,
   icon,
   error,
-  isPassword = false
+  isPassword = false,
 }: InputFieldProps) {
   const [showPassword, setShowPassword] = useState(false);
 
-  const inputType = isPassword
-    ? (showPassword ? "text" : "password")
-    : type;
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
   return (
     <div className="flex flex-col gap-1">
-      <div className={`relative flex h-[60px] w-full items-center rounded-[14px] border-2 bg-white shadow-sm transition-colors focus-within:border-[#18181b] ${error ? "border-[#ee2b47]" : "border-[#e4e4e7]"}`}>
+      <div className={`
+        relative flex h-[60px] w-full items-center rounded-[14px] border-2 shadow-sm
+        bg-white dark:bg-[#2c2c30]
+        transition-colors
+        focus-within:border-[#18181b] dark:focus-within:border-[#e4e4e7]
+        ${error
+          ? "border-[#ee2b47] dark:border-[#ee2b47]"
+          : "border-[#e4e4e7] dark:border-[rgba(255,255,255,0.1)]"}
+      `}>
 
-        <span className="absolute left-4 opacity-40">
+        {/* Ícone */}
+        <span className="absolute left-4 text-[#18181b]/40 dark:text-[#e4e4e7]/40">
           {icon}
         </span>
 
+        {/* Input */}
         <input
           type={inputType}
           id={id}
           placeholder=" "
           value={value}
           onChange={onChange}
-          className="peer h-full w-full rounded-[14px] bg-transparent pb-3 pl-12 pr-12 pt-5 outline-none"
+          className="
+            peer h-full w-full rounded-[14px] bg-transparent
+            pb-3 pl-12 pr-12 pt-5 outline-none
+            text-[#18181b] dark:text-[#e4e4e7]
+            caret-[#ee2b47]
+          "
         />
 
+        {/* Label flutuante */}
         <label
           htmlFor={id}
-          className="pointer-events-none absolute left-12 top-1/2 -translate-y-1/2 bg-white px-1 text-base text-[#18181b]/50 transition-all
-          peer-focus:top-0 peer-focus:text-[13px]
-          peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[13px]"
+          className="
+            pointer-events-none absolute left-12 top-1/2 -translate-y-1/2 px-1
+            text-base text-[#18181b]/50 dark:text-[#e4e4e7]/50
+            bg-white dark:bg-[#2c2c30]
+            transition-all
+            peer-focus:top-0 peer-focus:text-[13px] peer-focus:text-[#18181b] dark:peer-focus:text-[#e4e4e7]
+            peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[13px]
+          "
         >
           {label}
         </label>
 
+        {/* Toggle senha */}
         {isPassword && (
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3"
+            className="absolute right-3 text-[#18181b]/40 dark:text-[#e4e4e7]/40 hover:text-[#18181b] dark:hover:text-[#e4e4e7] transition-colors"
           >
             {showPassword ? <EyeOffIcon /> : <EyeIcon />}
           </button>
         )}
       </div>
 
-      {error && <p className="text-[13px] text-[#ee2b47] cursor-pointer">{error}</p>}
+      {error && (
+        <p className="text-[13px] text-[#ee2b47]">{error}</p>
+      )}
     </div>
   );
 }

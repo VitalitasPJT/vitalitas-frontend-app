@@ -1,7 +1,7 @@
 import "../../components/login/LoginPage.css";
 import LeftPanel from "../../components/login/LeftPanel";
 import RightPanel from "../../components/login/RightPanel";
-import { ThemeToggle } from "../../components/UI/ThemeToggle";
+import { ThemeToggle } from "../../components/UI/TemasToggle";
 
 export default function LoginPage() {
   return (
