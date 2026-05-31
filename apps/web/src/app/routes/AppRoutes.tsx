@@ -33,6 +33,13 @@ export default function AppRoutes() {
       <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
       {/* ======================
+          ⚠️ ROTA TEMPORÁRIA — REMOVER ANTES DO DEPLOY
+          TODO: mover para dentro do PrivateRoute + RoleRoute["Instrutor"]
+          em /user/instrutor quando o backend estiver ok
+        ====================== */}
+      <Route path="/dev/instrutor" element={<InstrutorDashboard />} />
+
+      {/* ======================
          RESET DE SENHA
       ====================== */}
       <Route
