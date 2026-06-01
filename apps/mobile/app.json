@@ -1,36 +1,49 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Vitalitas",
+    "slug": "vitalitas",
+    "scheme": "vitalitas",
     "version": "1.0.0",
+
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+
     "userInterfaceStyle": "light",
-    "jsEngine": "hermes",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+
+    "experiments": {
+      "reactCompiler": true
     },
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.mobile"
+      "package": "com.vitalitas.app"
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
     },
+
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font",
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
     ]
-    
   }
 }
