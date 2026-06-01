@@ -2,10 +2,8 @@ import { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
-  ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "./../../store/useAuth";
@@ -14,7 +12,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 export default function LoginScreen() {
-  const { signIn } = useAuth();
+  const { signIn, signOut } = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -38,22 +36,25 @@ export default function LoginScreen() {
       setLoading(true);
       const user = await signIn(email, password);
 
+      if (user.TipoUsuario !== 2) {
+        await signOut();
+        setPasswordError("Acesso não permitido para este tipo de usuário.");
+        return;
+      }
+
       if (user.Flag === true) {
         router.replace("/resetpassword");
         return;
       }
 
-      const roleRoutes: Record<number, string> = {
-        1: "/aluno",
-      };
-
-      router.replace(roleRoutes[user.TipoUsuario] ?? "/");
+      router.replace("/aluno");
     } catch (err) {
       setPasswordError("Email ou senha inválidos.");
     } finally {
       setLoading(false);
     }
   }
+
   return (
     <View style={styles.container}>
       {/* Header */}

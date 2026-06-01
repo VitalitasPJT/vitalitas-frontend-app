@@ -49,7 +49,6 @@ export default function ResetPasswordScreen() {
 
     try {
       setLoading(true);
-      console.log("🔵 Trocando senha para usuário:", user?.IdUsuario);
       await trocarSenhaRequest(user!.IdUsuario, novaSenha);
       router.replace("/aluno");
     } catch (err: any) {
