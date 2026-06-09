@@ -28,8 +28,6 @@ Este repositório é um **monorepo** que contém os dois frontends do sistema:
   
   - **React + TypeScript + Tailwind**: base tecnológica para o desenvolvimento frontend.
 
-  [![Figma](https://skillicons.dev/icons?i=react,tailwind,typescript)](https://skillicons.dev)
-
 [![Figma](https://skillicons.dev/icons?i=react,typescript,tailwind,vite)](https://skillicons.dev)
 
 - **React + TypeScript**: base para construção da interface
