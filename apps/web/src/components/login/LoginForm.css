@@ -1,0 +1,47 @@
+/* ==========================================================================
+   LoginPage.css — Apenas o que o Tailwind não suporta nativamente:
+   1. Breakpoint ≤425px (Tailwind não tem max-width breakpoints no padrão)
+   2. Proporções 4K: LeftPanel 60%, RightPanel 40%
+   3. font-size com clamp() para tipografia fluida
+   ========================================================================== */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- ≤ 425px: esconde o painel da imagem --- */
+@media (max-width: 425px) {
+  .left-panel-visible {
+    display: none;
+  }
+}
+
+/* --- ≥ 2560px (4K): LeftPanel 60%, RightPanel 40% --- */
+@media (min-width: 2560px) {
+  .left-panel-visible {
+    flex: 0 0 60% !important;
+    min-width: unset !important;
+  }
+  .right-panel-4k {
+    flex: 0 0 40% !important;
+    min-width: unset !important;
+  }
+}
+
+/* --- Tipografia fluida com clamp() --- */
+.login-title {
+  font-size: clamp(32px, 4vw, 48px);
+}
+
+.welcome-title {
+  font-size: clamp(26px, 3vw, 40px);
+  letter-spacing: -0.9px;
+  line-height: 1.1;
+}
+
+.welcome-description {
+  font-size: clamp(14px, 1.4vw, 18px);
+  max-width: 420px;
+}

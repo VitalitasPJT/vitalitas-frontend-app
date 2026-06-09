@@ -1,11 +1,12 @@
-# Vitalitas - Frontend Web
+# Vitalitas - Frontend
 
-> **Interface web moderna para gestão integrada de academias.**
+> **Interface moderna para gestão integrada de academias — Web e Mobile.**
 
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-green?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 <img width="1920" height="1080" alt="image" src="public/LandingPageBeta.png" />
@@ -15,14 +16,13 @@
 
 > ℹ️ **Visão Geral:** Para entender o contexto acadêmico, a proposta de valor e o escopo do produto (MVP), acesse o **[README da Organização Vitalitas](https://github.com/VitalitasPJT)**.
 >
-> 
-> [Link do Protótipo Figma - Clique aqui!](https://www.figma.com/proto/0NrgmDD9v0esjj0oIQD4KC/Website---Vitalitas?node-id=1118-62&t=8dMGgIXzAR59QADD-1&scaling=min-zoom&content-scaling=fixed&page-id=939%3A3&starting-point-node-id=1118%3A62)
+> [Link do Protótipo Figma - Clique aqui!](https://www.figma.com/proto/0NrgmDD9v0esjj0oIQD4KC/Website---Vitalitas?node-id=1796-118&t=BS6Y6p6UtcrFUDcx-1&scaling=min-zoom&content-scaling=fixed&page-id=939%3A3&starting-point-node-id=1796%3A118&show-proto-sidebar=1)
 
 ---
 
-## Tecnologias e ferramentas utilizadas
+## Estrutura do Repositório
 
-  - **Figma**: prototipação das telas antes da implementação em código.
+Este repositório é um **monorepo** que contém os dois frontends do sistema:
 
   [![Figma](https://skillicons.dev/icons?i=figma)](https://skillicons.dev)
   
@@ -30,66 +30,100 @@
 
   [![Figma](https://skillicons.dev/icons?i=react,tailwind,typescript)](https://skillicons.dev)
 
-  Essa combinação de tecnologias foi escolhida por oferecer:
+[![Figma](https://skillicons.dev/icons?i=react,typescript,tailwind,vite)](https://skillicons.dev)
 
-  > 1. Escalabilidade → TypeScript com tipagem estática
-  >
-  > 2. Produtividade → Componentização do React
-  >
-  > 3. Padronização visual → Bootstrap + React-Bootstrap
-  >
-  > 4. Performance → Build otimizado com Vite
-  >
-  > 5. Segurança → Autenticação baseada em JWT
+- **React + TypeScript**: base para construção da interface
+- **Tailwind CSS**: estilização utilitária e padronização visual
+- **Vite**: build otimizado para desenvolvimento
+- **Axios**: comunicação com o backend via HTTP
+- **React Router DOM**: gerenciamento de rotas e navegação
+- **JWT Decode**: decodificação de tokens para autenticação
 
-## Arquitetura
+### Arquitetura
 
-A pasta `./src` possui a seguinte estrutura:
+A pasta `apps/web/src` possui a seguinte estrutura:
 
-1. `./assets` → imagens e logos utilizadas
+1. `./assets` → imagens e logos
 2. `./components` → componentes reutilizáveis e formulários
-3. `./contexts` → gerenciamento de sessão, usuário logado e permissões
+3. `./contexts` → gerenciamento de sessão e permissões
 4. `./hooks` → reutilização de contexts e lógica compartilhada
 5. `./pages` → páginas principais do sistema
-6. `./routes` → rotas públicas e privadas
-7. `./services` → comunicação com o backend e APIs externas
-8. `./utils` → funções auxiliares
+6. `./services` → comunicação com o backend
+7. `./utils` → funções auxiliares
 
-### Bibliotecas utilizadas
+### Instalação e execução
 
-- **axios**: comunicação com o backend via requisições HTTP
-- **bootstrap**: estilização e padronização visual das páginas
-- **bootstrap-icons**: conjunto de ícones prontos para uso
-- **jwt-decode**: decodificação de tokens JWT para autenticação
-- **react**: biblioteca principal para construção da interface
-- **react-bootstrap**: integração de componentes React com Bootstrap
-- **react-dom**: renderização dos componentes React no DOM
-- **react-router-dom**: gerenciamento de rotas e navegação
+```bash
+# Na raiz do repositório, instale as dependências do monorepo
+npm install
 
-## Pré-requisitos
+# Rode o projeto web
+cd apps/web
+npm run dev -- --port 3000     (deve ser na porta 3000 devido a configuração do CORS)
+```
 
-Antes de rodar o projeto, você precisa ter instalado:
+---
 
-- **Node.js** (versão recomendada: 18+ ou 20+)  
-  https://nodejs.org/
+## 📱 Mobile
 
-- **npm** (vem junto com o Node)
+O app mobile foi desenvolvido para o perfil **Aluno**, oferecendo uma experiência prática para acompanhar treinos, evolução e comunicados diretamente pelo celular — sem precisar acessar o navegador.
 
-Verifique se está instalado:
+### Tecnologias
 
-`node -v`
-ou
-`npm -v`
+[![Figma](https://skillicons.dev/icons?i=react,typescript,androidstudio)](https://skillicons.dev)
 
-## Instalação das dependências
+- **React Native + Expo**: desenvolvimento mobile multiplataforma
+- **Expo Router**: navegação baseada em arquivos (similar ao Next.js)
+- **AsyncStorage**: persistência de dados no dispositivo
+- **Axios**: comunicação com a mesma API do web
 
-Na pasta do projeto, rode:
+### Arquitetura
 
-`npm install` - Baixa todas as bibliotecas necessárias
+O app segue uma separação clara de responsabilidades, mantendo a pasta `app/` exclusivamente para roteamento (Expo Router) e concentrando toda a lógica em `src/`:
 
-## Rodando o projeto em modo desenvolvimento
+```
+apps/mobile/
+├── app/                        ← Roteamento (Expo Router — não alterar)
+│   ├── _layout.tsx             ← Layout raiz e provider de autenticação
+│   ├── index.tsx               ← Re-export da scene Auth
+│   ├── aluno.tsx               ← Re-export da scene Aluno
+│   └── resetpassword.tsx       ← Re-export da scene ResetPassword
+└── src/
+    ├── components/             ← Componentes base reutilizáveis
+    │   ├── Button/
+    │   └── Input/
+    ├── scenes/                 ← Telas completas (lógica + layout)
+    │   ├── Auth/
+    │   ├── Aluno/
+    │   └── ResetPassword/
+    ├── services/               ← Comunicação com a API
+    │   ├── api.ts              ← Instância e config do Axios
+    │   └── authService.tsx     ← Funções de autenticação
+    └── store/                  ← Estado global e hooks
+        ├── AuthContext.tsx     ← Context de autenticação
+        └── useAuth.tsx         ← Hook de acesso ao contexto
+```
 
-`npm run dev -- --port 3000` - Inicia o servidor front de desenvolvimento do Vite na porta 3000
+> **Obs.:** cada tela em `app/` é um re-export simples da sua respectiva scene em `src/scenes/`. Toda lógica, estilo e subcomponentes locais vivem dentro da pasta da scene.
+
+### Configuração do ambiente
+
+A configuração do ambiente mobile envolve a instalação do Android Studio, criação do emulador e configuração das variáveis de ambiente `ANDROID_HOME` e `JAVA_HOME`.
+
+👉 **[Acesse o Guia Completo de Setup Mobile](./docs/MOBILE_SETUP.md)**
+
+### Instalação e execução
+
+```bash
+
+# Rode o projeto mobile
+cd apps/mobile
+npm install
+npx expo start
+```
+
+> ⚠️ O emulador Android deve estar rodando antes de executar `npx expo start`. Acesse o **Device Manager** no Android Studio e inicie o AVD desejado.
+---
 
 ## Fluxo de Branches
 
@@ -101,19 +135,20 @@ O repositório segue um fluxo simples e direto, com duas branches principais:
 | `des`  | Ambiente de **desenvolvimento/testes** — integração contínua da equipe |
 
 ### Como funciona
+
 ```
-feature/login_feature ──► des ──► [QA / Testes] ──► prd
+feature/nome_da_feature ──► des ──► [QA / Testes] ──► prd
 ```
 
-1. **Crie uma branch de feature** a partir de `des`, com nome descritivo:
+1. **Crie uma branch de feature** a partir de `des`:
 ```bash
-   git checkout des
-   git checkout -b feature/nome_da_feature
+git checkout des
+git checkout -b feature/nome_da_feature
 ```
 
 2. **Desenvolva e faça commits** na sua branch normalmente.
 
-3. **Abra um Pull Request para `des`** ao finalizar. A feature entra no ambiente de testes.
+3. **Abra um Pull Request para `des`** ao finalizar.
 
 4. **A equipe de QA valida** o comportamento na branch `des`.
 
@@ -123,8 +158,6 @@ feature/login_feature ──► des ──► [QA / Testes] ──► prd
 
 ### Nomenclatura de branches
 
-Use prefixos para deixar claro o tipo de trabalho:
-
 | Prefixo | Uso |
 |---------|-----|
 | `feature/` | Nova funcionalidade |
@@ -132,9 +165,11 @@ Use prefixos para deixar claro o tipo de trabalho:
 | `hotfix/` | Correção urgente em produção |
 | `chore/` | Ajustes técnicos, configs, refatorações |
 
-**Exemplos:** `feature/login_feature`, `fix/corrige_cadastro`, `hotfix/token_expirado`
+**Exemplos:** `feature/tela_treinos`, `fix/corrige_login`, `hotfix/token_expirado`
 
-## Equipe de Desenvolvimento – Frontend
+---
+
+## Equipe de Desenvolvimento — Frontend
 
 * **Arthur Guarita Brasil**
     * 📧 [arthur.guarita@sempreceub.com](mailto:arthur.guarita@sempreceub.com)
@@ -146,6 +181,20 @@ Use prefixos para deixar claro o tipo de trabalho:
     * 📧 [iuri.gp@sempreceub.com](mailto:iuri.gp@sempreceub.com)
     * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iuri-guimar%C3%A3es-pinheiro-97159b310/)
     * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/IuriGP)
+
+---
+
+## Ferramentas de IA utilizadas no desenvolvimento
+
+O desenvolvimento deste projeto contou com o apoio de ferramentas de inteligência artificial em diferentes etapas do processo criativo e técnico:
+
+| Ferramenta | Uso |
+|------------|-----|
+| **IA do Figma** | Geração de ideias e sugestões visuais durante a prototipação das telas |
+| **Figma Dev Mode** | Extração automática de código CSS e especificações de design para implementação |
+| **Claude (Anthropic)** | Auxílio na escrita, revisão e formatação de código React/TypeScript durante o desenvolvimento |
+
+> O uso dessas ferramentas reduziu significativamente o tempo de desenvolvimento das telas — o que antes levava cerca de 3 dias passou a ser concluído em poucas horas — permitindo maior foco na qualidade da implementação, na integração com o backend e na organização da arquitetura do projeto.
 
 ---
 
