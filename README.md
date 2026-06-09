@@ -9,7 +9,7 @@
 ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-<img width="1558" height="932" alt="aaa1" src="https://github.com/user-attachments/assets/a602fbee-8f82-4de3-aa51-ed407ede212e" />
+<img width="1920" height="1080" alt="image" src="public/LandingPageBeta.png" />
 
 <br>
 <br>
@@ -24,26 +24,11 @@
 
 Este repositório é um **monorepo** que contém os dois frontends do sistema:
 
-```
-vitalitas-frontend-app/     ← Raiz do monorepo
-├── apps/
-│   ├── web/                ← React + Tailwind  (Administrador, Gestor, Instrutor)
-│   └── mobile/             ← React Native + Expo  (Aluno)
-├── packages/
-│   └── shared/             ← Tipos e utilitários compartilhados  (*por enquanto não implementado*)
-└── package.json    
-```
+  [![Figma](https://skillicons.dev/icons?i=figma)](https://skillicons.dev)
+  
+  - **React + TypeScript + Tailwind**: base tecnológica para o desenvolvimento frontend.
 
-| App | Perfis atendidos | Tecnologia |
-|-----|-----------------|------------|
-| `apps/web` | Administrador, Gestor, Instrutor | React + TypeScript + Tailwind |
-| `apps/mobile` | Aluno | React Native + Expo |
-
----
-
-## 🌐 Web
-
-### Tecnologias
+  [![Figma](https://skillicons.dev/icons?i=react,tailwind,typescript)](https://skillicons.dev)
 
 [![Figma](https://skillicons.dev/icons?i=react,typescript,tailwind,vite)](https://skillicons.dev)
 
@@ -186,10 +171,16 @@ git checkout -b feature/nome_da_feature
 
 ## Equipe de Desenvolvimento — Frontend
 
-| Nome | LinkedIn | GitHub |
-|------|----------|--------|
-| Arthur Guaritá Brasil | [LinkedIn](https://www.linkedin.com/in/arthur-guaritá-brasil-09384b379/) | [GitHub](https://github.com/arthurguaritabrasil) |
-| Iuri Guimarães Pinheiro | [LinkedIn](https://www.linkedin.com/in/iuri-guimarães-pinheiro-97159b310/) | [GitHub](https://github.com/IuriGP) |
+* **Arthur Guarita Brasil**
+    * 📧 [arthur.guarita@sempreceub.com](mailto:arthur.guarita@sempreceub.com)
+    * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arthur-guarit%C3%A1-brasil-09384b379/)
+    * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/arthurguaritabrasil)
+
+
+* **Iuri Guimarães Pinheiro**
+    * 📧 [iuri.gp@sempreceub.com](mailto:iuri.gp@sempreceub.com)
+    * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iuri-guimar%C3%A3es-pinheiro-97159b310/)
+    * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/IuriGP)
 
 ---
 
@@ -209,6 +200,6 @@ O desenvolvimento deste projeto contou com o apoio de ferramentas de inteligênc
 
 ## Licença
 
-Este projeto foi desenvolvido exclusivamente para fins acadêmicos na disciplina de **Projeto Integrador** do **Centro Universitário de Brasília (UniCEUB)**.
+Este projeto está sendo desenvolvido exclusivamente para fins acadêmicos na disciplina de Projeto Integrador do Centro Universitário de Brasília (UniCEUB) e foi atualizado completamente no 7º semestre (09 de junho 2026).
 
-Copyright © 2026 **Vitalitas**. Todos os direitos reservados.
+Copyright © 2026 Vitalitas. Todos os direitos reservados.
