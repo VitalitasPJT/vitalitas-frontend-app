@@ -8,7 +8,7 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/32288d1f-2bbb-4b78-ae82-979211cb706a" />
+<img width="1920" height="1080" alt="image" src="public/LandingPageBeta.png" />
 
 <br>
 <br>
@@ -26,7 +26,7 @@
 
   [![Figma](https://skillicons.dev/icons?i=figma)](https://skillicons.dev)
   
-  - **React + TypeScript + Bootstrap**: base tecnológica para o desenvolvimento frontend.
+  - **React + TypeScript + Tailwind**: base tecnológica para o desenvolvimento frontend.
 
   [![Figma](https://skillicons.dev/icons?i=react,bootstrap,typescript)](https://skillicons.dev)
 
@@ -136,15 +136,21 @@ Use prefixos para deixar claro o tipo de trabalho:
 
 ## Equipe de Desenvolvimento – Frontend
 
-| Nome | LinkedIn | GitHub |
-|------|----------|--------|
-| Arthur Guaritá Brasil | [LinkedIn](https://www.linkedin.com/in/arthur-guaritá-brasil-09384b379/) | [GitHub](https://github.com/arthurguaritabrasil) |
-| Iuri Guimarães Pinheiro | [LinkedIn](https://www.linkedin.com/in/iuri-guimarães-pinheiro-97159b310/) | [GitHub](https://github.com/IuriGP) |
+* **Arthur Guarita Brasil**
+    * 📧 [arthur.guarita@sempreceub.com](mailto:arthur.guarita@sempreceub.com)
+    * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arthur-guarit%C3%A1-brasil-09384b379/)
+    * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/arthurguaritabrasil)
+
+
+* **Iuri Guimarães Pinheiro**
+* * 📧 [iuri.gp@sempreceub.com](mailto:iuri.gp@sempreceub.com)
+  * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iuri-guimar%C3%A3es-pinheiro-97159b310/)
+  * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/IuriGP)
 
 ---
 
 ## Licença
 
-Este projeto foi desenvolvido exclusivamente para fins acadêmicos na disciplina de **Projeto Integrador** do **Centro Universitário de Brasília (UniCEUB)**.
+Este projeto está sendo desenvolvido exclusivamente para fins acadêmicos na disciplina de Projeto Integrador do Centro Universitário de Brasília (UniCEUB) e foi atualizado completamente no 7º semestre (09 de junho 2026).
 
-Copyright © 2026 **Vitalitas**. Todos os direitos reservados.
+Copyright © 2026 Vitalitas. Todos os direitos reservados.
