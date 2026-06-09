@@ -28,7 +28,7 @@
   
   - **React + TypeScript + Tailwind**: base tecnológica para o desenvolvimento frontend.
 
-  [![Figma](https://skillicons.dev/icons?i=react,bootstrap,typescript)](https://skillicons.dev)
+  [![Figma](https://skillicons.dev/icons?i=react,tailwind,typescript)](https://skillicons.dev)
 
   Essa combinação de tecnologias foi escolhida por oferecer:
 
@@ -143,9 +143,9 @@ Use prefixos para deixar claro o tipo de trabalho:
 
 
 * **Iuri Guimarães Pinheiro**
-* * 📧 [iuri.gp@sempreceub.com](mailto:iuri.gp@sempreceub.com)
-  * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iuri-guimar%C3%A3es-pinheiro-97159b310/)
-  * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/IuriGP)
+    * 📧 [iuri.gp@sempreceub.com](mailto:iuri.gp@sempreceub.com)
+    * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iuri-guimar%C3%A3es-pinheiro-97159b310/)
+    * [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/IuriGP)
 
 ---
 
