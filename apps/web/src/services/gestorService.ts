@@ -21,8 +21,6 @@ export interface ListarAlunosResponse {
 // ─── Endpoints ────────────────────────────────────────────────────────────────
 
 export async function listarAlunos(idAcademia: string): Promise<ListarAlunosResponse> {
-  const response = await api.get("/gestor/listar-alunos", {
-    params: { IdAcademia: idAcademia },
-  });
+  const response = await api.get(`/gestor/listar-alunos/${idAcademia}`)
   return response.data;
 }
