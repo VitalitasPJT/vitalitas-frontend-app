@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormField } from '../../inputs/FormField';
+import { FormField } from '../../../shared/components/inputs/FormField';
 import type { FormData } from '../../../pages/private/CriarUsuario';
 
 interface Step1Props {
