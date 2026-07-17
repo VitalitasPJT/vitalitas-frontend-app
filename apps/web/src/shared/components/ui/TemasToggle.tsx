@@ -1,4 +1,4 @@
-import { useTheme } from "../../contexts/themeContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface ThemeToggleProps {
   /** 'float' = botão flutuante no canto (Landing/Login)

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormData } from '../../../pages/private/CriarUsuario';
+import type { FormData } from '../../../pages/CreateUserPage';
 
 interface Step2Props {
   initialData: Partial<FormData>;

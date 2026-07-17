@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
-import type { FormData } from '../../../pages/private/CriarUsuario';
-import { criarUsuario, criarAluno, criarInstrutor } from '../../../services/userService';
+import { useAuth } from '@/shared/hooks/useAuth';
+import type { FormData } from '../../../pages/CreateUserPage';
+import { criarUsuario, criarAluno, criarInstrutor } from '../../../services/gestorService';
 
 interface Step3Props {
   formData: Partial<FormData>;

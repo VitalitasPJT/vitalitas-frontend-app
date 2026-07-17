@@ -1,5 +1,5 @@
-import { DashboardLayout } from '../../components/gestor/dashboard/DashboardLayout';
-import { Header } from '../../components/gestor/dashboard/Header';
+import { DashboardLayout } from '../../gestor/components/gestor/dashboard/DashboardLayout';
+import { Header } from '../../gestor/components/gestor/dashboard/Header';
 
 export default function InstrutorDashboard() {
   return (

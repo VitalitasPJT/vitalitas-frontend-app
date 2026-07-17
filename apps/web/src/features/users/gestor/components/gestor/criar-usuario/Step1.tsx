@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FormField } from '../../../shared/components/inputs/FormField';
-import type { FormData } from '../../../pages/private/CriarUsuario';
+import { FormField } from '@/shared/components/inputs/FormField';
+import type { FormData } from '../../../pages/CreateUserPage';
 
 interface Step1Props {
   initialData: Partial<FormData>;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Menu, X, Settings, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
-import { ThemeToggle } from '../../UI/TemasToggle';
+import { useAuth } from '@/shared/hooks/useAuth';
+import { ThemeToggle } from '@/shared/components/ui/TemasToggle';
 import type { MenuItem, UserProfile } from './menuConfig';
 
 interface MobileHeaderProps {

@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@/shared/hooks/useAuth";
 import type { ReactNode } from "react";
+import { RoleRoutes } from "@/shared/constants/Roles";
 
 interface Props {
   children: ReactNode;
@@ -14,14 +15,7 @@ export function PasswordResetRoute({ children }: Props) {
   }
 
   if (!user.Flag) {
-    const roleRoutes: Record<number, string> = {
-      1: "/user/instrutor",
-      2: "/user/aluno",
-      3: "/user/gestor",
-      4: "/user/admin",
-    };
-
-    return <Navigate to={roleRoutes[user.Tipo] ?? "/"} replace />;
+    return <Navigate to={RoleRoutes[user.TipoUsuario] ?? "/"} replace />;  
   }
 
   return <>{children}</>;

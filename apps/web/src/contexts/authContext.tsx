@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { loginRequest } from "../services/authService";
+import { loginRequest } from "@/features/auth/services/authService";
 
 // ─── Mapeamento enum numérico do backend → string ────────────────────────────
 // Domain.Enums.TipoUsuario: Instrutor=1, Aluno=2, Gestor=3, Administrador=4

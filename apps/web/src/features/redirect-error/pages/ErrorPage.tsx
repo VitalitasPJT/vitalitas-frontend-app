@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import logo from "../../assets/imgs/logo_loginPage.png";
-import errorImage from "../../assets/imgs/errorImage.png";
+import { useAuth } from "@/shared/hooks/useAuth";
+import logo from "@/shared/assets/imgs/logo_loginPage.png";
+import errorImage from "@/shared/assets/imgs/errorImage.png";
 
 type ErrorCode = "404" | "500" | "401" | "403";
 

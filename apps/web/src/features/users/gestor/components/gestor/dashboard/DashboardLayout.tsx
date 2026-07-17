@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '@/shared/hooks/useAuth';
 import { Sidebar } from './SideBar';
 import { MobileHeader } from './MobileHeader';
 import { menuByRole, roleLabelMap } from './menuConfig';
