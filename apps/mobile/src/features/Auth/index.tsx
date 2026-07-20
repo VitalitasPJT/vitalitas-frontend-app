@@ -10,8 +10,8 @@ import {
 import { useRouter } from "expo-router";
 import { useAuth } from "./../../store/useAuth";
 import { Ionicons } from "@expo/vector-icons";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import Input from "../../shared/components/Input";
+import Button from "../../shared/components/Button";
 
 export default function LoginScreen() {
   const { signIn } = useAuth();

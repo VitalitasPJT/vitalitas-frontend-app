@@ -12,7 +12,7 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "./../../store/useAuth";
 import { trocarSenhaRequest } from "./../../services/authService";
-import Button from "../../components/Button";
+import Button from "../../shared/components/Button";
 
 export default function ResetPasswordScreen() {
   const router = useRouter();
