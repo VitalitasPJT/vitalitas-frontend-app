@@ -1,21 +1,21 @@
 import { Routes, Route } from "react-router-dom";
 
 // Páginas públicas
-import LandingPage from "../../pages/public/LandingPage";
-import LoginPage from "../../pages/public/LoginPage";
+import LandingPage from "@/features/landing/pages/LandingPage";
+import LoginPage from "@/features/auth/pages/LoginPage";
 
 // Dashboards
-import AlunoDashboard from "../../pages/private/AlunoDashboard";
-import InstrutorDashboard from "../../pages/private/DashboardInstrutor";
+//import AlunoDashboard from "@/features/users/gestor/pages/AlunoDashboard";
+import InstrutorDashboard from "@/features/users/instrutor/pages/DashboardInstrutor";
 
 // Páginas Gestor
-import GestorDashboard from "../../pages/private/DashboardGestor";
-import CriarUsuario from "../../pages/private/CriarUsuario";
-import LogsPageGestor from "../../pages/private/LogsPageGestor";
+import GestorDashboard from "@/features/users/gestor/pages/DashboardGestor";
+import CriarUsuario from "@/features/users/gestor/pages/CreateUserPage";
+import LogsPageGestor from "@/features/users/gestor/pages/LogsPage";
 
 // Outras páginas
-import FirstAcess from "../../pages/private/PasswordResetPage";
-import ErrorPage from "../../pages/public/ErrorPage";
+import FirstAcess from "@/features/first-access/pages/PasswordResetPage";
+import ErrorPage from "@/features/redirect-error/pages/ErrorPage";
 
 // Guards
 import { PasswordResetRoute } from "./PasswordResetRoute";
@@ -46,7 +46,6 @@ export default function AppRoutes() {
 
       {/* ======================
          ALUNO — Tipo 2
-      ====================== */}
       <Route
         path="/user/aluno"
         element={
@@ -57,6 +56,7 @@ export default function AppRoutes() {
           </PrivateRoute>
         }
       />
+      ====================== */}
 
       {/* ======================
          INSTRUTOR — Tipo 1

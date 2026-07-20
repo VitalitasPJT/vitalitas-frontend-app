@@ -1,1 +1,1 @@
-export { default } from "../src/scenes/ResetPassword";
+export { default } from "../src/features/ResetPassword";

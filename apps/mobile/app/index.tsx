@@ -1,1 +1,1 @@
-export { default } from "../src/scenes/Auth";
+export { default } from "../src/features/Auth";

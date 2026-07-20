@@ -1,3 +1,6 @@
+# Dependências
+node_modules/
+
 # Logs
 logs
 *.log
@@ -7,18 +10,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Arquivos locais
 *.local
+.env
+.env.*
 
-# Editor directories and files
+# IDE
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Sistema Operacional
 .DS_Store
+Thumbs.db
+
+# Visual Studio
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+
+# Vim
 *.sw?
