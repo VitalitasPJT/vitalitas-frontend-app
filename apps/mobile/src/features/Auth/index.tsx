@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { useAuth } from "./../../store/useAuth";
+import { useAuth } from "../../store/useAuth";
 import { Ionicons } from "@expo/vector-icons";
 import Input from "../../shared/components/Input";
 import Button from "../../shared/components/Button";

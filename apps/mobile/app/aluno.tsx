@@ -1,1 +1,1 @@
-export { default } from "../src/features/Aluno/pages";
+export { default } from "../src/features/aluno/pages";
