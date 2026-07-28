@@ -1,16 +1,5 @@
 import { Calendar } from 'lucide-react';
-
-interface FormFieldProps {
-  label: string;
-  name: string;
-  type?: 'text' | 'email' | 'tel' | 'date' | 'select';
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  helpText?: string;
-  options?: { label: string; value: string }[];
-  error?: string;
-}
+import type {FormFieldProps} from '@/shared/types/Inputs';
 
 export function FormField({
   label,
@@ -23,17 +12,24 @@ export function FormField({
   options,
   error,
 }: FormFieldProps) {
+  // "senha" usa o truque "new-password": navegadores tendem a ignorar
+  // autoComplete="off" em campos que reconhecem como senha, mas respeitam
+  // "new-password" para não sugerir nem preencher com senha salva.
+  const autoComplete = name === 'senha' ? 'new-password' : 'off';
+
   if (type === 'select') {
     return (
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-black">
+        <label htmlFor={name} className="text-sm font-medium text-black">
           {label}
         </label>
         <div className="relative">
           <select
+            id={name}
             name={name}
             value={value}
             onChange={onChange}
+            autoComplete={autoComplete}
             className={`w-full h-11 px-3 py-2 bg-white border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent appearance-none ${
               error ? 'border-red-500 text-gray-900' : 'border-gray-300 text-gray-500'
             } ${value === '' ? 'text-gray-500' : 'text-gray-900'}`}
@@ -67,16 +63,18 @@ export function FormField({
   if (type === 'date') {
     return (
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-black">
+        <label htmlFor={name} className="text-sm font-medium text-black">
           {label}
         </label>
         <div className="relative">
           <input
             type="date"
+            id={name}
             name={name}
             value={value}
             onChange={onChange}
             placeholder={placeholder}
+            autoComplete={autoComplete}
             className={`w-full h-11 px-3 py-2 bg-white border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent ${
               error ? 'border-red-500' : 'border-gray-300'
             } ${value === '' ? 'text-gray-500' : 'text-gray-900'}`}
@@ -93,15 +91,17 @@ export function FormField({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium text-black">
+      <label htmlFor={name} className="text-sm font-medium text-black">
         {label}
       </label>
       <input
         type={type}
+        id={name}
         name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        autoComplete={autoComplete}
         className={`w-full h-11 px-3 py-2 bg-white border rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent ${
           error ? 'border-red-500 text-gray-900' : 'border-gray-300 text-gray-900'
         }`}

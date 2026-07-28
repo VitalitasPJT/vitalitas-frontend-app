@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { resetPassword } from "@/shared/services/userService";
 import { useAuth } from "@/shared/hooks/useAuth";
 
-import { InputField } from "@/shared/components/inputs/InputGenericoModerno";
+import { InputField } from "@/shared/components/inputs/InputField";
 import { RoleRoutes } from "@/shared/constants/Roles";
 
 interface Requirement {

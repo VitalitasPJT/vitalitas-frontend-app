@@ -1,3 +1,5 @@
+import { SectionContainer } from "./SectionContainer";
+
 export function WhyChooseSection() {
   const benefits = [
     {
@@ -50,7 +52,7 @@ export function WhyChooseSection() {
 
   return (
     <section id="planos" className="bg-[#e5e5e5] py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-8 lg:px-24">
+      <SectionContainer>
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-[36px] font-bold text-[#0d0d0d] mb-4">
@@ -111,7 +113,7 @@ export function WhyChooseSection() {
             Contrate agora!
           </button>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

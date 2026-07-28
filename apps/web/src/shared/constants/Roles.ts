@@ -13,3 +13,10 @@ export const RoleRoutes: Record<string, string> = {
   Gestor:        ConstRoutes.GESTOR,
   Administrador: ConstRoutes.ADMIN,
 };
+
+export const PERFIL_OPTIONS = [
+  { label: 'Aluno', value: 'aluno' },
+  { label: 'Instrutor', value: 'instrutor' },
+  { label: 'Gestor', value: 'gestor' },
+  { label: 'Administrador', value: 'admin' },
+];

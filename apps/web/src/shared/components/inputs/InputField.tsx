@@ -1,15 +1,5 @@
 import { useState } from "react";
-
-type InputFieldProps = {
-  id: string;
-  label: string;
-  type?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  icon: React.ReactNode;
-  error?: string;
-  isPassword?: boolean;
-};
+import type {InputFieldProps} from '@/shared/types/Inputs';
 
 function EyeIcon() {
   return (
@@ -96,6 +86,7 @@ export function InputField({
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
             className="absolute right-3 text-[#18181b]/40 dark:text-[#e4e4e7]/40 hover:text-[#18181b] dark:hover:text-[#e4e4e7] transition-colors"
           >
             {showPassword ? <EyeOffIcon /> : <EyeIcon />}

@@ -1,13 +1,13 @@
 import svgPaths from "@/shared/assets/icons/links/svg-30hlfm6d6z";
+import { SectionContainer } from "./SectionContainer";
+import { SectionEyebrow } from "./SectionEyebrow";
 
 export function GetStartedSection() {
   return (
     <section className="bg-gradient-to-b from-[#0d0d0d] to-[#1a0004] py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-8 lg:px-24 flex flex-col items-center text-center gap-6">
+      <SectionContainer className="flex flex-col items-center text-center gap-6">
 
-        <p className="text-[13px] font-medium text-[#e8001c] tracking-[1.3px] uppercase">
-          COMECE AGORA
-        </p>
+        <SectionEyebrow>COMECE AGORA</SectionEyebrow>
 
         <h2 className="text-[36px] lg:text-[48px] font-bold text-white leading-tight max-w-3xl">
           Sua academia também precisa do Vitalitas
@@ -35,7 +35,7 @@ export function GetStartedSection() {
           Suporte incluso · Configuração assistida
         </p>
 
-      </div>
+      </SectionContainer>
     </section>
   );
 }

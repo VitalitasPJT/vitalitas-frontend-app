@@ -1,10 +1,12 @@
 import svgPaths from "@/shared/assets/icons/links/svg-30hlfm6d6z";
 import imgContainerSanderson from "@/shared/assets/imgs/sand.png";
+import { SectionContainer } from "./SectionContainer";
+import { BrowserWindowFrame } from "./BrowserWindowFrame";
 
 export function HeroSection() {
   return (
     <section className="bg-[#e5e5e5] py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-8 lg:px-24">
+      <SectionContainer>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
@@ -77,20 +79,11 @@ export function HeroSection() {
 
           {/* Right Content - Dashboard Preview */}
           <div className="relative">
-            <div className="relative bg-white rounded-[16px] shadow-[0px_24px_64px_0px_rgba(0,0,0,0.12)] overflow-hidden">
-              {/* Browser Header */}
-              <div className="bg-[#b0b0b0] h-[45px] flex items-center px-3 gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-[10.26px] h-[10.26px] rounded-full bg-[#ff5f57]"></div>
-                  <div className="w-[10.26px] h-[10.26px] rounded-full bg-[#febc2e]"></div>
-                  <div className="w-[10.26px] h-[10.26px] rounded-full bg-[#28c840]"></div>
-                </div>
-                <div className="ml-8 bg-[#e5e5e5] px-2 py-1 rounded flex-1 max-w-md">
-                  <span className="text-[10px] text-[#6b6b6b]">app.vitalitas.com.br</span>
-                </div>
-              </div>
-
-              {/* Dashboard Content */}
+            <BrowserWindowFrame
+              url="app.vitalitas.com.br"
+              variant="medium"
+              className="shadow-[0px_24px_64px_0px_rgba(0,0,0,0.12)]"
+            >
               <div className="bg-[#f9fafb] p-4">
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div className="bg-white rounded-[10px] shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] p-3">
@@ -121,7 +114,7 @@ export function HeroSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </BrowserWindowFrame>
 
             {/* Notification Popup */}
             <div className="absolute -bottom-8 -left-8 bg-white rounded-[14px] shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-3 flex items-center gap-2 max-w-[260px]">
@@ -135,7 +128,7 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

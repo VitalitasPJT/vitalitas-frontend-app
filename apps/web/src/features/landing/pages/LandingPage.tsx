@@ -1,13 +1,13 @@
-import { Header } from "../components/landing/Header";
-import { Footer } from "../components/landing/Footer";
-import { HeroSection } from "../components/landing/HeroSection";
-import { ManagerSection } from "../components/landing/ManagerSection";
-import { StudentSection } from "../components/landing/StudentSection";
-import { WhyChooseSection } from "../components/landing/WhyChooseSection";
-import { GetStartedSection } from "../components/landing/GetStartedSection";
-import { AboutSection } from "../components/landing/AboutSection";
-import { ProductShowcaseSection } from "../components/landing/ProductShowcaseSection";
-import { ContactSection } from "../components/landing/ContactSection";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { HeroSection } from "../components/HeroSection";
+import { ManagerSection } from "../components/ManagerSection";
+import { StudentSection } from "../components/StudentSection";
+import { WhyChooseSection } from "../components/WhyChooseSection";
+import { GetStartedSection } from "../components/GetStartedSection";
+import { AboutSection } from "../components/AboutSection";
+import { ProductShowcaseSection } from "../components/ProductShowcaseSection";
+import { ContactSection } from "../components/ContactSection";
 import { ThemeToggle } from "@/shared/components/ui/TemasToggle";
 
 export default function LandingPage() {

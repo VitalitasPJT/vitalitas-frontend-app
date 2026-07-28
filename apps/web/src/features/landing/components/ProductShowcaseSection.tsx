@@ -2,6 +2,16 @@ import { useState } from "react";
 
 // ↓ Ajuste o caminho conforme seu projeto
 import appAlunoImage from "@/shared/assets/imgs/MobileStudentDashboard.png";
+import { SectionContainer } from "./SectionContainer";
+import { SectionEyebrow } from "./SectionEyebrow";
+import { BrowserWindowFrame } from "./BrowserWindowFrame";
+
+const tabUrls = {
+  manager: "app.vitalitas.com.br/admin_dashboard",
+  finance: "app.vitalitas.com.br/financeiro",
+  student: "app.vitalitas.com.br/app",
+  assessments: "app.vitalitas.com.br/avaliacoes"
+} as const;
 
 export function ProductShowcaseSection() {
   const [activeTab, setActiveTab] = useState<"manager" | "finance" | "student" | "assessments">("manager");
@@ -15,12 +25,10 @@ export function ProductShowcaseSection() {
 
   return (
     <section id="produto" className="bg-white py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-8 lg:px-24">
+      <SectionContainer>
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-[13px] font-medium text-[#e8001c] tracking-[1.3px] uppercase mb-4">
-            O PRODUTO
-          </p>
+          <SectionEyebrow className="mb-4">O PRODUTO</SectionEyebrow>
           <h2 className="text-[36px] font-bold text-[#0d0d0d] mb-4">
             Veja o Vitalitas em ação
           </h2>
@@ -49,24 +57,11 @@ export function ProductShowcaseSection() {
         <div className="relative">
 
           {/* Browser window */}
-          <div className="bg-white rounded-[16px] shadow-[0px_0px_9.4px_1px_rgba(0,0,0,0.6)] overflow-hidden">
-            {/* Browser Header */}
-            <div className="bg-[#f5f5f5] h-[48px] flex items-center px-4 gap-6">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#febc2e]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#28c840]"></div>
-              </div>
-              <div className="bg-white px-3 py-1.5 rounded flex-1 max-w-3xl">
-                <span className="text-[12px] text-[#6b6b6b]">
-                  {activeTab === "manager" && "app.vitalitas.com.br/admin_dashboard"}
-                  {activeTab === "finance" && "app.vitalitas.com.br/financeiro"}
-                  {activeTab === "student" && "app.vitalitas.com.br/app"}
-                  {activeTab === "assessments" && "app.vitalitas.com.br/avaliacoes"}
-                </span>
-              </div>
-            </div>
-
+          <BrowserWindowFrame
+            url={tabUrls[activeTab]}
+            variant="light"
+            className="shadow-[0px_0px_9.4px_1px_rgba(0,0,0,0.6)]"
+          >
             {/* Content */}
             <div className="bg-[#f9fafb] p-8">
 
@@ -192,7 +187,7 @@ export function ProductShowcaseSection() {
               )}
 
             </div>
-          </div>
+          </BrowserWindowFrame>
 
           {/* Card flutuante "Atualização" */}
           <div className="absolute -top-8 right-0 bg-white rounded-2xl shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.1)] border-t-4 border-[#e8001c] p-4 flex items-center gap-2 w-[134px]">
@@ -226,7 +221,7 @@ export function ProductShowcaseSection() {
           </div>
 
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }
