@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { useAuth } from "./../../store/useAuth";
+import { useAuth } from "../../store/useAuth";
 import { Ionicons } from "@expo/vector-icons";
 import Input from "../../shared/components/Input";
 import Button from "../../shared/components/Button";
@@ -49,6 +49,7 @@ export default function LoginScreen() {
 
       router.replace(roleRoutes[user.TipoUsuario] ?? "/");
     } catch (err) {
+      console.log("Erro no login:", err);
       setPasswordError("Email ou senha inválidos.");
     } finally {
       setLoading(false);
