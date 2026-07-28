@@ -49,6 +49,7 @@ export default function LoginScreen() {
 
       router.replace(roleRoutes[user.TipoUsuario] ?? "/");
     } catch (err) {
+      console.log("Erro no login:", err);
       setPasswordError("Email ou senha inválidos.");
     } finally {
       setLoading(false);

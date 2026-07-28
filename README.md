@@ -24,13 +24,11 @@
 
 Este repositório é um **monorepo** que contém os dois frontends do sistema:
 
-  [![Figma](https://skillicons.dev/icons?i=figma)](https://skillicons.dev)
+  [![Figma](https://skillicons.dev/icons?i=react,tailwind,typescript,figma)](https://skillicons.dev)
   
   - **React + TypeScript + Tailwind**: base tecnológica para o desenvolvimento frontend.
 
-  [![Figma](https://skillicons.dev/icons?i=react,tailwind,typescript)](https://skillicons.dev)
 
-[![Figma](https://skillicons.dev/icons?i=react,typescript,tailwind,vite)](https://skillicons.dev)
 
 - **React + TypeScript**: base para construção da interface
 - **Tailwind CSS**: estilização utilitária e padronização visual
@@ -85,37 +83,42 @@ O app segue uma separação clara de responsabilidades, mantendo a pasta `app/` 
 apps/mobile/
 ├── app/                        ← Roteamento (Expo Router — não alterar)
 │   ├── _layout.tsx             ← Layout raiz e provider de autenticação
-│   ├── index.tsx               ← Re-export da scene Auth
-│   ├── aluno.tsx               ← Re-export da scene Aluno
-│   └── resetpassword.tsx       ← Re-export da scene ResetPassword
+│   ├── index.tsx                ← Re-export da feature Auth
+│   ├── aluno.tsx                ← Re-export da feature Aluno
+│   └── resetpassword.tsx        ← Re-export da feature ResetPassword
+├── assets/                     ← Recursos de imagem usados pelo Expo
 └── src/
-    ├── components/             ← Componentes base reutilizáveis
-    │   ├── Button/
-    │   └── Input/
-    ├── scenes/                 ← Telas completas (lógica + layout)
-    │   ├── Auth/
-    │   ├── Aluno/
-    │   └── ResetPassword/
-    ├── services/               ← Comunicação com a API
-    │   ├── api.ts              ← Instância e config do Axios
-    │   └── authService.tsx     ← Funções de autenticação
-    └── store/                  ← Estado global e hooks
-        ├── AuthContext.tsx     ← Context de autenticação
-        └── useAuth.tsx         ← Hook de acesso ao contexto
+    ├── features/                ← Telas completas, isoladas por funcionalidade
+    │   ├── aluno/
+    │   │   └── pages/
+    │   │       └── index.tsx
+    │   ├── auth/
+    │   └── resetpassword/
+    ├── services/                ← Comunicação com a API
+    │   ├── api.ts                 ← Instância e config do Axios
+    │   └── authService.ts         ← Funções de autenticação
+    ├── shared/                  ← Recursos reutilizados entre múltiplas features
+    │   └── components/            ← Componentes base
+    │       ├── Button/
+    │       └── Input/
+    └── store/                   ← Estado global e hooks
+        ├── AuthContext.tsx        ← Context de autenticação
+        └── useAuth.ts             ← Hook de acesso ao contexto
 ```
 
-> **Obs.:** cada tela em `app/` é um re-export simples da sua respectiva scene em `src/scenes/`. Toda lógica, estilo e subcomponentes locais vivem dentro da pasta da scene.
+> **Obs.:** cada tela em `app/` é um re-export simples da sua respectiva feature em `src/features/`. Toda lógica, estilo e subcomponentes locais vivem dentro da própria pasta da feature. Componentes base usados por mais de uma feature ficam centralizados em `src/shared/components/`, evitando duplicação de código.
+>
+> A arquitetura do Mobile segue a mesma filosofia da aplicação Web. A única diferença é a existência da pasta `app/`, obrigatória para o funcionamento do Expo Router.
 
-### Configuração do ambiente
+## Opção 1 - Android Studio e Configuração do ambiente
 
 A configuração do ambiente mobile envolve a instalação do Android Studio, criação do emulador e configuração das variáveis de ambiente `ANDROID_HOME` e `JAVA_HOME`.
 
-👉 **[Acesse o Guia Completo de Setup Mobile](./docs/MOBILE_SETUP.md)**
+👉 **[Acesse o Guia Completo de Setup Mobile pelo Android Studio](./docs/MOBILE_SETUP.md)**
 
 ### Instalação e execução
 
 ```bash
-
 # Rode o projeto mobile
 cd apps/mobile
 npm install
@@ -124,6 +127,52 @@ npx expo start
 
 > ⚠️ O emulador Android deve estar rodando antes de executar `npx expo start`. Acesse o **Device Manager** no Android Studio e inicie o AVD desejado.
 ---
+
+## Opção 2 - Executando com Expo Go
+
+Baixe o aplicativo Expo Go pela Play Store do seu celular.
+
+Para rodar o app no seu celular físico via **Expo Go**, use no terminal de comando:
+
+```bash
+cd apps/mobile
+npm install
+npx expo start --clear --tunnel
+```
+
+### O que cada flag faz
+
+- **`--clear`**: limpa o cache do Metro Bundler antes de iniciar. Evita problemas chatos de "não atualizou nada mesmo depois de eu mudar o código" causados por cache antigo. Use sempre que o app estiver se comportando de forma estranha ou desatualizada.
+- **`--tunnel`**: cria um túnel público (via serviço da Expo) para que o celular consiga acessar o Metro Bundler mesmo que o computador e o celular **não estejam na mesma rede local**, ou quando a rede bloqueia conexão direta entre dispositivos (ex: rede da faculdade, Wi-Fi com AP Isolation).
+
+> ⚠️ Importante: o `--tunnel` só cria acesso remoto para o **Metro Bundler** (o próprio app React Native). Ele **não** cria túnel para a API .NET. Ou seja, mesmo com o tunnel ativo, seu celular só vai conseguir "abrir o app" — a comunicação com o backend continua dependendo da rede local ou de configuração manual do IP.
+
+### Configuração do `.env`
+
+Como o `--tunnel` não resolve o acesso à API, você precisa apontar manualmente no `.env` o IP da sua máquina na rede local, seguido da porta da API:
+
+```
+EXPO_PUBLIC_API_URL=http://SEU_IP_LOCAL:5156
+```
+
+Substitua `SEU_IP_LOCAL` pelo IP da sua máquina (ex: `192.168.0.15`). Sem isso configurado corretamente, mesmo com o túnel funcionando para abrir o app, as chamadas à API vão falhar — porque o celular vai tentar acessar `localhost`, que aponta pra ele mesmo, não pro seu computador.
+
+Pra descobrir seu IP local:
+```bash
+ipconfig    # Windows — procure por "Endereço IPv4"
+```
+
+---
+
+### ⚠️ Observação — Backend
+
+Para que o celular consiga acessar a API, o backend precisa estar escutando em todas as interfaces de rede, não só em `localhost`:
+
+```bash
+dotnet run --urls=http://0.0.0.0:5156
+```
+
+Sem isso, mesmo com o `.env` configurado certinho no mobile, a API não vai aceitar conexões vindas de fora da própria máquina — e as requisições do celular vão cair em erro de conexão recusada.
 
 ## Fluxo de Branches
 
