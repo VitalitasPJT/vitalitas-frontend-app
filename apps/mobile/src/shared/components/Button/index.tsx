@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   TouchableOpacityProps,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface ButtonProps extends TouchableOpacityProps {
   label: string;
@@ -17,21 +18,46 @@ export default function Button({
   loading,
   variant = "primary",
   style,
+  disabled,
   ...rest
 }: ButtonProps) {
+  const isDisabled = loading || disabled;
+
+  if (variant === "secondary") {
+    return (
+      <TouchableOpacity
+        style={[styles.button, styles.secondary, style]}
+        disabled={isDisabled}
+        {...rest}
+      >
+        {loading ? (
+          <ActivityIndicator color="#000" />
+        ) : (
+          <Text style={[styles.text, styles.textSecondary]}>{label}</Text>
+        )}
+      </TouchableOpacity>
+    );
+  }
+
   return (
     <TouchableOpacity
-      style={[styles.button, variant === "secondary" && styles.secondary, style]}
-      disabled={loading}
+      activeOpacity={0.85}
+      disabled={isDisabled}
+      style={style}
       {...rest}
     >
-      {loading ? (
-        <ActivityIndicator color="#fff" />
-      ) : (
-        <Text style={[styles.text, variant === "secondary" && styles.textSecondary]}>
-          {label}
-        </Text>
-      )}
+      <LinearGradient
+        colors={["#EE2B47", "#FF4059"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={[styles.button, isDisabled && styles.disabled]}
+      >
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.text}>{label}</Text>
+        )}
+      </LinearGradient>
     </TouchableOpacity>
   );
 }
@@ -40,7 +66,6 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     height: 60,
-    backgroundColor: "#ee2b47",
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
@@ -50,6 +75,9 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     elevation: 8,
   },
+  disabled: {
+    opacity: 0.5,
+  },
   secondary: {
     backgroundColor: "#D1D5DC",
     shadowColor: "transparent",
@@ -58,7 +86,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#fff",
     fontSize: 18,
-    fontWeight: "700",
+    fontWeight: "900",
     letterSpacing: 1,
   },
   textSecondary: {
