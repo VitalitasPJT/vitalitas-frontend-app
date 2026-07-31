@@ -1,10 +1,7 @@
 import { SectionContainer } from "./SectionContainer";
 import { TestimonialCard, type Testimonial } from "./TestimonialCard";
 
-// Depoimentos de exemplo. Quando existirem depoimentos reais de alunos,
-// substitua este array — nenhuma lógica de busca (API/banco) foi
-// adicionada aqui de propósito; a seção continua puramente estática até
-// que o conteúdo real exista.
+// Depoimentos de exemplo — sem lógica de fetch, ver histórico da conversa.
 const testimonials: Testimonial[] = [
   {
     initial: "R",
@@ -22,13 +19,13 @@ const testimonials: Testimonial[] = [
 
 export function KnowYourStudentsSection() {
   return (
-    <section className="bg-[#e5e5e5] py-16 lg:py-24">
+    <section className="bg-section-alt py-16 lg:py-24">
       <SectionContainer>
         <div className="text-center mb-16">
-          <h2 className="text-[36px] lg:text-[42px] font-bold text-[#0d0d0d] mb-6">
+          <h2 className="text-[clamp(1.75rem,4vw,2.625rem)] font-bold text-ink mb-6">
             Conheça melhor quem consome o Vitalitas
           </h2>
-          <p className="text-[18px] text-[#6b6b6b] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-[18px] text-body max-w-3xl mx-auto leading-relaxed">
             O Vitalitas já está transformando a gestão de academias em todo o Brasil. Veja o que nossos clientes têm a dizer sobre a experiência.
           </p>
         </div>

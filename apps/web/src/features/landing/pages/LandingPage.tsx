@@ -1,3 +1,4 @@
+import "./LandingPage.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { HeroSection } from "../components/HeroSection";
@@ -12,7 +13,10 @@ import { ThemeToggle } from "@/shared/components/ui/TemasToggle";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#09090b] transition-colors duration-300">
+    // overflow-x-hidden: rede de segurança contra estouro horizontal.
+    // Só no eixo X — diferente do login (overflow-hidden nos dois eixos),
+    // a landing precisa rolar verticalmente.
+    <div className="min-h-screen w-full overflow-x-hidden bg-surface transition-colors duration-300">
       <Header />
       <HeroSection />
       <ManagerSection />

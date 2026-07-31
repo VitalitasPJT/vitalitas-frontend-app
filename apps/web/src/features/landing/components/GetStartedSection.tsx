@@ -1,15 +1,26 @@
-import svgPaths from "@/shared/assets/icons/links/svg-30hlfm6d6z";
 import { SectionContainer } from "./SectionContainer";
 import { SectionEyebrow } from "./SectionEyebrow";
+import { Button } from "@/shared/components/ui/Button";
+
+function ArrowRightIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M4.16667 10H15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M10.8333 4.16667L15.8333 10L10.8333 15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
 
 export function GetStartedSection() {
   return (
+    // Fundo em degradê escuro intencional — funciona como uma faixa de CTA de
+    // destaque e não deve mudar com o tema do site (mesmo raciocínio do Footer).
     <section className="bg-gradient-to-b from-[#0d0d0d] to-[#1a0004] py-24 lg:py-32">
       <SectionContainer className="flex flex-col items-center text-center gap-6">
 
         <SectionEyebrow>COMECE AGORA</SectionEyebrow>
 
-        <h2 className="text-[36px] lg:text-[48px] font-bold text-white leading-tight max-w-3xl">
+        <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold text-white leading-tight max-w-3xl">
           Sua academia também precisa do Vitalitas
         </h2>
 
@@ -18,17 +29,12 @@ export function GetStartedSection() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
-          <button className="bg-[#e8001c] hover:bg-[#c50017] transition-colors cursor-pointer px-8 py-4 rounded-[10px] text-[17px] font-semibold text-white flex items-center gap-2">
+          <Button size="lg" icon={<ArrowRightIcon />}>
             Contratar o Vitalitas
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4.16667 10H15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d={svgPaths.p1ae0b780} stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-
-          <button className="border border-white hover:bg-white/10 transition-colors cursor-pointer px-8 py-4 rounded-[10px] text-[17px] font-semibold text-white">
+          </Button>
+          <Button variant="outline-light" size="lg">
             Fale com nosso suporte
-          </button>
+          </Button>
         </div>
 
         <p className="text-[13px] text-[#6b6b6b] mt-2">

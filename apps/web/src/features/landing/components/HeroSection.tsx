@@ -2,77 +2,82 @@ import svgPaths from "@/shared/assets/icons/links/svg-30hlfm6d6z";
 import imgContainerSanderson from "@/shared/assets/imgs/sand.png";
 import { SectionContainer } from "./SectionContainer";
 import { BrowserWindowFrame } from "./BrowserWindowFrame";
+import { Button } from "@/shared/components/ui/Button";
+import { Badge } from "@/shared/components/ui/Badge";
+import { Avatar } from "@/shared/components/ui/Avatar";
+
+function ArrowRightIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M4.16667 10H15.8333" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={svgPaths.p1ae0b780} stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export function HeroSection() {
   return (
-    <section className="bg-[#e5e5e5] py-16 lg:py-24">
+    <section className="bg-section-alt py-16 lg:py-24">
       <SectionContainer>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
-            {/* Badge */}
-            <div className="inline-block bg-[#fff0f2] px-4 py-2 rounded-full">
-              <span className="text-[13px] font-medium text-[#e8001c]">
-                Plataforma de gestão para academias
-              </span>
-            </div>
+            <Badge variant="brand" size="md">
+              Plataforma de gestão para academias
+            </Badge>
 
-            {/* Heading */}
-            <h1 className="text-[40px] lg:text-[56px] font-bold leading-tight">
-              Sua <span className="text-[#ee2b47]">academia</span> conectada.{" "}
+            {/* Heading — clamp() para não ficar minúsculo em telas ultra-largas */}
+            <h1 className="text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-tight text-ink">
+              Sua <span className="text-danger">academia</span> conectada.{" "}
               <br />
-              Seu <span className="text-[#ee2b47]">treino</span> elevado.
+              Seu <span className="text-danger">treino</span> elevado.
             </h1>
 
             {/* Description */}
-            <p className="text-[18px] text-[#6b6b6b] leading-relaxed">
+            <p className="text-[18px] text-body leading-relaxed">
               O Vitalitas é um ecossistema digital completo: sua academia ganha controle total da operação enquanto seus alunos vivem a melhor experiência de treino — tudo em uma única licença.
             </p>
 
             {/* Features */}
-            <div className="flex flex-wrap gap-6 py-4 border-b border-[#e5e5e5]">
+            <div className="flex flex-wrap gap-6 py-4 border-b border-border">
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                   <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="text-[14px] font-medium text-[#6b6b6b]">Suporte incluso</span>
+                <span className="text-[14px] font-medium text-body">Suporte incluso</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                   <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="text-[14px] font-medium text-[#6b6b6b]">Onboarding assistido</span>
+                <span className="text-[14px] font-medium text-body">Onboarding assistido</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <circle cx="8" cy="8" r="6.66667" stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                   <path d={svgPaths.p17134c00} stroke="#1A9E5A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="text-[14px] font-medium text-[#6b6b6b]">Cancelamento a qualquer hora</span>
+                <span className="text-[14px] font-medium text-body">Cancelamento a qualquer hora</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <button className="bg-[#e8001c] px-8 py-3 rounded-[10px] text-[16px] font-semibold text-white hover:bg-[#c50017] transition-colors flex items-center gap-2 cursor-pointer">
+              <Button size="lg" icon={<ArrowRightIcon />}>
                 Contratar o Vitalitas
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4.16667 10H15.8333" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d={svgPaths.p1ae0b780} stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
                 onClick={() => document.getElementById("produto")?.scrollIntoView({ behavior: "smooth" })}
-                className="text-[16px] font-medium text-[#0d0d0d] hover:text-[#e8001c] transition-colors cursor-pointer"
               >
                 Ver como funciona
-              </button>
+              </Button>
             </div>
 
             {/* Footer Note */}
-            <p className="text-[12px] text-[#9b9b9b] pt-2">
+            <p className="text-[12px] text-muted pt-2">
               Produto em lançamento — seja uma academia fundadora.
             </p>
           </div>
@@ -84,6 +89,7 @@ export function HeroSection() {
               variant="medium"
               className="shadow-[0px_24px_64px_0px_rgba(0,0,0,0.12)]"
             >
+              {/* Conteúdo do mockup: representa o produto, mantém aparência própria */}
               <div className="bg-[#f9fafb] p-4">
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div className="bg-white rounded-[10px] shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] p-3">
@@ -100,16 +106,14 @@ export function HeroSection() {
                   <p className="text-[12px] font-semibold text-[#0a0a0a] mb-3">Alunos Ativos</p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <img src={imgContainerSanderson} alt="Student" className="w-6 h-6 rounded-full" />
+                      <Avatar src={imgContainerSanderson} alt="Sanderson Machado" size="xs" />
                       <span className="text-[11px] font-medium text-[#0a0a0a] flex-1">Sanderson Machado</span>
-                      <span className="text-[10px] text-[#1a9e5a] bg-[#d4edda] px-2 py-1 rounded">Ativo</span>
+                      <Badge variant="success" size="sm">Ativo</Badge>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-[#e8001c] flex items-center justify-center">
-                        <span className="text-[10px] font-semibold text-white">IG</span>
-                      </div>
+                      <Avatar initials="IG" size="xs" />
                       <span className="text-[11px] font-medium text-[#0a0a0a] flex-1">Iuri Guimarães</span>
-                      <span className="text-[10px] text-[#1a9e5a] bg-[#d4edda] px-2 py-1 rounded">Ativo</span>
+                      <Badge variant="success" size="sm">Ativo</Badge>
                     </div>
                   </div>
                 </div>
@@ -117,13 +121,13 @@ export function HeroSection() {
             </BrowserWindowFrame>
 
             {/* Notification Popup */}
-            <div className="absolute -bottom-8 -left-8 bg-white rounded-[14px] shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-3 flex items-center gap-2 max-w-[260px]">
-              <div className="w-8 h-8 rounded-full bg-[#d4edda] flex items-center justify-center flex-shrink-0">
-                <div className="w-2 h-2 rounded-full bg-[#1a9e5a]"></div>
+            <div className="absolute -bottom-8 -left-8 bg-surface rounded-[14px] shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-3 flex items-center gap-2 max-w-[260px]">
+              <div className="w-8 h-8 rounded-full bg-success-light flex items-center justify-center flex-shrink-0">
+                <div className="w-2 h-2 rounded-full bg-success"></div>
               </div>
               <div>
-                <p className="text-[13px] font-semibold text-[#0d0d0d] leading-tight">Aluno confirmou presença no treino</p>
-                <p className="text-[11px] text-[#6b6b6b]">Agora mesmo</p>
+                <p className="text-[13px] font-semibold text-ink leading-tight">Aluno confirmou presença no treino</p>
+                <p className="text-[11px] text-body">Agora mesmo</p>
               </div>
             </div>
           </div>

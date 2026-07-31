@@ -2,3 +2,61 @@
 
 /* ── Dark mode via classe .dark no <html> — Tailwind v4 ── */
 @variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Marca / ação primária */
+  --color-brand: #e8001c;
+  --color-brand-hover: #c50017;
+  --color-brand-light: #fff0f2;
+
+  /* Erro / estado de perigo — separado da marca de propósito,
+     pra não ficar ambíguo se um vermelho é "clique aqui" ou "algo deu errado" */
+  --color-danger: #ee2b47;
+  --color-danger-light: #ffe8e8;
+
+  /* Sucesso */
+  --color-success: #1a9e5a;
+  --color-success-light: #d4edda;
+
+  /* Texto */
+  --color-ink: #0d0d0d;    /* títulos, texto principal */
+  --color-body: #6b6b6b;   /* parágrafos, descrições */
+  --color-muted: #9b9b9b;  /* texto auxiliar, notas de rodapé */
+
+  /* Superfícies */
+  --color-surface: #ffffff;
+  --color-surface-alt: #f9fafb;
+  --color-surface-muted: #f5f5f5;
+  --color-border: #e5e5e5;
+  --color-chrome: #b0b0b0; /* cabeçalho de janela de navegador nos mockups */
+}
+
+
+/* ==========================================================================
+   Tokens de cor — overrides no modo escuro
+   Mesma variável, valor diferente. Qualquer classe (bg-surface, text-ink...)
+   já muda sozinha quando a tag <html> tem a classe .dark — nenhum componente
+   precisa escrever "dark:" para isso funcionar.
+   ========================================================================== */
+.dark {
+  /* Marca/erro/sucesso mantêm o mesmo tom — só os fundos "claros" (badges)
+     viram uma versão translúcida, porque um rosa bem claro (#fff0f2) não
+     funciona sobre fundo escuro. */
+  --color-brand-light: rgba(232, 0, 28, 0.16);
+  --color-danger-light: rgba(238, 43, 71, 0.18);
+  --color-success-light: rgba(26, 158, 90, 0.18);
+ 
+  /* Reaproveitando a paleta escura que já existe no Header/ThemeToggle/
+     InputField/LoginForm, em vez de inventar uma nova. */
+  --color-ink: #e4e4e7;
+  --color-body: #a1a1aa;
+  --color-muted: #71717a;
+ 
+  --color-surface: #09090b;
+  --color-surface-alt: #18181b;
+  --color-surface-muted: #2c2c30;
+  --color-section-alt: #111113;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-chrome: #3f3f46;
+}
+ 

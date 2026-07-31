@@ -1,7 +1,18 @@
 import { SectionContainer } from "./SectionContainer";
+import type { JSX } from "react";
+import { Badge } from "@/shared/components/ui/Badge";
+import { Button } from "@/shared/components/ui/Button";
+
+type BadgeTone = "brand" | "success" | "neutral";
 
 export function WhyChooseSection() {
-  const benefits = [
+  const benefits: { 
+        icon: JSX.Element; 
+        title: string; 
+        description: string; 
+        badge: { text: string; tone: BadgeTone } 
+      }[] = [
+
     {
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -15,10 +26,7 @@ export function WhyChooseSection() {
       ),
       title: "Planos acessíveis",
       description: "Licenciamento mensal sem surpresas. Escolha o plano que se encaixa no tamanho da sua academia e escale quando precisar.",
-      badge: {
-        text: "Vagas limitadas",
-        color: "bg-[#fff0f2] text-[#e8001c]"
-      }
+      badge: { text: "Vagas limitadas", tone: "brand" }
     },
     {
       icon: (
@@ -28,10 +36,7 @@ export function WhyChooseSection() {
       ),
       title: "Configuração assistida",
       description: "Nossa equipe configura tudo: importação de alunos, personalização da plataforma e treinamento da equipe.",
-      badge: {
-        text: "Sem custo adicional",
-        color: "bg-[#f0fff7] text-[#1a9e5a]"
-      }
+      badge: { text: "Sem custo adicional", tone: "success" }
     },
     {
       icon: (
@@ -43,22 +48,19 @@ export function WhyChooseSection() {
       ),
       title: "Voz ativa no produto",
       description: "Academias fundadoras participam das decisões de novas funcionalidades. Seu feedback molda o roadmap.",
-      badge: {
-        text: "Canal exclusivo",
-        color: "bg-[#f5f5f5] text-[#6b6b6b]"
-      }
+      badge: { text: "Canal exclusivo", tone: "neutral" }
     }
   ];
 
   return (
-    <section id="planos" className="bg-[#e5e5e5] py-16 lg:py-24">
+    <section id="planos" className="bg-section-alt py-16 lg:py-24">
       <SectionContainer>
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-[36px] font-bold text-[#0d0d0d] mb-4">
+          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-ink mb-4">
             Por que escolher o Vitalitas?
           </h2>
-          <p className="text-[18px] text-[#6b6b6b] max-w-2xl mx-auto">
+          <p className="text-[18px] text-body max-w-2xl mx-auto">
             Tudo que sua academia precisa para crescer, em uma única licença.
           </p>
         </div>
@@ -66,42 +68,33 @@ export function WhyChooseSection() {
         {/* Benefits Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-white rounded-[16px] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.08)] border border-[rgba(170,170,170,0.67)] p-8 relative">
-              {/* Icon */}
-              <div className="w-12 h-12 bg-[#e8001c] rounded-full flex items-center justify-center mb-8">
+            <div key={index} className="bg-surface rounded-[16px] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.08)] border border-border p-8 relative">
+              <div className="w-12 h-12 bg-brand rounded-full flex items-center justify-center mb-8">
                 {benefit.icon}
               </div>
-
-              {/* Title */}
-              <h3 className="text-[20px] font-semibold text-[#0d0d0d] mb-4">
+              <h3 className="text-[20px] font-semibold text-ink mb-4">
                 {benefit.title}
               </h3>
-
-              {/* Description */}
-              <p className="text-[15px] text-[#6b6b6b] leading-relaxed mb-8">
+              <p className="text-[15px] text-body leading-relaxed mb-8">
                 {benefit.description}
               </p>
-
-              {/* Badge */}
-              <div className={`inline-block px-4 py-2 rounded-full text-[13px] font-medium ${benefit.badge.color}`}>
-                {benefit.badge.text}
-              </div>
+              <Badge variant={benefit.badge.tone} size="md">{benefit.badge.text}</Badge>
             </div>
           ))}
         </div>
 
         {/* Additional Info */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-3 bg-[#f9fafb] border border-[rgba(170,170,170,0.67)] rounded-[16px] px-6 py-4">
+          <div className="inline-flex items-center gap-3 bg-surface-alt border border-border rounded-[16px] px-6 py-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#e8001c] rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M8 1.33333V14.6667M8 14.6667L13.3333 9.33333M8 14.6667L2.66667 9.33333" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <div className="text-left">
-                <p className="text-[14px] font-semibold text-[#0d0d0d]">Desconto especial para academias fundadoras</p>
-                <p className="text-[12px] text-[#6b6b6b]">Garanta condições exclusivas por tempo limitado</p>
+                <p className="text-[14px] font-semibold text-ink">Desconto especial para academias fundadoras</p>
+                <p className="text-[12px] text-body">Garanta condições exclusivas por tempo limitado</p>
               </div>
             </div>
           </div>
@@ -109,9 +102,7 @@ export function WhyChooseSection() {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <button className="bg-[#e8001c] px-10 py-4 rounded-[10px] text-[16px] font-semibold text-white hover:bg-[#c50017] transition-colors cursor-pointer">
-            Contrate agora!
-          </button>
+          <Button size="lg">Contrate agora!</Button>
         </div>
       </SectionContainer>
     </section>

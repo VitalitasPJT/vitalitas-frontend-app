@@ -56,16 +56,16 @@ export function ManagerSection() {
   const [zoomAberto, setZoomAberto] = useState(false);
 
   return (
-    <section id="funcionalidades" className="bg-white py-16 lg:py-24">
+    <section id="funcionalidades" className="bg-surface py-16 lg:py-24">
       <SectionContainer>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
           <div>
             <SectionEyebrow className="mb-6">PARA O GESTOR</SectionEyebrow>
-            <h2 className="text-[36px] font-bold text-[#0d0d0d] leading-tight mb-6">
+            <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-ink leading-tight mb-6">
               Controle total da sua academia
             </h2>
-            <p className="text-[16px] text-[#6b6b6b] leading-relaxed mb-12">
+            <p className="text-[16px] text-body leading-relaxed mb-12">
               Chega de planilhas e sistemas separados. O Vitalitas centraliza a gestão financeira, operacional e de comunicação da sua academia.
             </p>
 
@@ -79,11 +79,9 @@ export function ManagerSection() {
               variant="medium"
               className="shadow-[0px_0px_14.9px_0px_rgba(0,0,0,0.62)]"
             >
-              {/* Imagem clicável */}
+              {/* Imagem clicável — print do produto, mantém aparência própria */}
               <div className="relative w-full group cursor-zoom-in" onClick={() => setZoomAberto(true)}>
                 <img src={imgContainer1} alt="Dashboard" className="w-full h-auto object-contain" />
-
-                {/* Overlay hint */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 text-white text-[13px] px-3 py-1.5 rounded-full">
                     Clique para ampliar
@@ -99,7 +97,6 @@ export function ManagerSection() {
               className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4 lg:p-12 cursor-zoom-out"
               onClick={() => setZoomAberto(false)}
             >
-              {/* Botão fechar */}
               <button
                 aria-label="Fechar imagem ampliada"
                 className="absolute top-4 right-4 text-white bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors"

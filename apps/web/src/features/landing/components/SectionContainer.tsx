@@ -7,21 +7,18 @@ interface SectionContainerProps {
   /**
    * Largura máxima do conteúdo. A maioria das seções usa "7xl" (1280px);
    * o AboutSection usa "1400" para acomodar os cards de time lado a lado.
+   * Acima de 1920px, a classe `landing-container` (definida em
+   * LandingPage.css) amplia isso para 1800px, para não sobrar espaço em
+   * branco enorme em telas ultra-largas.
    */
   maxWidth?: "7xl" | "1400";
 }
 
-/**
- * Padroniza o wrapper `max-w-* mx-auto px-8 lg:px-24` repetido em quase
- * toda seção da landing. O `<section>` externo (background, id, padding
- * vertical) continua sendo responsabilidade de cada seção, já que isso
- * varia por seção.
- */
 export function SectionContainer({ children, className = "", maxWidth = "7xl" }: SectionContainerProps) {
   const maxWidthClass = maxWidth === "1400" ? "max-w-[1400px]" : "max-w-7xl";
 
   return (
-    <div className={`${maxWidthClass} mx-auto px-8 lg:px-24 ${className}`.trim()}>
+    <div className={`landing-container ${maxWidthClass} mx-auto px-8 lg:px-24 ${className}`.trim()}>
       {children}
     </div>
   );
