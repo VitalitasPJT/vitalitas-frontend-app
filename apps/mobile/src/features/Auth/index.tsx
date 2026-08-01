@@ -8,12 +8,14 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  Keyboard,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "../../store/useAuth";
 import { Ionicons } from "@expo/vector-icons";
 import Input from "../../shared/components/Input";
 import Button from "../../shared/components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen() {
   const { signIn } = useAuth();
@@ -27,10 +29,13 @@ export default function LoginScreen() {
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const isFormValid = email.trim().length > 0 && password.trim().length > 0;
+  const [generalError, setGeneralError] = useState("");
 
   async function handleSubmit() {
+    Keyboard.dismiss();
     setEmailError("");
     setPasswordError("");
+    setGeneralError("");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -40,7 +45,9 @@ export default function LoginScreen() {
 
     try {
       setLoading(true);
-      const user = await signIn(email, password);
+      const user = await signIn(email, password, rememberMe);
+
+      await AsyncStorage.setItem("@rememberMe", rememberMe ? "true" : "false");
 
       if (user.Flag === true) {
         router.replace("/resetpassword");
@@ -48,13 +55,22 @@ export default function LoginScreen() {
       }
 
       const roleRoutes: Record<number, string> = {
-        1: "/aluno",
+        2: "/aluno",
       };
 
       router.replace(roleRoutes[user.TipoUsuario] ?? "/");
-    } catch (err) {
+    } catch (err: any) {
       console.log("Erro no login:", err);
-      setPasswordError("Email ou senha inválidos.");
+
+      if (!err.response) {
+        setGeneralError("Não foi possível conectar. Verifique sua internet e tente novamente.");
+      } else if (err.response.status === 401 || err.response.status === 403) {
+        setGeneralError("Email ou senha inválidos.");
+      } else if (err.response.status >= 500) {
+        setGeneralError("Ocorreu um erro no servidor. Tente novamente em instantes.");
+      } else {
+        setGeneralError("Não foi possível fazer login. Tente novamente.");
+      }
     } finally {
       setLoading(false);
     }
@@ -154,6 +170,8 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
+        {generalError ? <Text style={styles.generalErrorText}>{generalError}</Text> : null}
+
         {/* Botão Login */}
         <Button
           label="LOGIN"
@@ -232,11 +250,6 @@ const styles = StyleSheet.create({
   inputWrapper: {
     gap: 4,
   },
-  errorText: {
-    fontSize: 13,
-    color: "#ee2b47",
-    paddingLeft: 4,
-  },
   optionsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -270,5 +283,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
     color: "#000",
+  },
+  errorText: {
+    fontSize: 13,
+    color: "#ee2b47",
+    paddingLeft: 4,
+  },
+  generalErrorText: {
+    fontSize: 13,
+    color: "#ee2b47",
+    textAlign: "center",
+    marginTop: -4,
   },
 });

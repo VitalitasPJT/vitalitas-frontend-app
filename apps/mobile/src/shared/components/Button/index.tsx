@@ -50,7 +50,7 @@ export default function Button({
         colors={["#EE2B47", "#FF4059"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        style={[styles.button, isDisabled && styles.disabled]}
+        style={[styles.button, disabled && !loading && styles.disabled]}
       >
         {loading ? (
           <ActivityIndicator color="#fff" />
