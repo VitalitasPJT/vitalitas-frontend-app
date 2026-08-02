@@ -1,4 +1,5 @@
 import imgLogoVitalitas from "@/shared/assets/imgs/logo_loginPage.png";
+import { handleAnchorClick } from "@/shared/utils/smoothScroll";
 
 export function Footer() {
   return (
@@ -21,12 +22,12 @@ export function Footer() {
             <h4 className="text-[15px] font-semibold text-white mb-4">Produto</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#funcionalidades" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
+                <a href="#funcionalidades" onClick={handleAnchorClick} className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
                   Funcionalidades
                 </a>
               </li>
               <li>
-                <a href="#planos" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
+                <a href="#planos" onClick={handleAnchorClick} className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
                   Planos
                 </a>
               </li>
@@ -43,12 +44,12 @@ export function Footer() {
             <h4 className="text-[15px] font-semibold text-white mb-4">Empresa</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#sobre" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
+                <a href="#sobre" onClick={handleAnchorClick} className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
                   Sobre nós
                 </a>
               </li>
               <li>
-                <a href="#contato" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
+                <a href="#contato" onClick={handleAnchorClick} className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
                   Contato
                 </a>
               </li>
@@ -88,7 +89,7 @@ export function Footer() {
           <p className="text-[14px] text-[#9b9b9b]">
             © 2026 Vitalitas. Todos os direitos reservados.
           </p>
-          
+
           <div className="flex gap-6">
             <a href="#" className="text-[14px] text-[#9b9b9b] hover:text-white transition-colors">
               Termos de uso

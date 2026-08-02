@@ -1,48 +1,12 @@
 import { useState } from 'react';
 import { FormField } from '@/shared/components/inputs/FormField';
+import { PERFIL_OPTIONS } from '@/shared/constants/Roles';
+import type { FormErrors, FormState } from '../../../types/Form';
 import type { FormData } from '../../../pages/CreateUserPage';
 
 interface Step1Props {
   initialData: Partial<FormData>;
   onNext: (data: Partial<FormData>) => void;
-}
-
-const PERFIL_OPTIONS = [
-  { label: 'Aluno', value: 'aluno' },
-  { label: 'Instrutor', value: 'instrutor' },
-  { label: 'Gestor', value: 'gestor' },
-  { label: 'Administrador', value: 'admin' },
-];
-
-interface FormState {
-  nome: string;
-  email: string;
-  senha: string;
-  telefone: string;
-  cpf: string;
-  nascimento: string;
-  perfil: string;
-  quadra: string;
-  rua: string;
-  bairro: string;
-  cidade: string;
-  estado: string;
-  cep: string;
-}
-
-interface FormErrors {
-  nome?: string;
-  email?: string;
-  senha?: string;
-  telefone?: string;
-  cpf?: string;
-  nascimento?: string;
-  perfil?: string;
-  rua?: string;
-  bairro?: string;
-  cidade?: string;
-  estado?: string;
-  cep?: string;
 }
 
 const INITIAL: FormState = {

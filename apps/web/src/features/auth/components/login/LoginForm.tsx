@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Mail, Lock, Check } from "lucide-react";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { InputField } from "@/shared/components/inputs/InputGenericoModerno";
+import { InputField } from "@/shared/components/inputs/InputField";
 import { RoleRoutes } from "@/shared/constants/Roles";
 
 export default function LoginForm() {

@@ -1,0 +1,19 @@
+/* ==========================================================================
+   LandingPage.css — Apenas o que o Tailwind não suporta nativamente:
+   1. Largura máxima do conteúdo em telas ultra-largas (>=1920px), pra não
+      sobrar espaço em branco enorme nas laterais com texto minúsculo no meio
+      — mesmo problema que o LoginPage.css já resolve pro login (lá via
+      proporção de painéis; aqui via largura máxima do container).
+   ========================================================================== */
+
+@media (min-width: 1920px) {
+  .landing-container {
+    max-width: 1800px !important;
+  }
+}
+
+@media (min-width: 3840px) {
+  .phone-mockup-4k {
+    transform: scale(1.7);
+  }
+}
