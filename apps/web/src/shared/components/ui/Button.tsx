@@ -13,28 +13,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  // CTA principal sólido — Hero "Contratar o Vitalitas", WhyChoose "Contrate agora!", etc.
   primary: "bg-brand text-white hover:bg-brand-hover",
-  // Botão secundário claro — Step1 "Cancelar". Usa tokens (não gray-50/gray-200
-  // fixos), então também funciona no modo escuro.
   secondary: "bg-surface-alt border border-border text-ink hover:bg-surface-muted",
-  // Outline escuro sobre fundo claro — Header "Acessar plataforma".
-  // hover:text-surface (não hover:text-white fixo!) inverte certo nos dois temas:
-  // no claro vira texto branco sobre fundo escuro; no escuro vira texto escuro
-  // sobre fundo claro — sem isso o hover ficaria ilegível no modo escuro.
   outline: "border border-ink text-ink hover:bg-ink hover:text-surface",
-  // Outline claro sobre fundo escuro — GetStartedSection "Fale com nosso suporte".
-  // Fica sempre sobre um fundo intencionalmente escuro (o gradiente do
-  // GetStartedSection não muda com o tema), então branco fixo está certo aqui.
   "outline-light": "border border-white text-white hover:bg-white/10",
-  // Sem fundo/borda — Hero "Ver como funciona"
   ghost: "text-ink hover:text-brand",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
   sm: "px-4 py-2 text-[14px] rounded-[8px] gap-1.5",
   md: "px-6 py-2.5 text-[15px] rounded-[10px] gap-2",
-  lg: "px-8 py-3.5 text-[16px] rounded-[10px] gap-2",
+  // lg cresce um pouco em telas grandes (usado nos CTAs principais: Hero,
+  // GetStarted, WhyChoose) — sem exagerar, só o suficiente pra não ficar
+  // desproporcional ao lado de um título que também cresceu com clamp().
+  lg: "px-[clamp(1.5rem,2vw,2.25rem)] py-[clamp(0.75rem,1vw,1rem)] text-[clamp(15px,1vw,17px)] rounded-[10px] gap-2",
 };
 
 export function Button({

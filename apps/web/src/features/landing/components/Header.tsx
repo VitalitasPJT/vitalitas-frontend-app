@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import imgLogoVitalitas from "@/shared/assets/imgs/logo_loginPage.png";
 import { Button } from "@/shared/components/ui/Button";
+import { handleAnchorClick } from "@/shared/utils/smoothScroll";
 
 export function Header() {
   const navigate = useNavigate();
@@ -10,23 +11,23 @@ export function Header() {
   return (
     <header className="bg-surface border-b border-border shadow-lg sticky top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-8 lg:px-24">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 gap-4">
 
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <a href="#" className="flex items-center gap-3 flex-shrink-0">
             <img src={imgLogoVitalitas} alt="Vitalitas" className="w-10 h-10" />
-            {/* Antes era #EE2B47 — única ocorrência da marca fora do
-                padrão #e8001c usado no resto do site. Agora usa o token. */}
-            <span className="text-[24px] font-bold text-brand">VITALITAS</span>
+            <span className="text-[24px] font-bold text-brand whitespace-nowrap">VITALITAS</span>
           </a>
 
-          {/* Navigation desktop */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Navigation desktop — onClick={handleAnchorClick} troca o pulo
+              nativo do navegador por scroll suave com velocidade controlada
+              (ver shared/utils/smoothScroll.ts). */}
+          <nav className="hidden xl:flex items-center gap-6 flex-shrink-0">
             {["#funcionalidades", "#alunos", "#sobre", "#planos", "#contato"].map((href, i) => (
               <a
                 key={href}
                 href={href}
-                className="text-[15px] font-medium text-ink hover:text-brand transition-colors"
+                onClick={handleAnchorClick}
+                className="text-[15px] font-medium text-ink hover:text-brand transition-colors whitespace-nowrap"
               >
                 {["Funcionalidades", "Para Alunos", "Quem Somos", "Planos", "Contato"][i]}
               </a>
@@ -34,16 +35,16 @@ export function Header() {
           </nav>
 
           {/* CTA Buttons desktop */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button variant="outline" onClick={() => navigate("/vitalitas/user/login")}>
+          <div className="hidden xl:flex items-center gap-3 flex-shrink-0">
+            <Button variant="outline" className="whitespace-nowrap" onClick={() => navigate("/vitalitas/user/login")}>
               Acessar plataforma
             </Button>
-            <Button variant="primary">Contratar licença</Button>
+            <Button variant="primary" className="whitespace-nowrap">Contratar licença</Button>
           </div>
 
           {/* Hamburguer */}
           <button
-            className="lg:hidden p-2 text-ink"
+            className="xl:hidden p-2 text-ink flex-shrink-0"
             aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
             aria-expanded={menuAberto}
             onClick={() => setMenuAberto(!menuAberto)}
@@ -65,13 +66,18 @@ export function Header() {
           </button>
         </div>
 
-        {/* Menu mobile */}
+        {/* Menu mobile/tablet — o clique num link também fecha o menu, além
+            de rolar suavemente até a seção. */}
         {menuAberto && (
-          <div className="lg:hidden border-t border-border py-4 flex flex-col gap-4">
+          <div className="xl:hidden border-t border-border py-4 flex flex-col gap-4">
             {["#funcionalidades", "#alunos", "#sobre", "#planos", "#contato"].map((href, i) => (
               <a
                 key={href}
                 href={href}
+                onClick={(e) => {
+                  handleAnchorClick(e);
+                  setMenuAberto(false);
+                }}
                 className="text-[15px] font-medium text-ink hover:text-brand"
               >
                 {["Funcionalidades", "Para Alunos", "Quem Somos", "Planos", "Contato"][i]}

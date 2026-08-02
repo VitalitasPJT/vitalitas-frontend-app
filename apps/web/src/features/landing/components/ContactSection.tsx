@@ -32,14 +32,20 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contato" className="bg-section-alt w-full min-h-screen py-16 md:py-24 lg:py-32 px-4 md:px-8">
+    // CORREÇÃO (item 4): era "min-h-screen" — forçava a seção a ocupar no
+    // mínimo 100% da altura da tela, mesmo essa seção não sendo a última
+    // da página (GetStartedSection e Footer vêm depois). Como o formulário
+    // é bem mais curto que uma tela inteira, isso abria um vão vazio enorme
+    // antes das seções seguintes. Removido — a seção agora só ocupa a
+    // altura que o conteúdo + padding realmente precisam.
+    <section id="contato" className="bg-section-alt w-full py-[clamp(4rem,7vw,8rem)] px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading e Descrição */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[28px] md:text-[36px] lg:text-[36px] leading-[1.2] text-ink mb-4">
+          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.2] text-ink mb-4">
             Pronto para começar?
           </h2>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] md:text-[18px] leading-[1.5] text-body max-w-[521px] mx-auto px-4">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[clamp(1rem,1.2vw,1.125rem)] leading-[1.5] text-body max-w-[521px] mx-auto px-4 break-words">
             Preencha o formulário e nosso time entrará em contato para apresentar os planos e iniciar sua licença.
           </p>
         </div>
@@ -87,19 +93,12 @@ export function ContactSection() {
               />
             </div>
 
-            {/*
-              Botão de envio.
-              CORREÇÃO: era h-[52px] (altura FIXA) — com o texto
-              "Enviar — nosso time entrará em contato" quebrando em duas
-              linhas no mobile, isso espremia o texto dentro de uma caixa
-              baixa demais. Trocado para min-h-[52px], que deixa o botão
-              crescer se o texto precisar de duas linhas.
-            */}
+            {/* Botão de envio — min-h em vez de h fixo (correção anterior:
+                texto quebra em duas linhas no mobile). */}
             <Button type="submit" fullWidth className="min-h-[52px] h-auto py-3 mt-6" icon={<ArrowRightIcon />}>
               Enviar — nosso time entrará em contato
             </Button>
 
-            {/* Texto de garantia */}
             <p className="font-['Inter:Regular',sans-serif] font-normal text-[12px] leading-[18px] text-muted text-center mt-3">
               Retorno em até 24h.
             </p>
@@ -108,15 +107,12 @@ export function ContactSection() {
 
         {/*
           Ícones "Seus dados estão seguros / Retorno em até 24h / Sem spam".
-          NÃO mexi neles agora: usam transform="scale(0.75) translate(...)"
-          em cima de paths que parecem ser de outro viewBox — por isso, na
-          sua captura, aparecem só como círculo/x em vez de cadeado/relógio/
-          sino. Pra corrigir direito eu precisaria ver o conteúdo de
-          svgPaths (p8326c00, p3d62dd80, pf2f9980, p48af40, p30908200) —
-          me manda esse arquivo se quiser que eu acerte os ícones também.
+          Ainda pendente de correção — precisa do conteúdo de svgPaths
+          (p8326c00, p3d62dd80, pf2f9980, p48af40, p30908200) pra acertar
+          os transforms.
         */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mt-8 md:mt-12 px-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <div className="size-4 shrink-0">
               <svg className="block size-full" fill="none" viewBox="0 0 16 16">
                 <g opacity="1">
@@ -129,7 +125,7 @@ export function ContactSection() {
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <div className="size-4 shrink-0">
               <svg className="block size-full" fill="none" viewBox="0 0 16 16">
                 <g opacity="1">
@@ -143,7 +139,7 @@ export function ContactSection() {
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <div className="size-4 shrink-0">
               <svg className="block size-full" fill="none" viewBox="0 0 16 16">
                 <g opacity="1">

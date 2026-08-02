@@ -11,3 +11,9 @@
     max-width: 1800px !important;
   }
 }
+
+@media (min-width: 3840px) {
+  .phone-mockup-4k {
+    transform: scale(1.7);
+  }
+}

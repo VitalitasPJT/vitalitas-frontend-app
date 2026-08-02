@@ -56,16 +56,16 @@ export function ManagerSection() {
   const [zoomAberto, setZoomAberto] = useState(false);
 
   return (
-    <section id="funcionalidades" className="bg-surface py-16 lg:py-24">
+    <section id="funcionalidades" className="bg-surface py-[clamp(4rem,6vw,7rem)]">
       <SectionContainer>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
-          <div>
+          <div className="min-w-0">
             <SectionEyebrow className="mb-6">PARA O GESTOR</SectionEyebrow>
             <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-ink leading-tight mb-6">
               Controle total da sua academia
             </h2>
-            <p className="text-[16px] text-body leading-relaxed mb-12">
+            <p className="text-[clamp(1rem,1.1vw,1rem)] text-body leading-relaxed mb-12 break-words">
               Chega de planilhas e sistemas separados. O Vitalitas centraliza a gestão financeira, operacional e de comunicação da sua academia.
             </p>
 
@@ -73,13 +73,12 @@ export function ManagerSection() {
           </div>
 
           {/* Right Content - Dashboard Image */}
-          <div className="relative">
+          <div className="relative min-w-0">
             <BrowserWindowFrame
               url="app.vitalitas.com.br/admin_dashboard"
               variant="medium"
               className="shadow-[0px_0px_14.9px_0px_rgba(0,0,0,0.62)]"
             >
-              {/* Imagem clicável — print do produto, mantém aparência própria */}
               <div className="relative w-full group cursor-zoom-in" onClick={() => setZoomAberto(true)}>
                 <img src={imgContainer1} alt="Dashboard" className="w-full h-auto object-contain" />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">

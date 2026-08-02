@@ -13,18 +13,18 @@ function ArrowRightIcon() {
 
 export function GetStartedSection() {
   return (
-    // Fundo em degradê escuro intencional — funciona como uma faixa de CTA de
-    // destaque e não deve mudar com o tema do site (mesmo raciocínio do Footer).
-    <section className="bg-gradient-to-b from-[#0d0d0d] to-[#1a0004] py-24 lg:py-32">
+    // Fundo em degradê escuro intencional — não muda com o tema (mesmo
+    // raciocínio do Footer).
+    <section className="bg-gradient-to-b from-[#0d0d0d] to-[#1a0004] py-[clamp(6rem,7vw,8rem)]">
       <SectionContainer className="flex flex-col items-center text-center gap-6">
 
         <SectionEyebrow>COMECE AGORA</SectionEyebrow>
 
-        <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold text-white leading-tight max-w-3xl">
+        <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold text-white leading-tight max-w-3xl break-words">
           Sua academia também precisa do Vitalitas
         </h2>
 
-        <p className="text-[18px] text-[#9b9b9b] max-w-xl leading-relaxed">
+        <p className="text-[clamp(1rem,1.2vw,1.125rem)] text-[#9b9b9b] max-w-xl leading-relaxed break-words">
           Fale com nosso time e descubra o plano ideal para o tamanho da sua academia.
         </p>
 

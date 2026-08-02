@@ -50,19 +50,20 @@ const studentFeatures: FeatureItem[] = [
 
 export function StudentSection() {
   return (
-    <section id="alunos" className="bg-section-alt py-16 lg:py-24">
+    <section id="alunos" className="bg-section-alt py-[clamp(4rem,6vw,7rem)]">
       <SectionContainer>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content - Mobile Mockups.
-              CORREÇÃO: antes era "flex" sempre, com dois w-[148px] fixos +
-              gap-8 (32px) = 328px mínimos, que não cabiam em telas de
-              320-375px e causavam rolagem horizontal na página inteira.
-              Agora empilha (flex-col) por padrão e só vira lado a lado
-              a partir de sm: (≥640px), onde já sobra espaço de sobra. */}
-          <div className="relative flex flex-col sm:flex-row justify-center lg:justify-start items-center sm:items-start gap-8">
+              flex-col por padrão (empilha no mobile, corrige overflow <375px),
+              sm:flex-row a partir daí. .phone-mockup-4k escala o conjunto em
+              telas 2K/4K (regra em LandingPage.css) — o conteúdo interno tem
+              posicionamento fino em px, não dá pra deixar 100% fluido sem
+              reconstruir o mockup, então a solução é a mesma técnica "-4k"
+              do LoginPage.css: escala explícita por breakpoint, não clamp(). */}
+          <div className="phone-mockup-4k relative flex flex-col sm:flex-row justify-center lg:justify-start items-center sm:items-start gap-8">
             {/* Phone 1 - Workout */}
             <div className="relative">
-              <div className="bg-[#0d0d0d] rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-[6px] w-[148px]">
+              <div className="bg-[#3f3f46] rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-[6px] w-[148px]">
                 <div className="bg-white rounded-[26px] overflow-hidden h-[283px] p-4">
                   <div className="space-y-3 pt-8">
                     <div className="bg-white border border-[rgba(170,170,170,0.67)] rounded-[10px] p-2">
@@ -84,15 +85,15 @@ export function StudentSection() {
 
             {/* Phone 2 - Student Profile */}
             <div className="relative">
-              <div className="bg-[#0d0d0d] rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-[6px] w-[148px]">
+              <div className="bg-[#3f3f46] rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.1)] p-[6px] w-[148px]">
                 <div className="bg-white rounded-[26px] overflow-hidden h-[283px]">
                   <div className="bg-[#f9fafb] p-3 h-full">
                     <div className="flex items-center gap-2 mb-4">
-                      <div className="w-[40px] h-[40px] bg-[#e8001c] rounded-full flex items-center justify-center">
+                      <div className="w-[40px] h-[40px] bg-[#e8001c] rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-[12px] font-bold text-white">M</span>
                       </div>
-                      <div>
-                        <p className="text-[11px] font-semibold text-[#0a0a0a]">Maria Silva</p>
+                      <div className="min-w-0">
+                        <p className="text-[11px] font-semibold text-[#0a0a0a] truncate">Maria Silva</p>
                         <p className="text-[8px] text-[#6b6b6b]">Aluna</p>
                       </div>
                     </div>
@@ -110,7 +111,7 @@ export function StudentSection() {
 
                     <div className="bg-white rounded-[10px] shadow-[0px_0px_5px_0px_rgba(0,0,0,0.25)] p-2">
                       <p className="text-[9px] text-[#6b6b6b] mb-1">Mensalidade</p>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-2">
                         <p className="text-[11px] font-bold text-[#0d0d0d]">R$ 149,90</p>
                         <Badge variant="success" size="sm">Paga</Badge>
                       </div>
@@ -122,12 +123,12 @@ export function StudentSection() {
           </div>
 
           {/* Right Content */}
-          <div>
+          <div className="min-w-0">
             <SectionEyebrow className="mb-6">PARA O ALUNO</SectionEyebrow>
             <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-ink leading-tight mb-6">
               Uma experiência que faz o aluno querer voltar
             </h2>
-            <p className="text-[16px] text-body leading-relaxed mb-12">
+            <p className="text-[clamp(1rem,1.1vw,1rem)] text-body leading-relaxed mb-12 break-words">
               Quando o aluno tem uma boa experiência, ele renova. O app do Vitalitas transforma a rotina de treino em algo que o aluno realmente usa e aprecia.
             </p>
 

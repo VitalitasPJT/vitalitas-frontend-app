@@ -1,18 +1,19 @@
+import type { ReactNode } from "react";
 import { SectionContainer } from "./SectionContainer";
-import type { JSX } from "react";
 import { Badge } from "@/shared/components/ui/Badge";
 import { Button } from "@/shared/components/ui/Button";
 
 type BadgeTone = "brand" | "success" | "neutral";
 
-export function WhyChooseSection() {
-  const benefits: { 
-        icon: JSX.Element; 
-        title: string; 
-        description: string; 
-        badge: { text: string; tone: BadgeTone } 
-      }[] = [
+interface Benefit {
+  icon: ReactNode;
+  title: string;
+  description: string;
+  badge: { text: string; tone: BadgeTone };
+}
 
+export function WhyChooseSection() {
+  const benefits: Benefit[] = [
     {
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -53,14 +54,14 @@ export function WhyChooseSection() {
   ];
 
   return (
-    <section id="planos" className="bg-section-alt py-16 lg:py-24">
+    <section id="planos" className="bg-section-alt py-[clamp(4rem,6vw,7rem)]">
       <SectionContainer>
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-ink mb-4">
             Por que escolher o Vitalitas?
           </h2>
-          <p className="text-[18px] text-body max-w-2xl mx-auto">
+          <p className="text-[clamp(1rem,1.2vw,1.125rem)] text-body max-w-2xl mx-auto">
             Tudo que sua academia precisa para crescer, em uma única licença.
           </p>
         </div>
@@ -68,14 +69,14 @@ export function WhyChooseSection() {
         {/* Benefits Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-surface rounded-[16px] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.08)] border border-border p-8 relative">
+            <div key={index} className="bg-surface rounded-[16px] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.08)] border border-border p-8 relative min-w-0">
               <div className="w-12 h-12 bg-brand rounded-full flex items-center justify-center mb-8">
                 {benefit.icon}
               </div>
-              <h3 className="text-[20px] font-semibold text-ink mb-4">
+              <h3 className="text-[20px] font-semibold text-ink mb-4 break-words">
                 {benefit.title}
               </h3>
-              <p className="text-[15px] text-body leading-relaxed mb-8">
+              <p className="text-[15px] text-body leading-relaxed mb-8 break-words">
                 {benefit.description}
               </p>
               <Badge variant={benefit.badge.tone} size="md">{benefit.badge.text}</Badge>
@@ -87,14 +88,14 @@ export function WhyChooseSection() {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center gap-3 bg-surface-alt border border-border rounded-[16px] px-6 py-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-brand rounded-full flex items-center justify-center flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M8 1.33333V14.6667M8 14.6667L13.3333 9.33333M8 14.6667L2.66667 9.33333" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <div className="text-left">
-                <p className="text-[14px] font-semibold text-ink">Desconto especial para academias fundadoras</p>
-                <p className="text-[12px] text-body">Garanta condições exclusivas por tempo limitado</p>
+              <div className="text-left min-w-0">
+                <p className="text-[14px] font-semibold text-ink break-words">Desconto especial para academias fundadoras</p>
+                <p className="text-[12px] text-body break-words">Garanta condições exclusivas por tempo limitado</p>
               </div>
             </div>
           </div>

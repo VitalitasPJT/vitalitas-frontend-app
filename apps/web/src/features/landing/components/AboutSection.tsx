@@ -14,15 +14,15 @@ const teamMembers: TeamMember[] = [
 
 export function AboutSection() {
   return (
-    <section id="sobre" className="bg-surface w-full py-20">
+    <section id="sobre" className="bg-surface w-full py-[clamp(4rem,6vw,7rem)]">
       <SectionContainer maxWidth="1400">
         {/* Header */}
         <div className="text-center mb-16">
           <SectionEyebrow className="mb-4">QUEM SOMOS</SectionEyebrow>
-          <h2 className="text-4xl font-bold text-ink mb-4">
+          <h2 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-ink mb-4">
             Construído por quem viveu o problema
           </h2>
-          <p className="text-lg text-body max-w-[600px] mx-auto">
+          <p className="text-[clamp(1rem,1.2vw,1.125rem)] text-body max-w-[600px] mx-auto break-words">
             O Vitalitas nasceu de uma observação simples: academias de bairro movimentam comunidades inteiras, mas ainda dependem de cadernos, planilhas e grupos de WhatsApp para funcionar.
           </p>
         </div>
@@ -30,15 +30,15 @@ export function AboutSection() {
         {/* Quote and Team Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
           {/* Quote */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             <div className="text-[64px] leading-none text-brand">"</div>
-            <p className="text-xl italic text-ink leading-relaxed">
+            <p className="text-xl italic text-ink leading-relaxed break-words">
               Vimos de perto o quanto uma academia pode crescer quando para de perder tempo com o operacional e foca no que realmente importa — as pessoas.
             </p>
             <p className="text-sm font-medium text-ink">
               — Fundadores, Vitalitas
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <Badge variant="neutral" size="md">Tecnologia acessível</Badge>
               <Badge variant="neutral" size="md">Foco no gestor</Badge>
               <Badge variant="neutral" size="md">Resultado real</Badge>

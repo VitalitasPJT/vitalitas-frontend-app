@@ -19,13 +19,13 @@ const testimonials: Testimonial[] = [
 
 export function KnowYourStudentsSection() {
   return (
-    <section className="bg-section-alt py-16 lg:py-24">
+    <section className="bg-section-alt py-[clamp(4rem,6vw,7rem)]">
       <SectionContainer>
         <div className="text-center mb-16">
           <h2 className="text-[clamp(1.75rem,4vw,2.625rem)] font-bold text-ink mb-6">
             Conheça melhor quem consome o Vitalitas
           </h2>
-          <p className="text-[18px] text-body max-w-3xl mx-auto leading-relaxed">
+          <p className="text-[clamp(1rem,1.2vw,1.125rem)] text-body max-w-3xl mx-auto leading-relaxed break-words">
             O Vitalitas já está transformando a gestão de academias em todo o Brasil. Veja o que nossos clientes têm a dizer sobre a experiência.
           </p>
         </div>

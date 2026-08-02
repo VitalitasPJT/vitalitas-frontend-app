@@ -3,14 +3,17 @@
 /* ── Dark mode via classe .dark no <html> — Tailwind v4 ── */
 @variant dark (&:where(.dark, .dark *));
 
+/* ==========================================================================
+   Tokens de cor — valores padrão (modo claro)
+   Ver docs/design-tokens.md para o raciocínio por trás de cada consolidação.
+   ========================================================================== */
 @theme {
   /* Marca / ação primária */
   --color-brand: #e8001c;
   --color-brand-hover: #c50017;
   --color-brand-light: #fff0f2;
 
-  /* Erro / estado de perigo — separado da marca de propósito,
-     pra não ficar ambíguo se um vermelho é "clique aqui" ou "algo deu errado" */
+  /* Erro / perigo — separado da marca de propósito */
   --color-danger: #ee2b47;
   --color-danger-light: #ffe8e8;
 
@@ -19,39 +22,42 @@
   --color-success-light: #d4edda;
 
   /* Texto */
-  --color-ink: #0d0d0d;    /* títulos, texto principal */
-  --color-body: #6b6b6b;   /* parágrafos, descrições */
-  --color-muted: #9b9b9b;  /* texto auxiliar, notas de rodapé */
+  --color-ink: #0d0d0d;
+  --color-body: #6b6b6b;
+  --color-muted: #9b9b9b;
 
   /* Superfícies */
   --color-surface: #ffffff;
   --color-surface-alt: #f9fafb;
   --color-surface-muted: #f5f5f5;
+  --color-section-alt: #e5e5e5; /* fundo de seção "alternada" (Hero, Student, WhyChoose...) */
   --color-border: #e5e5e5;
   --color-chrome: #b0b0b0; /* cabeçalho de janela de navegador nos mockups */
 }
 
-
 /* ==========================================================================
    Tokens de cor — overrides no modo escuro
-   Mesma variável, valor diferente. Qualquer classe (bg-surface, text-ink...)
-   já muda sozinha quando a tag <html> tem a classe .dark — nenhum componente
-   precisa escrever "dark:" para isso funcionar.
    ========================================================================== */
 .dark {
-  /* Marca/erro/sucesso mantêm o mesmo tom — só os fundos "claros" (badges)
-     viram uma versão translúcida, porque um rosa bem claro (#fff0f2) não
-     funciona sobre fundo escuro. */
-  --color-brand-light: rgba(232, 0, 28, 0.16);
-  --color-danger-light: rgba(238, 43, 71, 0.18);
-  --color-success-light: rgba(26, 158, 90, 0.18);
- 
-  /* Reaproveitando a paleta escura que já existe no Header/ThemeToggle/
-     InputField/LoginForm, em vez de inventar uma nova. */
+  /*
+    Fundos dos badges: no modo claro, bg bem claro + texto colorido já dá
+    contraste de luminância alto (não depende de enxergar matiz). No modo
+    escuro, um fundo translúcido da MESMA cor do texto criava badges onde
+    letra e fundo ficavam parecidos demais — ruim pra qualquer usuário, e
+    especialmente ruim pra quem tem deficiência de percepção do vermelho,
+    já que o brand/danger dependiam justamente do canal comprometido.
+    Agora o fundo fica sólido (bem mais escuro que o texto), e o Badge.tsx
+    força o texto pra branco no escuro — contraste por luminância, não por
+    matiz, então funciona independente de daltonismo.
+  */
+  --color-brand-light: #5c1018;
+  --color-danger-light: #5c1018;
+  --color-success-light: #14401f;
+
   --color-ink: #e4e4e7;
   --color-body: #a1a1aa;
   --color-muted: #71717a;
- 
+
   --color-surface: #09090b;
   --color-surface-alt: #18181b;
   --color-surface-muted: #2c2c30;
@@ -59,4 +65,3 @@
   --color-border: rgba(255, 255, 255, 0.08);
   --color-chrome: #3f3f46;
 }
- 
