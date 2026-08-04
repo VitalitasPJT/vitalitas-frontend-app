@@ -20,6 +20,14 @@ function RootNavigation() {
 
     if (user) {
       const currentRoute = "/" + segments.join("/");
+
+      if (user.Flag === true) {
+        if (currentRoute !== "/resetpassword") {
+          router.replace("/resetpassword");
+        }
+        return;
+      }
+
       const targetRoute = roleRoutes[user.TipoUsuario] ?? "/";
 
       // só redireciona se ainda estiver na tela de login/index
@@ -27,7 +35,7 @@ function RootNavigation() {
         router.replace(targetRoute);
       }
     }
-  }, [user, loading, segments]);
+  }, [user, loading, segments, router]);
 
   if (loading) {
     return null; // pode trocar por uma tela de loading/splash depois

@@ -43,7 +43,7 @@ export default function Button({
     <TouchableOpacity
       activeOpacity={0.85}
       disabled={isDisabled}
-      style={style}
+      style={[{ width: "100%" }, style]}
       {...rest}
     >
       <LinearGradient

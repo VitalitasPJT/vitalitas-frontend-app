@@ -21,6 +21,7 @@ interface AuthContextData {
   loading: boolean;
   signIn: (email: string, password: string, rememberMe: boolean) => Promise<LoginData>;
   signOut: () => Promise<void>;
+  updateUserFlag: (flag: boolean) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -89,13 +90,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return data;
   }
 
+  async function updateUserFlag(flag: boolean) {
+    if (!user) return;
+
+    const updatedUser = { ...user, Flag: flag };
+    setUser(updatedUser);
+
+    await AsyncStorage.setItem("@user", JSON.stringify(updatedUser));
+  }
+
   async function signOut() {
     await AsyncStorage.multiRemove(["@token", "@refreshToken", "@user", "@rememberMe"]);
     setUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, updateUserFlag }}>
       {children}
     </AuthContext.Provider>
   );
