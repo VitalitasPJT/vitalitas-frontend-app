@@ -14,7 +14,11 @@ import CriarUsuario from "@/features/users/gestor/pages/CreateUserPage";
 import LogsPageGestor from "@/features/users/gestor/pages/LogsPage";
 
 // Outras páginas
-import FirstAcess from "@/features/first-access/pages/PasswordResetPage";
+// Renomeado de PasswordResetPage para PasswordFirstAccessPage (nome antigo
+// causava confusão com o fluxo de reset de senha por e-mail, que é uma
+// feature diferente e ainda não está na rota nenhuma). Alias corrigido de
+// "FirstAcess" (typo) para "FirstAccess".
+import FirstAccess from "@/features/first-access/pages/PasswordFirstAccessPage";
 import ErrorPage from "@/features/redirect-error/pages/ErrorPage";
 
 // Guards
@@ -33,13 +37,13 @@ export default function AppRoutes() {
       <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
       {/* ======================
-         RESET DE SENHA
+         PRIMEIRO ACESSO (troca da senha provisória)
       ====================== */}
       <Route
         path="/vitalitas/user/resetpassword"
         element={
           <PasswordResetRoute>
-            <FirstAcess />
+            <FirstAccess />
           </PasswordResetRoute>
         }
       />

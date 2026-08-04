@@ -1,29 +1,31 @@
-import React from "react";
+import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "@/shared/hooks/useAuth";
+import { useAuthGuardStatus } from "@/shared/hooks/useAuthGuardStatus";
+import { LoadingScreen } from "@/shared/components/ui/LoadingScreen";
 
 interface RoleRouteProps {
-  children: React.ReactNode;
+  children: ReactNode;
   allowedRoles: string[];
 }
 
+/**
+ * Mesma base de PrivateRoute (useAuthGuardStatus), com a checagem extra de
+ * allowedRoles no status "ready".
+ */
 export function RoleRoute({ children, allowedRoles }: RoleRouteProps) {
-  const { user, isAuthenticated, loading } = useAuth();
+  const guard = useAuthGuardStatus();
 
-  if (loading) return <div>Carregando...</div>;
-
-  if (!isAuthenticated || !user) {
-    return <Navigate to="/vitalitas/user/login" replace />;
+  switch (guard.status) {
+    case "loading":
+      return <LoadingScreen />;
+    case "unauthenticated":
+      return <Navigate to="/vitalitas/user/login" replace />;
+    case "needsPasswordReset":
+      return <Navigate to="/vitalitas/user/resetpassword" replace />;
+    case "ready":
+      if (!allowedRoles.includes(guard.user.TipoUsuario)) {
+        return <Navigate to="/erro/403" replace />;
+      }
+      return <>{children}</>;
   }
-
-  if (user.Flag) {
-    return <Navigate to="/vitalitas/user/resetpassword" replace />;
-  }
-
-  if (!allowedRoles.includes(user.TipoUsuario)) {
-    // Redireciona para a tela de erro 403 com contexto
-    return <Navigate to="/erro/403" replace />;
-  }
-
-  return <>{children}</>;
 }

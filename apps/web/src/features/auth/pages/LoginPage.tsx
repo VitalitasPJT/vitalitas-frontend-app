@@ -1,6 +1,6 @@
-import "../components/login/LoginPage.css";
-import LeftPanel from "../components/login/LeftPanel";
-import RightPanel from "../components/login/RightPanel";
+import "./LoginPage.css";
+import LeftPanel from "../components/LeftPanel";
+import RightPanel from "../components/RightPanel";
 import { ThemeToggle } from "@/shared/components/ui/TemasToggle";
 
 export default function LoginPage() {

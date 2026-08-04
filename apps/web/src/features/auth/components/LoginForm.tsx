@@ -4,6 +4,7 @@ import { Mail, Lock, Check } from "lucide-react";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { InputField } from "@/shared/components/inputs/InputField";
 import { RoleRoutes } from "@/shared/constants/Roles";
+import { PasswordRecoverModal } from "./PasswordRecoverModal";
 
 export default function LoginForm() {
   const { login } = useAuth();
@@ -14,6 +15,7 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [isRecoverModalOpen, setIsRecoverModalOpen] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -27,7 +29,7 @@ export default function LoginForm() {
     }
 
     try {
-      const user = await login(email, password);
+      const user = await login(email, password, rememberMe);
 
       if (user.Flag === true) {
         navigate("/vitalitas/user/resetpassword");
@@ -82,7 +84,7 @@ export default function LoginForm() {
           isPassword
         />
 
-        {/* Lembrar-me */}
+        {/* Lembrar-me / Esqueceu a senha */}
         <div className="field-options-4k flex items-center justify-between">
           <div
             role="checkbox"
@@ -104,6 +106,14 @@ export default function LoginForm() {
               Lembrar-me
             </span>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsRecoverModalOpen(true)}
+            className="font-semibold text-brand hover:text-brand-hover transition-colors cursor-pointer"
+          >
+            Esqueceu a senha?
+          </button>
         </div>
 
         <button
@@ -115,6 +125,8 @@ export default function LoginForm() {
           LOGIN
         </button>
       </form>
+
+      <PasswordRecoverModal isOpen={isRecoverModalOpen} onClose={() => setIsRecoverModalOpen(false)} />
     </div>
   );
 }

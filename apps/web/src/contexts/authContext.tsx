@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { loginRequest } from "@/features/auth/services/authService";
 import { tipoUsuarioMap } from "@/shared/constants/Roles";
+import { getAuthItem, setAuthItem, clearAuthItems } from "@/shared/services/tokenStorage";
 import type { User, AuthContextType } from "@/shared/types/auth.ts";
 
 // ─── Context ──────────────────────────────────────────────────────────────────
@@ -9,6 +10,17 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
+/**
+ * As 4 leituras/escritas diretas de localStorage.getItem/setItem("user", ...)
+ * viraram getAuthItem/setAuthItem, que respeitam o storage escolhido no
+ * login (localStorage se "lembrar-me" marcado, sessionStorage se não —
+ * ver shared/services/tokenStorage.ts). login() agora recebe rememberMe e
+ * repassa pra loginRequest, que é quem decide o storage do token.
+ *
+ * IMPORTANTE: a assinatura de `login` em AuthContextType (shared/types/auth.ts)
+ * também precisa mudar para `(email: string, password: string, rememberMe: boolean) => Promise<User>`.
+ * Não tenho esse arquivo neste momento — só ajustar essa linha lá resolve.
+ */
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -16,16 +28,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const isAuthenticated = !!user;
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = getAuthItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
     setLoading(false);
   }, []);
 
-  async function login(email: string, password: string): Promise<User> {
-    const data = await loginRequest(email, password);
-    // loginRequest já salvou Token e RefreshToken no localStorage
+  async function login(email: string, password: string, rememberMe: boolean): Promise<User> {
+    const data = await loginRequest(email, password, rememberMe);
+    // loginRequest já salvou Token e RefreshToken no storage correto
 
     const tipoStr = tipoUsuarioMap[Number(data.TipoUsuario)];
     if (!tipoStr) {
@@ -50,21 +62,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     setUser(newUser);
-    localStorage.setItem("user", JSON.stringify(newUser));
+    setAuthItem("user", JSON.stringify(newUser));
 
     return newUser;
   }
 
   function logout() {
     setUser(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("refreshToken");
+    clearAuthItems(["user", "token", "refreshToken"]);
   }
 
   function updateUser(updatedUser: User) {
     setUser(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setAuthItem("user", JSON.stringify(updatedUser));
   }
 
   return (

@@ -1,19 +1,30 @@
-import React from "react";
+import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "@/shared/hooks/useAuth";
+import { useAuthGuardStatus } from "@/shared/hooks/useAuthGuardStatus";
+import { LoadingScreen } from "@/shared/components/ui/LoadingScreen";
 
-export function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, loading, user } = useAuth();
+interface Props {
+  children: ReactNode;
+}
 
-  if (loading) return <div>Carregando...</div>;
+/**
+ * Checagem de loading/autenticação/Flag extraída para useAuthGuardStatus
+ * (compartilhado com RoleRoute e PasswordResetRoute). Este guard só decide
+ * o que fazer em cada status: usuário com senha provisória pendente
+ * (Flag true) é mandado para a troca de senha, não para dentro da área
+ * privada.
+ */
+export function PrivateRoute({ children }: Props) {
+  const guard = useAuthGuardStatus();
 
-  if (!isAuthenticated || !user) {
-    return <Navigate to="/vitalitas/user/login" replace />;
+  switch (guard.status) {
+    case "loading":
+      return <LoadingScreen />;
+    case "unauthenticated":
+      return <Navigate to="/vitalitas/user/login" replace />;
+    case "needsPasswordReset":
+      return <Navigate to="/vitalitas/user/resetpassword" replace />;
+    case "ready":
+      return <>{children}</>;
   }
-
-  if (user.Flag) {
-    return <Navigate to="/vitalitas/user/resetpassword" replace />;
-  }
-
-  return <>{children}</>;
 }
