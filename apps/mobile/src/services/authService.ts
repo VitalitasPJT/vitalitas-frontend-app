@@ -15,3 +15,11 @@ export async function trocarSenhaRequest(idUsuario: string, novaSenha: string) {
   });
   return response.data;
 }
+
+export async function refreshRequest(accessToken: string, refreshToken: string) {
+  const response = await api.post("/usuario/refresh", {
+    AccessToken: accessToken,
+    RefreshToken: refreshToken,
+  });
+  return response.data;
+}

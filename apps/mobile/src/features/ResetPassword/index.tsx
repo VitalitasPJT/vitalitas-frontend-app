@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  ActivityIndicator,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  BackHandler,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,7 +18,7 @@ import Button from "../../shared/components/Button";
 
 export default function ResetPasswordScreen() {
   const router = useRouter();
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateUserFlag } = useAuth();
 
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
@@ -24,6 +26,20 @@ export default function ResetPasswordScreen() {
   const [showConfirmar, setShowConfirmar] = useState(false);
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
+
+  const handleCancelar = useCallback(() => {
+    signOut();
+    router.replace("/");
+  }, [signOut, router]);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+      handleCancelar();
+      return true;
+    });
+
+    return () => backHandler.remove();
+  }, [handleCancelar]);
 
   const validacoes = {
     minimo8: novaSenha.length >= 8,
@@ -33,6 +49,8 @@ export default function ResetPasswordScreen() {
   };
 
   const tudo_valido = Object.values(validacoes).every(Boolean);
+  const camposPreenchidos = novaSenha.trim().length > 0 && confirmarSenha.trim().length > 0;
+  const podeSalvar = tudo_valido && camposPreenchidos;
 
   async function handleSalvar() {
     setErro("");
@@ -49,134 +67,150 @@ export default function ResetPasswordScreen() {
 
     try {
       setLoading(true);
-      console.log("🔵 Trocando senha para usuário:", user?.IdUsuario);
       await trocarSenhaRequest(user!.IdUsuario, novaSenha);
+      await updateUserFlag(false);
       router.replace("/aluno");
     } catch (err: any) {
-      setErro("Erro ao salvar senha. Tente novamente.");
+      console.log("Erro ao trocar senha:", err);
+
+      if (!err.response) {
+        setErro("Não foi possível conectar. Verifique sua internet e tente novamente.");
+      } else if (err.response.status === 400) {
+        setErro("A nova senha não pode ser igual à senha anterior.");
+      } else if (err.response.status === 401 || err.response.status === 403) {
+        setErro("Sua sessão expirou. Faça login novamente.");
+      } else if (err.response.status >= 500) {
+        setErro("Ocorreu um erro no servidor. Tente novamente mais tarde.");
+      } else {
+        setErro("Não foi possível salvar a senha. Tente novamente.");
+      }
     } finally {
       setLoading(false);
     }
   }
 
-  function handleCancelar() {
-    signOut();
-    router.replace("/");
-  }
-
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Ícone */}
-      <View style={styles.iconCircle}>
-        <Ionicons name="lock-closed" size={32} color="#fff" />
-      </View>
-
-      {/* Header */}
-      <Text style={styles.title}>Primeiro Acesso</Text>
-      <Text style={styles.subtitle}>
-        Este é seu <Text style={styles.bold}>primeiro acesso</Text>. Digite uma{" "}
-        <Text style={styles.bold}>nova senha</Text>, ela não pode ser igual à
-        senha temporária.
-      </Text>
-
-      {/* Requisitos */}
-      <View style={styles.requisitosBox}>
-        <View style={styles.requisitosHeader}>
-          <Ionicons name="shield-checkmark-outline" size={20} color="#EE2B47" />
-          <Text style={styles.requisitosTitle}>A senha deve ter:</Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Ícone */}
+        <View style={styles.iconCircle}>
+          <Ionicons name="lock-closed" size={32} color="#fff" />
         </View>
 
-        {[
-          { label: "No mínimo 8 caracteres", ok: validacoes.minimo8 },
-          { label: "Uma letra maiúscula e uma minúscula", ok: validacoes.maiuscula },
-          { label: "Um caractere especial (ex.: #,$,%,&,@)", ok: validacoes.especial },
-          { label: "Um número (ex.: 1,2,3)", ok: validacoes.numero },
-        ].map((item, i) => (
-          <View key={i} style={styles.requisitosItem}>
-            <View
-              style={[
-                styles.requisitoBullet,
-                { backgroundColor: item.ok ? "#D1FAE5" : "#FFE2E2" },
-              ]}
-            >
-              {item.ok && (
-                <Ionicons name="checkmark" size={12} color="#16A34A" />
-              )}
-            </View>
-            <Text
-              style={[
-                styles.requisitoText,
-                { color: item.ok ? "#16A34A" : "#E7000B" },
-              ]}
-            >
-              {item.label}
-            </Text>
+        {/* Header */}
+        <Text style={styles.title}>Primeiro Acesso</Text>
+        <Text style={styles.subtitle}>
+          Este é seu <Text style={styles.bold}>primeiro acesso</Text>. Digite uma{" "}
+          <Text style={styles.bold}>nova senha</Text>, ela não pode ser igual à
+          senha temporária.
+        </Text>
+
+        {/* Requisitos */}
+        <View style={styles.requisitosBox}>
+          <View style={styles.requisitosHeader}>
+            <Ionicons name="shield-checkmark-outline" size={20} color="#EE2B47" />
+            <Text style={styles.requisitosTitle}>A senha deve ter:</Text>
           </View>
-        ))}
-      </View>
 
-      {/* Campo Nova Senha */}
-      <View style={styles.inputWrapper}>
-        <Text style={styles.label}>Nova senha</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha"
-            placeholderTextColor="rgba(10,10,10,0.5)"
-            value={novaSenha}
-            onChangeText={setNovaSenha}
-            secureTextEntry={!showNova}
-          />
-          <TouchableOpacity onPress={() => setShowNova(!showNova)}>
-            <Ionicons
-              name={showNova ? "eye-off-outline" : "eye-outline"}
-              size={20}
-              color="#99A1AF"
-            />
-          </TouchableOpacity>
+          {[
+            { label: "No mínimo 8 caracteres", ok: validacoes.minimo8 },
+            { label: "Uma letra maiúscula e uma minúscula", ok: validacoes.maiuscula },
+            { label: "Um caractere especial (ex.: #,$,%,&,@)", ok: validacoes.especial },
+            { label: "Um número (ex.: 1,2,3)", ok: validacoes.numero },
+          ].map((item, i) => (
+            <View key={i} style={styles.requisitosItem}>
+              <View
+                style={[
+                  styles.requisitoBullet,
+                  { backgroundColor: item.ok ? "#D1FAE5" : "#FFE2E2" },
+                ]}
+              >
+                {item.ok && (
+                  <Ionicons name="checkmark" size={12} color="#16A34A" />
+                )}
+              </View>
+              <Text
+                style={[
+                  styles.requisitoText,
+                  { color: item.ok ? "#16A34A" : "#E7000B" },
+                ]}
+              >
+                {item.label}
+              </Text>
+            </View>
+          ))}
         </View>
-      </View>
 
-      {/* Campo Confirmar Senha */}
-      <View style={styles.inputWrapper}>
-        <Text style={styles.label}>Confirme a nova senha</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha novamente"
-            placeholderTextColor="rgba(10,10,10,0.5)"
-            value={confirmarSenha}
-            onChangeText={setConfirmarSenha}
-            secureTextEntry={!showConfirmar}
-          />
-          <TouchableOpacity onPress={() => setShowConfirmar(!showConfirmar)}>
-            <Ionicons
-              name={showConfirmar ? "eye-off-outline" : "eye-outline"}
-              size={20}
-              color="#99A1AF"
+        {/* Campo Nova Senha */}
+        <View style={styles.inputWrapper}>
+          <Text style={styles.label}>Nova senha</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Digite sua senha"
+              placeholderTextColor="rgba(10,10,10,0.5)"
+              value={novaSenha}
+              onChangeText={setNovaSenha}
+              secureTextEntry={!showNova}
             />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => setShowNova(!showNova)}>
+              <Ionicons
+                name={showNova ? "eye-off-outline" : "eye-outline"}
+                size={20}
+                color="#99A1AF"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
-      {/* Erro */}
-      {erro ? <Text style={styles.errorText}>{erro}</Text> : null}
+        {/* Campo Confirmar Senha */}
+        <View style={styles.inputWrapper}>
+          <Text style={styles.label}>Confirme a nova senha</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Digite sua senha novamente"
+              placeholderTextColor="rgba(10,10,10,0.5)"
+              value={confirmarSenha}
+              onChangeText={setConfirmarSenha}
+              secureTextEntry={!showConfirmar}
+            />
+            <TouchableOpacity onPress={() => setShowConfirmar(!showConfirmar)}>
+              <Ionicons
+                name={showConfirmar ? "eye-off-outline" : "eye-outline"}
+                size={20}
+                color="#99A1AF"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
 
-      {/* Botões */}
-      <Button
-        label="SALVAR"
-        loading={loading}
-        onPress={handleSalvar}
-        disabled={loading || !tudo_valido}
-        style={!tudo_valido ? { backgroundColor: "#F9A8B0", elevation: 0 } : undefined}
-      />
+        {/* Erro */}
+        {erro ? <Text style={styles.errorText}>{erro}</Text> : null}
 
-      <Button
-        label="CANCELAR"
-        variant="secondary"
-        onPress={handleCancelar}
-      />
-    </ScrollView>
+        {/* Botões */}
+        <Button
+          label="SALVAR"
+          loading={loading}
+          onPress={handleSalvar}
+          disabled={!podeSalvar}
+        />
+
+        <Button
+          label="CANCELAR"
+          variant="secondary"
+          onPress={handleCancelar}
+          disabled={loading}
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
