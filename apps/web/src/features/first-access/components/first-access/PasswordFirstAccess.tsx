@@ -44,7 +44,7 @@ export default function PasswordResetPage() {
         if (user && user.Flag === false) {
             navigate(RoleRoutes[user.TipoUsuario] ?? "/");
         }
-    }, [user]);
+    }, [user, navigate]);
 
     if (!user) return null;
 
@@ -86,7 +86,7 @@ export default function PasswordResetPage() {
         logout();
         navigate("/vitalitas/user/login");
     }
-    
+
     return (
         <div className="bg-white w-full max-w-[560px] rounded-3xl shadow-2xl p-10">
 

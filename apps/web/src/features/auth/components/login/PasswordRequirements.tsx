@@ -54,7 +54,7 @@ interface PasswordRequirementsProps {
 export function PasswordRequirements({ password }: PasswordRequirementsProps) {
   const hasMinLength = password.length >= 8;
   const hasUpperAndLower = /[A-Z]/.test(password) && /[a-z]/.test(password);
-  const hasSpecialChar = /[#$%&@!?^*()_\-+=\[\]{};':"\\|,.<>\/]/.test(password);
+  const hasSpecialChar = /[#$%&@!?^*()_\-+=[\]{};':"\\|,.<>/]/.test(password);
   const hasNumber = /[0-9]/.test(password);
 
   return (

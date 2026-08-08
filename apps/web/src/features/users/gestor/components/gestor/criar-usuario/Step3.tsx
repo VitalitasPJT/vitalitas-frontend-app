@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/shared/hooks/useAuth';
+import axios from 'axios';
 import type { FormData } from '../../../pages/CreateUserPage';
 import { criarUsuario, criarAluno, criarInstrutor } from '../../../services/gestorService';
 
@@ -11,18 +12,18 @@ interface Step3Props {
 
 const PERFIL_LABEL: Record<string, string> = {
   instrutor: 'Instrutor',
-  aluno:     'Aluno',
-  gestor:    'Gestor',
-  admin:     'Administrador',
+  aluno: 'Aluno',
+  gestor: 'Gestor',
+  admin: 'Administrador',
 };
 
 // Mapeamento perfil → TipoUsuario numérico do backend
 // Domain.Enums.TipoUsuario: Instrutor=1, Aluno=2, Gestor=3, Administrador=4
 const TIPO_USUARIO: Record<string, number> = {
   instrutor: 1,
-  aluno:     2,
-  gestor:    3,
-  admin:     4,
+  aluno: 2,
+  gestor: 3,
+  admin: 4,
 };
 
 function SummaryRow({ label, value }: { label: string; value?: string }) {
@@ -67,19 +68,19 @@ export function Step3({ formData, onBack }: Step3Props) {
       // ── Passo 1: criar o usuário base ──────────────────────────────────────
       // POST /gestor/criar-usuario → retorna { IdUsuario, Status }
       const usuarioBase = await criarUsuario({
-        IdAcademia:     user.IdAcademia,
-        Nome:           formData.nome,
-        Email:          formData.email,
-        Senha:          formData.senha,
+        IdAcademia: user.IdAcademia,
+        Nome: formData.nome,
+        Email: formData.email,
+        Senha: formData.senha,
         DataNascimento: formData.nascimento,
-        Cpf:            formData.cpf,
-        TipoUsuario:    TIPO_USUARIO[perfil] ?? 2,
-        Quadra:         formData.quadra ?? '',
-        Rua:            formData.rua,
-        Bairro:         formData.bairro,
-        Cidade:         formData.cidade,
-        Estado:         formData.estado,
-        Cep:            formData.cep,
+        Cpf: formData.cpf,
+        TipoUsuario: TIPO_USUARIO[perfil] ?? 2,
+        Quadra: formData.quadra ?? '',
+        Rua: formData.rua,
+        Bairro: formData.bairro,
+        Cidade: formData.cidade,
+        Estado: formData.estado,
+        Cep: formData.cep,
       });
 
       const idUsuarioCriado: string = usuarioBase.IdUsuario;
@@ -88,10 +89,10 @@ export function Step3({ formData, onBack }: Step3Props) {
       if (perfil === 'aluno') {
         // POST /gestor/criar-aluno → vincula aluno com objetivo, instrutor e contrato
         await criarAluno({
-          IdUsuario:   idUsuarioCriado,
+          IdUsuario: idUsuarioCriado,
           IdInstrutor: '00000000-0000-0000-0000-000000000000', // TODO: seletor de instrutor
-          IdContrato:  '00000000-0000-0000-0000-000000000000', // TODO: seletor de contrato
-          Objetivo:    formData.objetivos?.join(', ') ?? '',
+          IdContrato: '00000000-0000-0000-0000-000000000000', // TODO: seletor de contrato
+          Objetivo: formData.objetivos?.join(', ') ?? '',
         });
       }
 
@@ -99,14 +100,17 @@ export function Step3({ formData, onBack }: Step3Props) {
         // POST /gestor/criar-instrutor → vincula instrutor com CREF
         await criarInstrutor({
           IdUsuario: idUsuarioCriado,
-          CREF:      formData.cref ?? '',
+          CREF: formData.cref ?? '',
         });
       }
 
       navigate('/user/gestor');
 
-    } catch (err: any) {
-      const detalhe = err?.response?.data?.detalhe ?? err?.response?.data?.message ?? '';
+    } catch (err: unknown) {
+      let detalhe = '';
+      if (axios.isAxiosError(err)) {
+        detalhe = err.response?.data?.detalhe ?? err.response?.data?.message ?? '';
+      }
       setError(`Erro ao criar usuário.${detalhe ? ` Detalhe: ${detalhe}` : ' Verifique os dados e tente novamente.'}`);
     } finally {
       setLoading(false);
@@ -135,11 +139,11 @@ export function Step3({ formData, onBack }: Step3Props) {
           <SectionTitle title="Informações Básicas" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <SummaryRow label="Nome Completo" value={formData.nome} />
-            <SummaryRow label="Perfil"        value={PERFIL_LABEL[perfil] ?? perfil} />
-            <SummaryRow label="Email"         value={formData.email} />
-            <SummaryRow label="Telefone"      value={formData.telefone} />
-            <SummaryRow label="CPF"           value={formData.cpf} />
-            <SummaryRow label="Nascimento"    value={formData.nascimento} />
+            <SummaryRow label="Perfil" value={PERFIL_LABEL[perfil] ?? perfil} />
+            <SummaryRow label="Email" value={formData.email} />
+            <SummaryRow label="Telefone" value={formData.telefone} />
+            <SummaryRow label="CPF" value={formData.cpf} />
+            <SummaryRow label="Nascimento" value={formData.nascimento} />
           </div>
         </div>
 
@@ -147,9 +151,9 @@ export function Step3({ formData, onBack }: Step3Props) {
         <div className="flex flex-col gap-4">
           <SectionTitle title="Endereço" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <SummaryRow label="CEP"    value={formData.cep} />
+            <SummaryRow label="CEP" value={formData.cep} />
             <SummaryRow label="Quadra" value={formData.quadra} />
-            <SummaryRow label="Rua"    value={formData.rua} />
+            <SummaryRow label="Rua" value={formData.rua} />
             <SummaryRow label="Bairro" value={formData.bairro} />
             <SummaryRow label="Cidade" value={formData.cidade} />
             <SummaryRow label="Estado" value={formData.estado} />
@@ -173,12 +177,12 @@ export function Step3({ formData, onBack }: Step3Props) {
               </div>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <SummaryRow label="Alergias"           value={formData.alergias} />
-              <SummaryRow label="Cirurgias"          value={formData.cirurgias} />
-              <SummaryRow label="Lesões"             value={formData.lesoes} />
+              <SummaryRow label="Alergias" value={formData.alergias} />
+              <SummaryRow label="Cirurgias" value={formData.cirurgias} />
+              <SummaryRow label="Lesões" value={formData.lesoes} />
               <SummaryRow label="Problemas de Saúde" value={formData.problemaSaude} />
-              <SummaryRow label="Medicamentos"       value={formData.medicamentos} />
-              <SummaryRow label="Limitações"         value={formData.limitacoes} />
+              <SummaryRow label="Medicamentos" value={formData.medicamentos} />
+              <SummaryRow label="Limitações" value={formData.limitacoes} />
             </div>
           </div>
         )}
