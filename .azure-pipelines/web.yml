@@ -20,8 +20,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - job: lint_typecheck_build
-    displayName: 'Lint, Typecheck and Build'
+  - job: lint_and_build
+    displayName: 'Lint and Build'
     steps:
       - checkout: self
 
@@ -41,11 +41,8 @@ jobs:
       - script: npm install
         displayName: 'Install dependencies'
 
-      - script: npm run lint --workspace=web
+      - script: npm run lint --workspace=apps/web
         displayName: 'Run lint'
 
-      - script: npm run typecheck --workspace=web
-        displayName: 'Run typecheck'
-
-      - script: npm run build --workspace=web
-        displayName: 'Build (vite build)'
+      - script: npm run build --workspace=apps/web
+        displayName: 'Build (typecheck + vite build)'
