@@ -44,7 +44,7 @@ const ERROR_INFO: Record<ErrorCode, ErrorInfo> = {
 
 const DASHBOARD_BY_ROLE: Record<string, string> = {
   Gestor: "/user/gestor", Instrutor: "/user/instrutor",
-  Aluno: "/user/aluno",  Administrador: "/user/admin",
+  Aluno: "/user/aluno", Administrador: "/user/admin",
 };
 
 export default function ErrorPage() {
@@ -61,10 +61,22 @@ export default function ErrorPage() {
 
   function handleAction(action: "back" | "dashboard" | "login" | "reload") {
     switch (action) {
-      case "back":    window.history.length > 1 ? navigate(-1) : navigate(dashboardRoute); break;
-      case "dashboard": navigate(dashboardRoute); break;
-      case "login":   navigate("/vitalitas/user/login"); break;
-      case "reload":  window.location.reload(); break;
+      case "back":
+        if (window.history.length > 1) {
+          navigate(-1);
+        } else {
+          navigate(dashboardRoute);
+        }
+        break;
+      case "dashboard":
+        navigate(dashboardRoute);
+        break;
+      case "login":
+        navigate("/vitalitas/user/login");
+        break;
+      case "reload":
+        window.location.reload();
+        break;
     }
   }
 

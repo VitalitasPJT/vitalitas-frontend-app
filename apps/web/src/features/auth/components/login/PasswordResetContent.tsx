@@ -35,7 +35,7 @@ export function PasswordResetContent({ onClose }: PasswordResetContentProps) {
 
   const hasMinLength = newPassword.length >= 8;
   const hasUpperAndLower = /[A-Z]/.test(newPassword) && /[a-z]/.test(newPassword);
-  const hasSpecialChar = /[#$%&@!?^*()_\-+=\[\]{};':"\\|,.<>\/]/.test(newPassword);
+  const hasSpecialChar = /[#$%&@!?^*()_\-+=[\]{};':"\\|,.<>/]/.test(newPassword);
   const hasNumber = /[0-9]/.test(newPassword);
   const isPasswordValid = hasMinLength && hasUpperAndLower && hasSpecialChar && hasNumber;
 
