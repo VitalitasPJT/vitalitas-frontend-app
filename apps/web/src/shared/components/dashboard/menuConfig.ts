@@ -8,6 +8,7 @@ import {
   UserCheck,
   ClipboardList,
 } from 'lucide-react';
+import { ConstRoutes } from '@/shared/constants/Routes';
 
 export type UserRole = 'Gestor' | 'Instrutor' | 'Aluno' | 'Administrador';
 
@@ -32,16 +33,21 @@ export const roleLabelMap: Record<UserRole, string> = {
   Administrador:  'Administrador',
 };
 
+// Paths raiz (Usuários/Gestor e Dashboard/Instrutor) agora vêm de
+// ConstRoutes (shared/constants/Routes.ts) em vez de string literal —
+// esses dois já existiam lá (ConstRoutes.GESTOR/ConstRoutes.INSTRUTOR).
+// Os subpaths (Financeiro, Contratos, Atividades...) não têm constante
+// equivalente em Routes.ts ainda, então continuam literais.
 export const menuByRole: Partial<Record<UserRole, MenuItem[]>> = {
   Gestor: [
-    { icon: Users,       label: 'Usuários',             path: '/user/gestor' },
+    { icon: Users,       label: 'Usuários',             path: ConstRoutes.GESTOR },
     { icon: DollarSign,  label: 'Financeiro',            path: '/user/gestor/financeiro' },
     { icon: FileText,    label: 'Contratos',             path: '/user/gestor/contratos' },
     { icon: Activity,    label: 'Atividades',            path: '/user/gestor/logs' },
     { icon: Video,       label: 'Vídeos Institucionais', path: '/user/gestor/videos' },
   ],
   Instrutor: [
-    { icon: LayoutDashboard, label: 'Dashboard',  path: '/user/instrutor' },
+    { icon: LayoutDashboard, label: 'Dashboard',  path: ConstRoutes.INSTRUTOR },
     { icon: UserCheck,       label: 'Alunos',     path: '/user/instrutor/alunos' },
     { icon: ClipboardList,   label: 'Avaliações', path: '/user/instrutor/avaliacoes' },
   ],

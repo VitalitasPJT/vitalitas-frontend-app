@@ -92,3 +92,30 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #2c2c30 inset !important;
   -webkit-text-fill-color: #e4e4e7 !important;
 }
+
+/* ── Fix Edge/IE injetando o próprio botão de "mostrar senha" e "limpar
+   campo" sobre os inputs customizados (InputField.tsx, PasswordInput.tsx,
+   FormField.tsx já têm seus próprios botões/ícones — os nativos do Edge
+   ficavam duplicados por cima). Chrome/Opera não fazem isso, por isso o
+   problema só aparecia no Edge. Regra global: cobre qualquer input de
+   senha do app, não só um componente específico. ── */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* ── Fix Chrome/Safari (Blink/WebKit) injetando o próprio ícone de
+   sugestão de senha salva (formato de chave) sobre os inputs
+   customizados. Diferente do Edge, esse ícone só aparece quando o
+   navegador JÁ TEM uma credencial salva pro site — por isso não
+   apareceu no teste manual inicial no Chrome/Opera (sem senha salva
+   ainda). Vale testar de novo depois de salvar uma senha e recarregar
+   a tela, pra confirmar que esse fix cobre o caso. ── */
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}

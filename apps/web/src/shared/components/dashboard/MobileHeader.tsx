@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Menu, X, Settings, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/shared/hooks/useAuth';
-import { ThemeToggle } from '@/shared/components/ui/TemasToggle';
+import { ThemeToggle } from '@/shared/components/ui/ThemeToggle';
+import { Avatar } from '@/shared/components/ui/Avatar';
 import type { MenuItem, UserProfile } from './menuConfig';
 
 interface MobileHeaderProps {
@@ -12,13 +13,8 @@ interface MobileHeaderProps {
   activePath: string;
 }
 
-function AvatarFallback({ name }: { name: string }) {
-  const initials = name.split(' ').slice(0, 2).map((n) => n[0]).join('').toUpperCase();
-  return (
-    <div className="size-10 rounded-full bg-[#ee2b47] flex items-center justify-center border-2 border-white dark:border-[#2c2c30] shadow-md">
-      <span className="text-white font-bold text-xs">{initials}</span>
-    </div>
-  );
+function getInitials(name: string): string {
+  return name.split(' ').slice(0, 2).map((n) => n[0]).join('').toUpperCase();
 }
 
 export function MobileHeader({ title, menuItems, user, activePath }: MobileHeaderProps) {
@@ -68,9 +64,14 @@ export function MobileHeader({ title, menuItems, user, activePath }: MobileHeade
         <div className="flex items-center justify-between px-4 py-4 border-b border-[#f4f4f5] dark:border-[rgba(255,255,255,0.06)]">
           <div className="flex items-center gap-3">
             <div className="relative shrink-0">
-              {user.avatarUrl
-                ? <img src={user.avatarUrl} alt={user.name} className="size-10 rounded-full object-cover border-2 border-white dark:border-[#2c2c30] shadow-md" />
-                : <AvatarFallback name={user.name} />}
+              <Avatar
+                initials={getInitials(user.name)}
+                src={user.avatarUrl ?? undefined}
+                alt={user.name}
+                size="md"
+                tone="brand"
+                className="border-2 border-white dark:border-[#2c2c30] shadow-md"
+              />
               <div className="absolute bottom-0 right-0 size-3 bg-[#00c950] border-2 border-white dark:border-[#1c1c1f] rounded-full" />
             </div>
             <div>

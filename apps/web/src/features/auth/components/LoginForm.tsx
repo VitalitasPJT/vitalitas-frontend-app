@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock, Check } from "lucide-react";
+import { Mail, Lock, Check, Loader2 } from "lucide-react";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { InputField } from "@/shared/components/inputs/InputField";
 import { RoleRoutes } from "@/shared/constants/Roles";
@@ -16,6 +16,9 @@ export default function LoginForm() {
   const [passwordError, setPasswordError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isRecoverModalOpen, setIsRecoverModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const canSubmit = email.trim() !== "" && password.trim() !== "" && !isSubmitting;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,6 +31,7 @@ export default function LoginForm() {
       return;
     }
 
+    setIsSubmitting(true);
     try {
       const user = await login(email, password, rememberMe);
 
@@ -45,6 +49,8 @@ export default function LoginForm() {
       navigate(destination);
     } catch {
       setPasswordError("Email ou senha inválidos.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -72,6 +78,7 @@ export default function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           icon={<Mail/>}
           error={emailError}
+          autoComplete="off"
         />
 
         <InputField
@@ -82,6 +89,7 @@ export default function LoginForm() {
           icon={<Lock/>}
           error={passwordError}
           isPassword
+          autoComplete="off"
         />
 
         {/* Lembrar-me / Esqueceu a senha */}
@@ -118,11 +126,16 @@ export default function LoginForm() {
 
         <button
           type="submit"
-          className="login-btn-4k h-[60px] w-full rounded-[14px] bg-[#ee2b47] text-lg font-bold tracking-wide text-white cursor-pointer
+          disabled={!canSubmit}
+          className={`login-btn-4k h-[60px] w-full rounded-[14px] bg-[#ee2b47] text-lg font-bold tracking-wide text-white
             shadow-[0px_10px_15px_0px_rgba(238,43,71,0.3),0px_4px_6px_0px_rgba(238,43,71,0.3)]
-            transition-all hover:-translate-y-px hover:opacity-90 active:translate-y-0 active:opacity-100"
+            transition-all hover:-translate-y-px hover:opacity-90 active:translate-y-0 active:opacity-100
+            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0
+            flex items-center justify-center gap-2
+            ${canSubmit ? "cursor-pointer" : ""}`}
         >
-          LOGIN
+          {isSubmitting && <Loader2 size={20} className="animate-spin" />}
+          {isSubmitting ? "ENTRANDO..." : "LOGIN"}
         </button>
       </form>
 

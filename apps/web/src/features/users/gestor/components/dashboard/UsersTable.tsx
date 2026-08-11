@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/shared/hooks/useAuth';
-import { listarAlunos } from '../../../services/gestorService';
-import type { AlunoItem } from '../../../services/gestorService';
+import { listarAlunos } from '../../services/gestorService';
+import type { AlunoItem } from '../../services/gestorService';
 
 const ITENS_POR_PAGINA = 10;
 

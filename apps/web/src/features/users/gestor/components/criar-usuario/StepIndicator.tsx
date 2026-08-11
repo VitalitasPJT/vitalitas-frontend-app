@@ -1,3 +1,5 @@
+import { Check, SkipForward } from 'lucide-react';
+
 interface Step {
   number: number;
   title: string;
@@ -11,23 +13,12 @@ interface StepIndicatorProps {
   steps: Step[];
 }
 
-function CheckIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
-function SkipIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="13 6 19 12 13 18" />
-    </svg>
-  );
-}
-
+/**
+ * Dark mode adicionado via tokens (text-ink, text-body, border-border,
+ * bg-brand, bg-surface-muted). Ícones de check/skip trocados de SVG
+ * desenhado à mão para lucide-react (Check, SkipForward), já padrão no
+ * resto do projeto.
+ */
 export function StepIndicator({ steps }: StepIndicatorProps) {
   return (
     <div className="w-full max-w-4xl mx-auto mb-8">
@@ -41,10 +32,10 @@ export function StepIndicator({ steps }: StepIndicatorProps) {
                 key={step.number}
                 className={`flex-1 h-0.5 transition-colors ${
                   step.isCompleted
-                    ? 'bg-red-500'
+                    ? 'bg-brand'
                     : step.isSkipped
-                    ? 'bg-gray-200'
-                    : 'bg-gray-300'
+                    ? 'bg-surface-muted'
+                    : 'bg-border'
                 }`}
               />
             ))}
@@ -60,18 +51,18 @@ export function StepIndicator({ steps }: StepIndicatorProps) {
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
                   step.isSkipped
-                    ? 'bg-gray-100 border-gray-200 text-gray-400'
+                    ? 'bg-surface-muted border-border text-body'
                     : step.isCompleted
-                    ? 'bg-red-500 border-red-500 text-white'
+                    ? 'bg-brand border-brand text-white'
                     : step.isActive
-                    ? 'bg-red-500 border-red-500 text-white'
-                    : 'bg-white border-gray-300 text-gray-400'
+                    ? 'bg-brand border-brand text-white'
+                    : 'bg-surface border-border text-body'
                 }`}
               >
                 {step.isSkipped ? (
-                  <SkipIcon />
+                  <SkipForward size={14} strokeWidth={2.5} />
                 ) : step.isCompleted ? (
-                  <CheckIcon />
+                  <Check size={16} strokeWidth={3} />
                 ) : (
                   <span className="text-base font-normal">{step.number}</span>
                 )}
@@ -82,20 +73,20 @@ export function StepIndicator({ steps }: StepIndicatorProps) {
                 <p
                   className={`text-sm text-center font-medium transition-colors ${
                     step.isSkipped
-                      ? 'text-gray-300'
+                      ? 'text-body/60'
                       : step.isActive || step.isCompleted
-                      ? 'text-black'
-                      : 'text-gray-400'
+                      ? 'text-ink'
+                      : 'text-body'
                   }`}
                 >
                   {step.title}
                   {step.isSkipped && (
-                    <span className="ml-1 text-xs font-normal text-gray-300">(ignorada)</span>
+                    <span className="ml-1 text-xs font-normal text-body/60">(ignorada)</span>
                   )}
                 </p>
                 <p
                   className={`text-xs text-center transition-colors ${
-                    step.isSkipped ? 'text-gray-300' : 'text-gray-500'
+                    step.isSkipped ? 'text-body/60' : 'text-body'
                   }`}
                 >
                   {step.subtitle}

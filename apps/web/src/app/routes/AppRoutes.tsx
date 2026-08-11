@@ -14,10 +14,6 @@ import CriarUsuario from "@/features/users/gestor/pages/CreateUserPage";
 import LogsPageGestor from "@/features/users/gestor/pages/LogsPage";
 
 // Outras páginas
-// Renomeado de PasswordResetPage para PasswordFirstAccessPage (nome antigo
-// causava confusão com o fluxo de reset de senha por e-mail, que é uma
-// feature diferente e ainda não está na rota nenhuma). Alias corrigido de
-// "FirstAcess" (typo) para "FirstAccess".
 import FirstAccess from "@/features/first-access/pages/PasswordFirstAccessPage";
 import ErrorPage from "@/features/redirect-error/pages/ErrorPage";
 
@@ -47,20 +43,6 @@ export default function AppRoutes() {
           </PasswordResetRoute>
         }
       />
-
-      {/* ======================
-         ALUNO — Tipo 2
-      <Route
-        path="/user/aluno"
-        element={
-          <PrivateRoute>
-            <RoleRoute allowedRoles={["Aluno"]}>
-              <AlunoDashboard />
-            </RoleRoute>
-          </PrivateRoute>
-        }
-      />
-      ====================== */}
 
       {/* ======================
          INSTRUTOR — Tipo 1

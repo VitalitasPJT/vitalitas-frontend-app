@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { StepIndicator } from '../components/gestor/criar-usuario/StepIndicator';
-import { UserForm } from '../components/gestor/criar-usuario/UserForm';
+import { DashboardLayout } from '@/shared/components/dashboard/DashboardLayout';
+import { StepIndicator } from '../components/criar-usuario/StepIndicator';
+import { UserForm } from '../components/criar-usuario/UserForm';
 
 export interface FormData {
   // Etapa 1
@@ -40,6 +41,12 @@ const STEPS_POR_PERFIL: Record<string, number[]> = {
 
 const STEPS_PADRAO = [1, 2, 3];
 
+/**
+ * Antes tinha layout próprio (ml-[88px] pt-[109px]) tentando simular
+ * manualmente o espaço da Sidebar/Header — números mágicos que
+ * descolariam da tela real se a largura da Sidebar mudasse. Agora usa
+ * DashboardLayout, igual a todas as outras páginas do Gestor.
+ */
 export default function CriarUsuario() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<Partial<FormData>>({});
@@ -93,19 +100,26 @@ export default function CriarUsuario() {
     if (etapaAnterior !== undefined) setCurrentStep(etapaAnterior);
   }
 
+  // "Cancelar" na Etapa 3 não abandona o cadastro (isso já existia e foi
+  // mudado) — volta direto pra Etapa 1, mesmo quando a Etapa 2 estava
+  // ativa nesse perfil (aluno/instrutor). Diferente de handleBack, que
+  // volta uma etapa por vez seguindo etapasAtivas.
+  function handleCancelToStep1() {
+    setCurrentStep(1);
+  }
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <main className="ml-[88px] pt-[109px] p-8">
-        <div className="max-w-4xl mx-auto">
-          <StepIndicator steps={steps} />
-          <UserForm
-            step={currentStep}
-            formData={formData}
-            onNext={handleNext}
-            onBack={handleBack}
-          />
-        </div>
-      </main>
-    </div>
+    <DashboardLayout>
+      <div className="max-w-4xl mx-auto">
+        <StepIndicator steps={steps} />
+        <UserForm
+          step={currentStep}
+          formData={formData}
+          onNext={handleNext}
+          onBack={handleBack}
+          onCancel={handleCancelToStep1}
+        />
+      </div>
+    </DashboardLayout>
   );
 }
