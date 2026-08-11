@@ -1,14 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { loginRequest } from "@/features/auth/services/authService";
 import { tipoUsuarioMap } from "@/shared/constants/Roles";
 import { getAuthItem, setAuthItem, clearAuthItems } from "@/shared/services/tokenStorage";
-import type { User, AuthContextType } from "@/shared/types/auth.ts";
-
-// ─── Context ──────────────────────────────────────────────────────────────────
-
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-// ─── Provider ─────────────────────────────────────────────────────────────────
+import { AuthContext } from "./authContext";
+import type { User } from "@/shared/types/auth.ts";
 
 /**
  * As 4 leituras/escritas diretas de localStorage.getItem/setItem("user", ...)
@@ -47,16 +42,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const newUser: User = {
       Id: data.IdUsuario,
       TipoUsuario: tipoStr,
-      // IdAcademia vem do backend após atualização do LoginResponse
-      // Para Instrutor/Aluno virá como "00000000-0000-0000-0000-000000000000" ou null
       IdAcademia: data.IdAcademia ?? null,
       Flag: data.Flag,
-      // ─────────────────────────────────────────────────────────────
-      // TODO: quando GET /usuario/:id/perfil estiver pronto:
-      //   const profile = await fetchUserProfile(data.IdUsuario);
-      //   Nome: profile.Nome,
-      //   AvatarUrl: profile.AvatarUrl,
-      // ─────────────────────────────────────────────────────────────
       Nome: null,
       AvatarUrl: null,
     };
