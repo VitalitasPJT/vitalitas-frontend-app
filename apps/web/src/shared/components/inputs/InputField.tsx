@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type {InputFieldProps} from '@/shared/types/Inputs';
+import type { InputFieldProps } from '@/shared/types/Inputs';
 
 function EyeIcon() {
   return (
@@ -20,6 +20,12 @@ function EyeOffIcon() {
   );
 }
 
+/**
+ * Reenvio: o InputField.tsx que estava no projeto era a versão anterior
+ * ao ajuste de autoComplete — o InputFieldProps já aceitava a prop, mas o
+ * componente não a desestruturava nem repassava pro <input> real, então
+ * ela não tinha efeito nenhum (nem erro de tipo, nem funcionalidade).
+ */
 export function InputField({
   id,
   label,
@@ -29,6 +35,11 @@ export function InputField({
   icon,
   error,
   isPassword = false,
+  // Diferente do FormField (que infere autoComplete internamente a partir
+  // do `name` — ver FormField.tsx), aqui quem chama o componente decide e
+  // passa explicitamente. Todo formulário novo com campo de senha
+  // precisa lembrar de passar autoComplete="new-password" na mão.
+  autoComplete,
 }: InputFieldProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -58,6 +69,7 @@ export function InputField({
           placeholder=" "
           value={value}
           onChange={onChange}
+          autoComplete={autoComplete}
           className="
             peer h-full w-full rounded-[14px] bg-transparent
             pb-3 pl-12 pr-12 pt-5 outline-none

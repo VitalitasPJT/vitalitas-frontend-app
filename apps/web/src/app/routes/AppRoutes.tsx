@@ -14,7 +14,7 @@ import CriarUsuario from "@/features/users/gestor/pages/CreateUserPage";
 import LogsPageGestor from "@/features/users/gestor/pages/LogsPage";
 
 // Outras páginas
-import FirstAcess from "@/features/first-access/pages/PasswordResetPage";
+import FirstAccess from "@/features/first-access/pages/PasswordFirstAccessPage";
 import ErrorPage from "@/features/redirect-error/pages/ErrorPage";
 
 // Guards
@@ -33,30 +33,16 @@ export default function AppRoutes() {
       <Route path="/vitalitas/user/login" element={<LoginPage />} />
 
       {/* ======================
-         RESET DE SENHA
+         PRIMEIRO ACESSO (troca da senha provisória)
       ====================== */}
       <Route
         path="/vitalitas/user/resetpassword"
         element={
           <PasswordResetRoute>
-            <FirstAcess />
+            <FirstAccess />
           </PasswordResetRoute>
         }
       />
-
-      {/* ======================
-         ALUNO — Tipo 2
-      <Route
-        path="/user/aluno"
-        element={
-          <PrivateRoute>
-            <RoleRoute allowedRoles={["Aluno"]}>
-              <AlunoDashboard />
-            </RoleRoute>
-          </PrivateRoute>
-        }
-      />
-      ====================== */}
 
       {/* ======================
          INSTRUTOR — Tipo 1

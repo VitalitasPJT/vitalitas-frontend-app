@@ -1,11 +1,14 @@
-import { DashboardLayout } from '../../gestor/components/gestor/dashboard/DashboardLayout';
-import { Header } from '../../gestor/components/gestor/dashboard/Header';
+import { DashboardLayout } from '@/shared/components/dashboard/DashboardLayout';
+import { Header } from '@/shared/components/dashboard/Header';
+import { useActivePageTitle } from '@/shared/hooks/useActivePageTitle';
 
 export default function InstrutorDashboard() {
+  const pageTitle = useActivePageTitle();
+
   return (
     <DashboardLayout>
       <Header
-        title="Dashboard"
+        title={pageTitle ?? 'Dashboard'}
         subtitle="Visão geral das suas atividades"
         actions={[
           { label: 'Exportar', variant: 'secondary' },

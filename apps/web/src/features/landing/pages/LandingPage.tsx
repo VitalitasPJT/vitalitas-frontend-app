@@ -9,7 +9,7 @@ import { GetStartedSection } from "../components/GetStartedSection";
 import { AboutSection } from "../components/AboutSection";
 import { ProductShowcaseSection } from "../components/ProductShowcaseSection";
 import { ContactSection } from "../components/ContactSection";
-import { ThemeToggle } from "@/shared/components/ui/TemasToggle";
+import { ThemeToggle } from "@/shared/components/ui/ThemeToggle";
 
 export default function LandingPage() {
   return (
