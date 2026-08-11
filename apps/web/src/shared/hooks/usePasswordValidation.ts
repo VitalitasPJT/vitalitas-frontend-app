@@ -9,7 +9,7 @@ export interface PasswordValidationResult {
   strength: PasswordStrengthLevel;
 }
 
-const SPECIAL_CHAR_REGEX = /[#$%&@!?^*()_\-+=\[\]{};':"\\|,.<>\/]/;
+const SPECIAL_CHAR_REGEX = /[#$%&@!?^*()_\-+=[\]{};':"\\|,.<>/]/;
 
 /**
  * Fonte única de verdade para a política de senha do sistema.

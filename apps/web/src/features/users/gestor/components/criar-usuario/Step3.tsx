@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
+import { isAxiosError } from 'axios';
 import { useAuth } from '@/shared/hooks/useAuth';
 import { Button } from '@/shared/components/ui/Button';
 import { Badge } from '@/shared/components/ui/Badge';
@@ -105,8 +106,12 @@ export function Step3({ formData, onBack, onCancel }: Step3Props) {
 
       navigate(ConstRoutes.GESTOR);
 
-    } catch (err: any) {
-      const detalhe = err?.response?.data?.detalhe ?? err?.response?.data?.message ?? '';
+    } catch (err) {
+      // isAxiosError é o type guard oficial do Axios — evita o "any" e ainda
+      // dá o shape correto de err.response.data sem precisar de asserção manual.
+      const detalhe = isAxiosError<{ detalhe?: string; message?: string }>(err)
+        ? err.response?.data?.detalhe ?? err.response?.data?.message ?? ''
+        : '';
       setError(`Erro ao criar usuário.${detalhe ? ` Detalhe: ${detalhe}` : ' Verifique os dados e tente novamente.'}`);
     } finally {
       setLoading(false);
